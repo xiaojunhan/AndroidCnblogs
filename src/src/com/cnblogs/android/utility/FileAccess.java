@@ -1,4 +1,4 @@
-package com.cnblogs.android.utility;
+ï»¿package com.cnblogs.android.utility;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -8,7 +8,7 @@ import android.os.Environment;
 
 public class FileAccess {
 	/**
-	 * ´´½¨ÎÄ¼ş¼Ğ
+	 * åˆ›å»ºæ–‡ä»¶å¤¹
 	 * 
 	 * @param dirName
 	 */
@@ -23,12 +23,12 @@ public class FileAccess {
 	}
 
 	/**
-	 * É¾³ı´ËÂ·¾¶Ãû±íÊ¾µÄÎÄ¼ş»òÄ¿Â¼¡£ Èç¹û´ËÂ·¾¶Ãû±íÊ¾Ò»¸öÄ¿Â¼£¬Ôò»áÏÈÉ¾³ıÄ¿Â¼ÏÂµÄÄÚÈİÔÙ½«Ä¿Â¼É¾³ı£¬ËùÒÔ¸Ã²Ù×÷²»ÊÇÔ­×ÓĞÔµÄ¡£
-	 * Èç¹ûÄ¿Â¼ÖĞ»¹ÓĞÄ¿Â¼£¬Ôò»áÒı·¢µİ¹é¶¯×÷¡£
+	 * åˆ é™¤æ­¤è·¯å¾„åè¡¨ç¤ºçš„æ–‡ä»¶æˆ–ç›®å½•ã€‚ å¦‚æœæ­¤è·¯å¾„åè¡¨ç¤ºä¸€ä¸ªç›®å½•ï¼Œåˆ™ä¼šå…ˆåˆ é™¤ç›®å½•ä¸‹çš„å†…å®¹å†å°†ç›®å½•åˆ é™¤ï¼Œæ‰€ä»¥è¯¥æ“ä½œä¸æ˜¯åŸå­æ€§çš„ã€‚
+	 * å¦‚æœç›®å½•ä¸­è¿˜æœ‰ç›®å½•ï¼Œåˆ™ä¼šå¼•å‘é€’å½’åŠ¨ä½œã€‚
 	 * 
 	 * @param filePath
-	 *            ÒªÉ¾³ıÎÄ¼ş»òÄ¿Â¼µÄÂ·¾¶¡£
-	 * @return µ±ÇÒ½öµ±³É¹¦É¾³ıÎÄ¼ş»òÄ¿Â¼Ê±£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£
+	 *            è¦åˆ é™¤æ–‡ä»¶æˆ–ç›®å½•çš„è·¯å¾„ã€‚
+	 * @return å½“ä¸”ä»…å½“æˆåŠŸåˆ é™¤æ–‡ä»¶æˆ–ç›®å½•æ—¶ï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚
 	 */
 	public static boolean DeleteFile(String filePath) {
 		File file = new File(filePath);
@@ -46,7 +46,7 @@ public class FileAccess {
 		return true;
 	}
 	/**
-	 * É¾³ıÈ«²¿ÎÄ¼ş
+	 * åˆ é™¤å…¨éƒ¨æ–‡ä»¶
 	 * 
 	 * @param file
 	 * @return
@@ -55,14 +55,14 @@ public class FileAccess {
 		File[] files = file.listFiles();
 		for (File deleteFile : files) {
 			if (deleteFile.isDirectory()) {
-				// Èç¹ûÊÇÎÄ¼ş¼Ğ£¬Ôòµİ¹éÉ¾³ıÏÂÃæµÄÎÄ¼şºóÔÙÉ¾³ı¸ÃÎÄ¼ş¼Ğ
+				// å¦‚æœæ˜¯æ–‡ä»¶å¤¹ï¼Œåˆ™é€’å½’åˆ é™¤ä¸‹é¢çš„æ–‡ä»¶åå†åˆ é™¤è¯¥æ–‡ä»¶å¤¹
 				if (!DeleteAllFile(deleteFile)) {
-					// Èç¹ûÊ§°ÜÔò·µ»Ø
+					// å¦‚æœå¤±è´¥åˆ™è¿”å›
 					return false;
 				}
 			} else {
 				if (!deleteFile.delete()) {
-					// Èç¹ûÊ§°ÜÔò·µ»Ø
+					// å¦‚æœå¤±è´¥åˆ™è¿”å›
 					return false;
 				}
 			}
@@ -70,7 +70,7 @@ public class FileAccess {
 		return file.delete();
 	}
 	/**
-	 * µÃµ½Êı¾İ¿âÎÄ¼şÂ·¾¶
+	 * å¾—åˆ°æ•°æ®åº“æ–‡ä»¶è·¯å¾„
 	 * @return
 	 */
 	public static String GetDbFileAbsolutePath(){
@@ -78,7 +78,7 @@ public class FileAccess {
 		return dbPath;
 	}
 	/**
-	 * ¶ÁÈ¡ÎÄ¼ş´óĞ¡
+	 * è¯»å–æ–‡ä»¶å¤§å°
 	 * @param filePath
 	 * @return
 	 */
@@ -87,7 +87,7 @@ public class FileAccess {
 		return file.length();
 	}
 	/**
-	 * ¶ÁÈ¡ÎÄ¼ş¼Ğ´óĞ¡
+	 * è¯»å–æ–‡ä»¶å¤¹å¤§å°
 	 * @param dirPath
 	 * @return
 	 */
@@ -96,7 +96,7 @@ public class FileAccess {
 		return getDirSize(dir);
 	}
 	/**
-	 * ¶ÁÈ¡ÎÄ¼ş¼Ğ´óĞ¡
+	 * è¯»å–æ–‡ä»¶å¤¹å¤§å°
 	 * @param dir
 	 * @return
 	 */
@@ -114,13 +114,13 @@ public class FileAccess {
 	            dirSize += file.length();  
 	        } else if (file.isDirectory()) {  
 	            dirSize += file.length();  
-	            dirSize += getDirSize(file); // Èç¹ûÓöµ½Ä¿Â¼ÔòÍ¨¹ıµİ¹éµ÷ÓÃ¼ÌĞøÍ³¼Æ  
+	            dirSize += getDirSize(file); // å¦‚æœé‡åˆ°ç›®å½•åˆ™é€šè¿‡é€’å½’è°ƒç”¨ç»§ç»­ç»Ÿè®¡  
 	        }  
 	    }  
 	    return dirSize;  
 	} 
 	/**
-	 * ½«×Ö³¤³¤¶È×ª»»ÎªKB/MB
+	 * å°†å­—é•¿é•¿åº¦è½¬æ¢ä¸ºKB/MB
 	 * @param size
 	 * @return
 	 */

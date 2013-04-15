@@ -1,7 +1,7 @@
-package com.cnblogs.android.entity;
+ï»¿package com.cnblogs.android.entity;
 
 /**
- * ¶©ÔÄ·ÖÀà
+ * è®¢é˜…åˆ†ç±»
  * @author walkingp
  *
  */

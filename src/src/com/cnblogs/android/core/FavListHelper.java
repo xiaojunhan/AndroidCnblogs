@@ -1,4 +1,4 @@
-package com.cnblogs.android.core;
+ï»¿package com.cnblogs.android.core;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,14 +10,14 @@ import com.cnblogs.android.dal.FavDalHelper;
 import com.cnblogs.android.entity.FavList;
 import com.cnblogs.android.enums.EnumResultType;
 /**
- * ÊÕ²Ø²Ù×÷Àà
+ * æ”¶è—æ“ä½œç±»
  * @author walkingp
  *
  */
 public class FavListHelper {
 	static FavDalHelper helper;
 	/**
-	 * µÃµ½ÊµÌåÀà
+	 * å¾—åˆ°å®ä½“ç±»
 	 * @param contentId
 	 * @param contentType
 	 * @param context
@@ -28,7 +28,7 @@ public class FavListHelper {
 		return helper.GetFavEntity(contentId,contentType);
 	}
 	/**
-	 * ·µ»Ø±»ÒıÓÃµÄÀà
+	 * è¿”å›è¢«å¼•ç”¨çš„ç±»
 	 * @param contentId
 	 * @param contentType
 	 * @param context
@@ -45,7 +45,7 @@ public class FavListHelper {
 		return obj;
 	}
 	/**
-	 * ¸ù¾İÒ³ÂëµÃµ½List
+	 * æ ¹æ®é¡µç å¾—åˆ°List
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param contentType
@@ -60,7 +60,7 @@ public class FavListHelper {
 		return list;
 	}
 	/**
-	 * Ìí¼Óµ½ÊÕ²Ø
+	 * æ·»åŠ åˆ°æ”¶è—
 	 * @param contentId
 	 * @param contentType
 	 * @param context
@@ -79,7 +79,7 @@ public class FavListHelper {
 		return helper.SynchronyData2DB(listFav);
 	}
 	/**
-	 * ÒÆ³ıÊÕ²Ø
+	 * ç§»é™¤æ”¶è—
 	 * @param favId
 	 * @param context
 	 */
@@ -89,7 +89,7 @@ public class FavListHelper {
 	}
 
 	/**
-	 * ÒÆ³ıÊÕ²Ø
+	 * ç§»é™¤æ”¶è—
 	 * @param favId
 	 * @param context
 	 */

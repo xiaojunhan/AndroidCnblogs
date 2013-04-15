@@ -1,11 +1,11 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 /**
- * ÉÁÆÁ
+ * é—ªå±
  * @author walkingp
  * @date:2011-12
  *
@@ -17,7 +17,7 @@ public class SplashActivity extends BaseActivity{
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);  
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.splash);
-		//ÉèÖÃÑÓ³Ù£¬²¥·ÅµÇÂ½½çÃæ
+		//è®¾ç½®å»¶è¿Ÿï¼Œæ’­æ”¾ç™»é™†ç•Œé¢
 		new Handler().postDelayed(new Runnable(){
 			public void run() {
 				RedirectMainActivity();
@@ -25,7 +25,7 @@ public class SplashActivity extends BaseActivity{
 		},3000);
 	}
 	/**
-	 * Ìø×ª
+	 * è·³è½¬
 	 */
 	private void RedirectMainActivity(){
 		Intent i = new Intent();

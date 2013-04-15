@@ -1,4 +1,4 @@
-package com.cnblogs.android.entity;
+﻿package com.cnblogs.android.entity;
 
 public class App {
 	private int _appId;

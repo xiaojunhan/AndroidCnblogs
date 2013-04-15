@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 import java.util.List;
 import com.cnblogs.android.adapter.RssCateListAdapter;
 import com.cnblogs.android.core.RssCateHelper;
@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 /**
- * RSS¶©ÔÄÖĞĞÄ·ÖÀà
+ * RSSè®¢é˜…ä¸­å¿ƒåˆ†ç±»
  * 
  * @author walkingp
  * 
@@ -40,15 +40,15 @@ public class RssCateActivity extends Activity {
 	ListView listview;
 	Button rsscate_button_back;
 
-	ProgressBar bodyProgressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ProgressBar topProgressBar;// ¼ÓÔØ°´Å¥
+	ProgressBar bodyProgressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ProgressBar topProgressBar;// åŠ è½½æŒ‰é’®
 	
-	ImageButton btn_add;//Ìí¼Ó
+	ImageButton btn_add;//æ·»åŠ 
 
-	TextView txtNoData;// Ã»ÓĞÊı¾İ
+	TextView txtNoData;// æ²¡æœ‰æ•°æ®
 	
-	private static final int DIALOG_ADD_RSS_URL = 0;// ×ÖÌå´óĞ¡
-	private AlertDialog dialogAddRss;// ¶Ô»°¿ò
+	private static final int DIALOG_ADD_RSS_URL = 0;// å­—ä½“å¤§å°
+	private AlertDialog dialogAddRss;// å¯¹è¯æ¡†
 	private ProgressDialog progressDialog;  
 	EditText etUrl;
 	@Override
@@ -62,15 +62,15 @@ public class RssCateActivity extends Activity {
 		new PageTask().execute();
 	}
 	/**
-	 * ³õÊ¼»¯Êı¾İ
+	 * åˆå§‹åŒ–æ•°æ®
 	 */
 	void InitialData() {
 	}
 	/**
-	 * ³õÊ¼¼ÓÔØ¿Ø¼ş
+	 * åˆå§‹åŠ è½½æ§ä»¶
 	 */
 	private void InitControl() {
-		// ·µ»Ø
+		// è¿”å›
 		rsscate_button_back = (Button) findViewById(R.id.rsscate_button_back);
 		topProgressBar = (ProgressBar) findViewById(R.id.rss_progressBar);
 		btn_add=(ImageButton)findViewById(R.id.btn_add);
@@ -83,12 +83,12 @@ public class RssCateActivity extends Activity {
 			}
 		});
 		listview = (ListView) findViewById(R.id.rss_cate_list);
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				// ÍøÂç²»¿ÉÓÃ
+				// ç½‘ç»œä¸å¯ç”¨
 				if (!NetHelper.networkIsAvailable(getApplicationContext())) {
 					Toast.makeText(getApplicationContext(),
 							R.string.sys_network_error, Toast.LENGTH_SHORT)
@@ -110,7 +110,7 @@ public class RssCateActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		//Ìí¼Ó×Ô¶¨Òå
+		//æ·»åŠ è‡ªå®šä¹‰
 		btn_add.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -124,7 +124,7 @@ public class RssCateActivity extends Activity {
 		AlertDialog.Builder builder=new AlertDialog.Builder(context);
 		AlertDialog alertDialog=null;
 		switch(dialogGuid){
-			case DIALOG_ADD_RSS_URL://Ìí¼ÓRss
+			case DIALOG_ADD_RSS_URL://æ·»åŠ Rss
 				LayoutInflater inflater = LayoutInflater.from(context);
 				View layout = inflater.inflate(R.layout.dialog_add_rss,
 						null);
@@ -142,7 +142,7 @@ public class RssCateActivity extends Activity {
 		return alertDialog;
 	}
 	/**
-	 * Ìí¼Ó¶©ÔÄ
+	 * æ·»åŠ è®¢é˜…
 	 * @author walkingp
 	 *
 	 */
@@ -151,19 +151,19 @@ public class RssCateActivity extends Activity {
 		public void onClick(DialogInterface dialog, int which) {
 			if(dialog==dialogAddRss){
 				switch(which){
-					case Dialog.BUTTON_POSITIVE://±£´æÉèÖÃ
+					case Dialog.BUTTON_POSITIVE://ä¿å­˜è®¾ç½®
 						String url=etUrl.getText().toString();
 						
 						new RssTask(url).execute();
 						break;
-					case Dialog.BUTTON_NEGATIVE://È¡Ïû
+					case Dialog.BUTTON_NEGATIVE://å–æ¶ˆ
 						break;
 				}
 			}
 		}		
 	}
 	/**
-	 * ¶©ÔÄÄÚÈİ
+	 * è®¢é˜…å†…å®¹
 	 * @author Administrator
 	 *
 	 */
@@ -207,12 +207,12 @@ public class RssCateActivity extends Activity {
 				Toast.makeText(getApplicationContext(), R.string.sys_input_empty, Toast.LENGTH_SHORT).show();
 				return;
 			}
-			//ÏÔÊ¾ProgressDialog  
-            progressDialog = ProgressDialog.show(RssCateActivity.this, "Ìí¼Ó¶©ÔÄ", "ÕıÔÚ´¦Àí¶©ÔÄÖĞ£¬ÇëÉÔºò", true, false);  
+			//æ˜¾ç¤ºProgressDialog  
+            progressDialog = ProgressDialog.show(RssCateActivity.this, "æ·»åŠ è®¢é˜…", "æ­£åœ¨å¤„ç†è®¢é˜…ä¸­ï¼Œè¯·ç¨å€™", true, false);  
 		}
 	}
 	/**
-	 * ¼ÓÔØÄÚÈİ
+	 * åŠ è½½å†…å®¹
 	 * @author walkingp
 	 *
 	 */

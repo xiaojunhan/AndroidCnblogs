@@ -1,9 +1,9 @@
-package com.cnblogs.android.entity;
+ï»¿package com.cnblogs.android.entity;
 
 import java.util.Date;
 
 /**
- * ÆÀÂÛÊµÌåÀà
+ * è¯„è®ºå®ä½“ç±»
  * @author walkingp
  *
  */
@@ -17,8 +17,8 @@ public class Comment {
 	private int _contentId;
 	
 	public enum EnumCommentType{
-		Blog,//0:²©¿Í
-		News//1:ÎÄÕÂ
+		Blog,//0:åšå®¢
+		News//1:æ–‡ç« 
 	}
 	
 	public void SetCommentId(int commentId){
@@ -58,7 +58,7 @@ public class Comment {
 		return _addTime;
 	}
 	/**
-	 * ÖØĞ´
+	 * é‡å†™
 	 */
 	@Override
 	public boolean equals(Object obj){

@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ import com.cnblogs.android.entity.Blog;
 import com.cnblogs.android.entity.FavList;
 import com.cnblogs.android.utility.NetHelper;
 /**
- * ÎÒµÄÊÕ²Ø
+ * æˆ‘çš„æ”¶è—
  * @author walkingp
  * @date 2012-3-24
  */
@@ -49,24 +49,24 @@ public class MyFavActivity extends BaseActivity{
 	List<Blog> listBlog = new ArrayList<Blog>();
 	List<FavList> listFav=new ArrayList<FavList>();
 	
-	int pageIndex = 1;// Ò³Âë
+	int pageIndex = 1;// é¡µç 
 
 	TextView txtAppTitle;
 	
 	ListView listView;
-	private MyFavListAdapter adapter;// Êı¾İÔ´
+	private MyFavListAdapter adapter;// æ•°æ®æº
 
-	ProgressBar blogBody_progressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ImageButton blog_refresh_btn;// Ë¢ĞÂ°´Å¥
-	ProgressBar blog_progress_bar;// ¼ÓÔØ°´Å¥
+	ProgressBar blogBody_progressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ImageButton blog_refresh_btn;// åˆ·æ–°æŒ‰é’®
+	ProgressBar blog_progress_bar;// åŠ è½½æŒ‰é’®
 	
-	Button btnBack;//·µ»Ø°´Å¥
+	Button btnBack;//è¿”å›æŒ‰é’®
 
 	private LinearLayout viewFooter;// footer view
-	TextView tvFooterMore;// µ×²¿¸ü¶àÏÔÊ¾
-	ProgressBar list_footer_progress;// µ×²¿½ø¶ÈÌõ
+	TextView tvFooterMore;// åº•éƒ¨æ›´å¤šæ˜¾ç¤º
+	ProgressBar list_footer_progress;// åº•éƒ¨è¿›åº¦æ¡
 
-	Resources res;// ×ÊÔ´
+	Resources res;// èµ„æº
 	private ProgressDialog progressDialog;  
 	private int lastItem;
 	@Override
@@ -79,18 +79,18 @@ public class MyFavActivity extends BaseActivity{
 		BindControls();
 		new PageTask(0, true).execute();
 		
-		//×¢²á¹ã²¥
+		//æ³¨å†Œå¹¿æ’­
 		UpdateListViewReceiver receiver=new UpdateListViewReceiver();
 		IntentFilter filter=new IntentFilter();
 		filter.addAction("android.cnblogs.com.update_favlist");
 		registerReceiver(receiver, filter);
 	}
 	/**
-	 * ³õÊ¼»¯ÁĞ±í
+	 * åˆå§‹åŒ–åˆ—è¡¨
 	 */
 	private void InitialControls() {
 		txtAppTitle=(TextView)findViewById(R.id.txtAppTitle);
-		txtAppTitle.setText("ÎÒµÄÊÕ²Ø");
+		txtAppTitle.setText("æˆ‘çš„æ”¶è—");
 		btnBack=(Button)findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener(){
 			@Override
@@ -105,22 +105,22 @@ public class MyFavActivity extends BaseActivity{
 
 		blog_refresh_btn = (ImageButton) findViewById(R.id.blog_refresh_btn);
 		blog_progress_bar = (ProgressBar) findViewById(R.id.blog_progressBar);
-		// µ×²¿view
+		// åº•éƒ¨view
 		LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		viewFooter = (LinearLayout) mInflater.inflate(R.layout.listview_footer,
 				null, false);
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls() {
-		// Ë¢ĞÂ
+		// åˆ·æ–°
 		blog_refresh_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				new PageTask(1, true).execute();
 			}
 		});
-		// ÉÏÀ­Ë¢ĞÂ
+		// ä¸Šæ‹‰åˆ·æ–°
 		((PullToRefreshListView) listView)
 				.setOnRefreshListener(new OnRefreshListener() {
 					@Override
@@ -128,10 +128,10 @@ public class MyFavActivity extends BaseActivity{
 						new PageTask(-1, true).execute();
 					}
 				});
-		// ÏÂÀ­Ë¢ĞÂ
+		// ä¸‹æ‹‰åˆ·æ–°
 		listView.setOnScrollListener(new OnScrollListener() {
 			/**
-			 * ÏÂÀ­µ½×îºóÒ»ĞĞ
+			 * ä¸‹æ‹‰åˆ°æœ€åä¸€è¡Œ
 			 */
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -147,7 +147,7 @@ public class MyFavActivity extends BaseActivity{
 					int visibleItemCount, int totalItemCount) {
 				lastItem = firstVisibleItem - 2 + visibleItemCount;
 			}
-		});// µã»÷Ìø×ª
+		});// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -155,7 +155,7 @@ public class MyFavActivity extends BaseActivity{
 				RedirectDetailActivity(v);
 			}
 		});
-		// ³¤°´ÊÂ¼ş
+		// é•¿æŒ‰äº‹ä»¶
 		listView.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v,
@@ -168,7 +168,7 @@ public class MyFavActivity extends BaseActivity{
 	}
 
 	/**
-	 * Ìø×ªµ½ÏêÇé
+	 * è·³è½¬åˆ°è¯¦æƒ…
 	 * 
 	 * @param v
 	 */
@@ -176,7 +176,7 @@ public class MyFavActivity extends BaseActivity{
 
 		Intent intent = new Intent();
 		try {
-			// ´«µİ²ÎÊı
+			// ä¼ é€’å‚æ•°
 			intent.setClass(MyFavActivity.this, BlogDetailActivity.class);
 			Bundle bundle = new Bundle();
 			TextView tvBlogId = (TextView) (v
@@ -224,17 +224,17 @@ public class MyFavActivity extends BaseActivity{
 			ex.printStackTrace();
 		}
 	}
-	// ³¤°´²Ëµ¥ÏìÓ¦º¯Êı
+	// é•¿æŒ‰èœå•å“åº”å‡½æ•°
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		int itemIndex = item.getItemId();
 		AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 		View v = menuInfo.targetView;
 		switch (itemIndex) {
-			case R.id.menu_unrss://È¡Ïû¶©ÔÄ
+			case R.id.menu_unrss://å–æ¶ˆè®¢é˜…
 				default:
-				//ÏÔÊ¾ProgressDialog  
-	            progressDialog = ProgressDialog.show(MyFavActivity.this, "É¾³ıÊÕ²Ø", "ÕıÔÚÉ¾³ıÊÕ²ØÖĞ£¬ÇëÉÔºò", true, false);
+				//æ˜¾ç¤ºProgressDialog  
+	            progressDialog = ProgressDialog.show(MyFavActivity.this, "åˆ é™¤æ”¶è—", "æ­£åœ¨åˆ é™¤æ”¶è—ä¸­ï¼Œè¯·ç¨å€™", true, false);
 				TextView tvId=(TextView)v.findViewById(R.id.recommend_text_id);
 				int contentId=Integer.valueOf(tvId.getText().toString());
 				FavList.EnumContentType contentType=FavList.EnumContentType.Blog;
@@ -246,7 +246,7 @@ public class MyFavActivity extends BaseActivity{
 					Toast.makeText(getApplicationContext(), R.string.unfav_fail, Toast.LENGTH_SHORT).show();
 				}
 				progressDialog.dismiss();
-				// ¹ã²¥
+				// å¹¿æ’­
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
 				bundle.putInt("contentId",contentId);
@@ -259,7 +259,7 @@ public class MyFavActivity extends BaseActivity{
 		return super.onContextItemSelected(item);
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯£¨ÓÃÓÚÉÏÀ­¼ÓÔØ¡¢³õÊ¼»¯¡¢ÏÂÔØ¼ÓÔØ¡¢Ë¢ĞÂ£©
+	 * å¤šçº¿ç¨‹å¯åŠ¨ï¼ˆç”¨äºä¸Šæ‹‰åŠ è½½ã€åˆå§‹åŒ–ã€ä¸‹è½½åŠ è½½ã€åˆ·æ–°ï¼‰
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, List<Blog>> {
@@ -278,36 +278,36 @@ public class MyFavActivity extends BaseActivity{
 				_pageIndex = 1;
 			}
 			FavList.EnumContentType contentType=FavList.EnumContentType.Blog;
-			if (isNetworkAvailable) {// ÓĞÍøÂçÇé¿ö				
+			if (isNetworkAvailable) {// æœ‰ç½‘ç»œæƒ…å†µ				
 				List<Blog> listBlogTmp=new ArrayList<Blog>();
 				List<FavList> listFavNew = FavListHelper.GetFavListByPage(_pageIndex, contentType, getApplicationContext());
 				switch (curPageIndex) {
-					case -1 :// ÉÏÀ­\
+					case -1 :// ä¸Šæ‹‰\
 						List<FavList> listTmp = new ArrayList<FavList>();
-						if (listBlog != null && listBlog.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listBlog != null && listBlog.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listFavNew != null && listFavNew.size() > 0) {
 								int size = listFavNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listBlog.contains(listFavNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listBlog.contains(listFavNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listTmp.add(listFavNew.get(i));
 									}
 								}
 							}
 						}
 						listFav =listTmp;
-					case 0 :// Ê×´Î¼ÓÔØ
-					case 1 :// Ë¢ĞÂ
+					case 0 :// é¦–æ¬¡åŠ è½½
+					case 1 :// åˆ·æ–°
 						if (listFavNew != null && listFavNew.size() > 0) {
 							listFav= listFavNew;
 						}
 						break;
-					default :// ÏÂÀ­
+					default :// ä¸‹æ‹‰
 						List<FavList> listT = new ArrayList<FavList>();
-						if (listBlog != null && listBlog.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listBlog != null && listBlog.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listFavNew != null && listFavNew.size() > 0) {
 								int size = listFavNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listBlog.contains(listFavNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listBlog.contains(listFavNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listT.add(listFavNew.get(i));
 									}
 								}
@@ -332,19 +332,19 @@ public class MyFavActivity extends BaseActivity{
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(List<Blog> result) {
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.GONE);
 			blog_refresh_btn.setVisibility(View.VISIBLE);
 
-			// ÍøÂç²»¿ÉÓÃ²¢ÇÒ±¾µØÃ»ÓĞ±£´æÊı¾İ
-			if (result == null || result.size() == 0) {// Ã»ÓĞĞÂÊı¾İ
+			// ç½‘ç»œä¸å¯ç”¨å¹¶ä¸”æœ¬åœ°æ²¡æœ‰ä¿å­˜æ•°æ®
+			if (result == null || result.size() == 0) {// æ²¡æœ‰æ–°æ•°æ®
 				((PullToRefreshListView) listView).onRefreshComplete();
 				if (!NetHelper.networkIsAvailable(getApplicationContext())
-						&& curPageIndex > 1) {// ÏÂÀ­²¢ÇÒÃ»ÓĞÍøÂç
+						&& curPageIndex > 1) {// ä¸‹æ‹‰å¹¶ä¸”æ²¡æœ‰ç½‘ç»œ
 					Toast.makeText(getApplicationContext(),
 							R.string.sys_network_error, Toast.LENGTH_SHORT)
 							.show();
@@ -358,20 +358,20 @@ public class MyFavActivity extends BaseActivity{
 				listView.addFooterView(viewFooter);
 			}
 
-			if (curPageIndex == -1) {// ÉÏÀ­Ë¢ĞÂ
+			if (curPageIndex == -1) {// ä¸Šæ‹‰åˆ·æ–°
 				adapter.InsertData(result);
-			} else if (curPageIndex == 0) {// Ê×´Î¼ÓÔØ
+			} else if (curPageIndex == 0) {// é¦–æ¬¡åŠ è½½
 				listBlog = result;// dbHelper.GetTopBlogList();
 
 				blogBody_progressBar.setVisibility(View.GONE);
 				adapter = new MyFavListAdapter(getApplicationContext(),listBlog);
 				listView.setAdapter(adapter);
 
-				// ´«µİ²ÎÊı
+				// ä¼ é€’å‚æ•°
 				((PullToRefreshListView) listView).SetDataRow(listBlog.size());
 				((PullToRefreshListView) listView).SetPageSize(Config.BLOG_PAGE_SIZE);
-			} else if (curPageIndex == 1) {// Ë¢ĞÂ
-				try {// ±ÜÃâÊ×Ò³ÎŞÍøÂç¼ÓÔØ£¬°´Ë¢ĞÂ°´Å¥
+			} else if (curPageIndex == 1) {// åˆ·æ–°
+				try {// é¿å…é¦–é¡µæ— ç½‘ç»œåŠ è½½ï¼ŒæŒ‰åˆ·æ–°æŒ‰é’®
 					if (adapter != null && adapter.GetData() != null) {
 						adapter.GetData().clear();
 						adapter.AddMoreData(result);
@@ -383,25 +383,25 @@ public class MyFavActivity extends BaseActivity{
 				} catch (Exception ex) {
 					// Log.e("BlogActivity", ex.getMessage());
 				}
-			} else {// ÏÂÀ­
+			} else {// ä¸‹æ‹‰
 				adapter.AddMoreData(result);
 			}
 
-			if (isRefresh) {// Ë¢ĞÂÊ±´¦Àí
+			if (isRefresh) {// åˆ·æ–°æ—¶å¤„ç†
 				((PullToRefreshListView) listView).onRefreshComplete();
 			}
 		}
 		@Override
 		protected void onPreExecute() {
-			// Ö÷Ìå½ø¶ÈÌõ
+			// ä¸»ä½“è¿›åº¦æ¡
 			if (listView.getCount() == 0) {
 				blogBody_progressBar.setVisibility(View.VISIBLE);
 			}
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.VISIBLE);
 			blog_refresh_btn.setVisibility(View.GONE);
 
-			if (!isRefresh) {// µ×²¿¿Ø¼ş£¬Ë¢ĞÂÊ±²»×ö´¦Àí
+			if (!isRefresh) {// åº•éƒ¨æ§ä»¶ï¼Œåˆ·æ–°æ—¶ä¸åšå¤„ç†
 				TextView tvFooterMore = (TextView) findViewById(R.id.tvFooterMore);
 				tvFooterMore.setText(R.string.pull_to_refresh_refreshing_label);
 				tvFooterMore.setVisibility(View.VISIBLE);
@@ -415,7 +415,7 @@ public class MyFavActivity extends BaseActivity{
 		}
 	}
 	/**
-	 * Ìí¼ÓÉ¾³ıÊı¾İ£¨¹ã²¥£©
+	 * æ·»åŠ åˆ é™¤æ•°æ®ï¼ˆå¹¿æ’­ï¼‰
 	 * @author Administrator
 	 *
 	 */

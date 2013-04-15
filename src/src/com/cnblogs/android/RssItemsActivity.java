@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import com.cnblogs.android.adapter.RssItemsAdapter;
 import com.cnblogs.android.core.RssItemHelper;
 import com.cnblogs.android.entity.RssItem;
 /**
- * ¶©ÔÄÀ¸Ä¿
+ * è®¢é˜…æ ç›®
  * @author walkingp
  * @date:2012-3
  *
@@ -33,19 +33,19 @@ public class RssItemsActivity extends BaseActivity {
 	List<RssItem> listBlog = new ArrayList<RssItem>();
 
 	ListView listView;
-	private RssItemsAdapter adapter;// Êı¾İÔ´
+	private RssItemsAdapter adapter;// æ•°æ®æº
 	List<RssItem> listRss;
 
 	String itemTitle, itemUrl;
 
-	Button btnBack;// ·µ»Ø
-	ProgressBar bodyProgressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ImageButton btnRefresh;// Ë¢ĞÂ°´Å¥
-	ProgressBar topProgressBar;// ¼ÓÔØ°´Å¥
+	Button btnBack;// è¿”å›
+	ProgressBar bodyProgressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ImageButton btnRefresh;// åˆ·æ–°æŒ‰é’®
+	ProgressBar topProgressBar;// åŠ è½½æŒ‰é’®
 
-	TextView txtAppTitle;// ±êÌâ
-	TextView txtNoData;// Ã»ÓĞÊı¾İ
-	Resources res;// ×ÊÔ´
+	TextView txtAppTitle;// æ ‡é¢˜
+	TextView txtNoData;// æ²¡æœ‰æ•°æ®
+	Resources res;// èµ„æº
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ public class RssItemsActivity extends BaseActivity {
 		new PageTask().execute();
 	}
 	/**
-	 * ³õÊ¼»¯ÁĞ±í
+	 * åˆå§‹åŒ–åˆ—è¡¨
 	 */
 	private void InitialControls() {
 		listView = (ListView) findViewById(R.id.rss_list);
@@ -71,31 +71,31 @@ public class RssItemsActivity extends BaseActivity {
 		txtNoData = (TextView) findViewById(R.id.txtNoData);
 	}
 	/**
-	 * ³õÊ¼»¯Êı¾İ
+	 * åˆå§‹åŒ–æ•°æ®
 	 */
 	void InitialData() {
 		itemTitle = getIntent().getStringExtra("title");
 		itemUrl = getIntent().getStringExtra("url");
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls() {
 		txtAppTitle.setText(itemTitle);
-		// Ìø»Ø
+		// è·³å›
 		btnBack.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				RssItemsActivity.this.finish();
 			}
 		});
-		// Ë¢ĞÂ
+		// åˆ·æ–°
 		btnRefresh.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				new PageTask().execute();
 			}
 		});
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -123,7 +123,7 @@ public class RssItemsActivity extends BaseActivity {
 				startActivity(intent);
 			}
 		});
-		// ³¤°´ÊÂ¼ş
+		// é•¿æŒ‰äº‹ä»¶
 		listView.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v,
@@ -135,7 +135,7 @@ public class RssItemsActivity extends BaseActivity {
 		});
 	}
 	/**
-	 * Òì²½ÏÂÔØ
+	 * å¼‚æ­¥ä¸‹è½½
 	 * 
 	 * @author walkingp
 	 * 

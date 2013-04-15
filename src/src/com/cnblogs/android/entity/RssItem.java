@@ -1,4 +1,4 @@
-package com.cnblogs.android.entity;
+﻿package com.cnblogs.android.entity;
 
 import java.util.Date;
 

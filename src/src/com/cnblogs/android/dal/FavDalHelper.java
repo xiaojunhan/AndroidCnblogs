@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+锘縫ackage com.cnblogs.android.dal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +28,7 @@ public class FavDalHelper {
 		dbHelper.close();
 	}
 	/**
-	 * 判断是否已经存在
+	 * 鍒ゆ柇鏄惁宸茬粡瀛樺湪
 	 * @param commentId
 	 * @return
 	 */
@@ -42,7 +42,7 @@ public class FavDalHelper {
 		return isExist;
 	}
 	/*
-	 * 分页
+	 * 鍒嗛〉
 	 */
 	public List<FavList> GetFavListByPage(int pageIndex,int pageSize,FavList.EnumContentType contentType){
 		String where="ContentType=?";
@@ -53,7 +53,7 @@ public class FavDalHelper {
 		return list;
 	}
 	/*
-	 * 得到对象
+	 * 寰楀埌瀵硅薄
 	 */
 	public FavList GetFavEntity(int favId){
 		String limit="1";
@@ -67,7 +67,7 @@ public class FavDalHelper {
 		return null;
 	}
 	/*
-	 * 得到对象
+	 * 寰楀埌瀵硅薄
 	 */
 	public FavList GetFavEntity(int contentId,FavList.EnumContentType contentType){
 		String limit="1";
@@ -81,7 +81,7 @@ public class FavDalHelper {
 		return null;
 	}
 	/**
-	 * 得到
+	 * 寰楀埌
 	 * @param top
 	 * @param where
 	 */
@@ -105,7 +105,7 @@ public class FavDalHelper {
 		return listFav;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * @param list
 	 */
 	public EnumResultType.EnumActionResultType SynchronyData2DB(List<FavList> favList){
@@ -139,7 +139,7 @@ public class FavDalHelper {
 		}
 	}
 	/**
-	 * 删除 
+	 * 鍒犻櫎 
 	 * @param favId
 	 */
 	public boolean Delete(int favId) {
@@ -154,7 +154,7 @@ public class FavDalHelper {
 		}
 	}
 	/**
-	 * 删除 
+	 * 鍒犻櫎 
 	 * @param favId
 	 */
 	public boolean Delete(int contentId,FavList.EnumContentType contentType) {

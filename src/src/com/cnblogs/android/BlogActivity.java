@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ import com.cnblogs.android.controls.PullToRefreshListView;
 import com.cnblogs.android.controls.PullToRefreshListView.OnRefreshListener;
 import com.cnblogs.android.dal.BlogDalHelper;
 /**
- * ²©¿ÍÁĞ±í
+ * åšå®¢åˆ—è¡¨
  * @author walkingp
  * @date:2011-12
  *
@@ -48,20 +48,20 @@ import com.cnblogs.android.dal.BlogDalHelper;
 public class BlogActivity extends BaseMainActivity {
 	List<Blog> listBlog = new ArrayList<Blog>();
 
-	int pageIndex = 1;// Ò³Âë
+	int pageIndex = 1;// é¡µç 
 
 	ListView listView;
-	private BlogListAdapter adapter;// Êı¾İÔ´
+	private BlogListAdapter adapter;// æ•°æ®æº
 
-	ProgressBar blogBody_progressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ImageButton blog_refresh_btn;// Ë¢ĞÂ°´Å¥
-	ProgressBar blog_progress_bar;// ¼ÓÔØ°´Å¥
+	ProgressBar blogBody_progressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ImageButton blog_refresh_btn;// åˆ·æ–°æŒ‰é’®
+	ProgressBar blog_progress_bar;// åŠ è½½æŒ‰é’®
 
 	private LinearLayout viewFooter;// footer view
-	TextView tvFooterMore;// µ×²¿¸ü¶àÏÔÊ¾
-	ProgressBar list_footer_progress;// µ×²¿½ø¶ÈÌõ
+	TextView tvFooterMore;// åº•éƒ¨æ›´å¤šæ˜¾ç¤º
+	ProgressBar list_footer_progress;// åº•éƒ¨è¿›åº¦æ¡
 
-	Resources res;// ×ÊÔ´
+	Resources res;// èµ„æº
 	private int lastItem;
 	BlogDalHelper dbHelper;
 	@Override
@@ -74,14 +74,14 @@ public class BlogActivity extends BaseMainActivity {
 		BindControls();
 		new PageTask(0, true).execute();
 		
-		//×¢²á¹ã²¥
+		//æ³¨å†Œå¹¿æ’­
 		UpdateListViewReceiver receiver=new UpdateListViewReceiver();
 		IntentFilter filter=new IntentFilter();
 		filter.addAction("android.cnblogs.com.update_bloglist");
 		registerReceiver(receiver, filter);
 	}
 	/**
-	 * ³õÊ¼»¯ÁĞ±í
+	 * åˆå§‹åŒ–åˆ—è¡¨
 	 */
 	private void InitialControls() {
 		listView = (ListView) findViewById(R.id.blog_list);
@@ -90,23 +90,23 @@ public class BlogActivity extends BaseMainActivity {
 
 		blog_refresh_btn = (ImageButton) findViewById(R.id.blog_refresh_btn);
 		blog_progress_bar = (ProgressBar) findViewById(R.id.blog_progressBar);
-		// µ×²¿view
+		// åº•éƒ¨view
 		LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		viewFooter = (LinearLayout) mInflater.inflate(R.layout.listview_footer,
 				null, false);
 		dbHelper = new BlogDalHelper(getApplicationContext());
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls() {
-		// Ë¢ĞÂ
+		// åˆ·æ–°
 		blog_refresh_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				new PageTask(1, true).execute();
 			}
 		});
-		// ÉÏÀ­Ë¢ĞÂ
+		// ä¸Šæ‹‰åˆ·æ–°
 		((PullToRefreshListView) listView)
 				.setOnRefreshListener(new OnRefreshListener() {
 					@Override
@@ -114,10 +114,10 @@ public class BlogActivity extends BaseMainActivity {
 						new PageTask(-1, true).execute();
 					}
 				});
-		// ÏÂÀ­Ë¢ĞÂ
+		// ä¸‹æ‹‰åˆ·æ–°
 		listView.setOnScrollListener(new OnScrollListener() {
 			/**
-			 * ÏÂÀ­µ½×îºóÒ»ĞĞ
+			 * ä¸‹æ‹‰åˆ°æœ€åä¸€è¡Œ
 			 */
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -134,7 +134,7 @@ public class BlogActivity extends BaseMainActivity {
 				lastItem = firstVisibleItem - 2 + visibleItemCount;
 			}
 		});
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -142,7 +142,7 @@ public class BlogActivity extends BaseMainActivity {
 				RedirectDetailActivity(v);
 			}
 		});
-		// ³¤°´ÊÂ¼ş
+		// é•¿æŒ‰äº‹ä»¶
 		listView.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v,
@@ -154,13 +154,13 @@ public class BlogActivity extends BaseMainActivity {
 		});
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯£¨ÓÃÓÚÉÏÀ­¼ÓÔØ¡¢³õÊ¼»¯¡¢ÏÂÔØ¼ÓÔØ¡¢Ë¢ĞÂ£©
+	 * å¤šçº¿ç¨‹å¯åŠ¨ï¼ˆç”¨äºä¸Šæ‹‰åŠ è½½ã€åˆå§‹åŒ–ã€ä¸‹è½½åŠ è½½ã€åˆ·æ–°ï¼‰
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, List<Blog>> {
 		boolean isRefresh = false;
 		int curPageIndex = 0;
-		boolean isLocalData = false;// ÊÇ·ñÊÇ´Ó±¾µØ¶ÁÈ¡µÄÊı¾İ		
+		boolean isLocalData = false;// æ˜¯å¦æ˜¯ä»æœ¬åœ°è¯»å–çš„æ•°æ®		
 		public PageTask(int page, boolean isRefresh) {
 			curPageIndex = page;
 			this.isRefresh = isRefresh;
@@ -174,37 +174,37 @@ public class BlogActivity extends BaseMainActivity {
 				_pageIndex = 1;
 			}
 			
-			// ÓÅÏÈ¶ÁÈ¡±¾µØÊı¾İ
+			// ä¼˜å…ˆè¯»å–æœ¬åœ°æ•°æ®
 			List<Blog> listBlogLocal = dbHelper.GetBlogListByPage(_pageIndex,Config.BLOG_PAGE_SIZE);
-			if (isNetworkAvailable) {// ÓĞÍøÂçÇé¿ö
+			if (isNetworkAvailable) {// æœ‰ç½‘ç»œæƒ…å†µ
 				List<Blog> listBlogNew = BlogHelper.GetBlogList(_pageIndex);
 				switch (curPageIndex) {
-					case -1 :// ÉÏÀ­\
+					case -1 :// ä¸Šæ‹‰\
 						List<Blog> listTmp = new ArrayList<Blog>();
-						if (listBlog != null && listBlog.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listBlog != null && listBlog.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listBlogNew != null && listBlogNew.size() > 0) {
 								int size = listBlogNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listBlog.contains(listBlogNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listBlog.contains(listBlogNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listTmp.add(listBlogNew.get(i));
 									}
 								}
 							}
 						}
 						return listTmp;
-					case 0 :// Ê×´Î¼ÓÔØ
-					case 1 :// Ë¢ĞÂ
+					case 0 :// é¦–æ¬¡åŠ è½½
+					case 1 :// åˆ·æ–°
 						if (listBlogNew != null && listBlogNew.size() > 0) {
 							return listBlogNew;
 						}
 						break;
-					default :// ÏÂÀ­
+					default :// ä¸‹æ‹‰
 						List<Blog> listT = new ArrayList<Blog>();
-						if (listBlog != null && listBlog.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listBlog != null && listBlog.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listBlogNew != null && listBlogNew.size() > 0) {
 								int size = listBlogNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listBlog.contains(listBlogNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listBlog.contains(listBlogNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listT.add(listBlogNew.get(i));
 									}
 								}
@@ -212,9 +212,9 @@ public class BlogActivity extends BaseMainActivity {
 						}
 						return listT;
 				}
-			} else {// ÎŞÍøÂçÇé¿ö
+			} else {// æ— ç½‘ç»œæƒ…å†µ
 				isLocalData = true;
-				if (curPageIndex == -1) {// ÉÏÀ­²»¼ÓÔØÊı¾İ
+				if (curPageIndex == -1) {// ä¸Šæ‹‰ä¸åŠ è½½æ•°æ®
 					return null;
 				}
 				return listBlogLocal;
@@ -228,19 +228,19 @@ public class BlogActivity extends BaseMainActivity {
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(List<Blog> result) {
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.GONE);
 			blog_refresh_btn.setVisibility(View.VISIBLE);
 
-			// ÍøÂç²»¿ÉÓÃ²¢ÇÒ±¾µØÃ»ÓĞ±£´æÊı¾İ
-			if (result == null || result.size() == 0) {// Ã»ÓĞĞÂÊı¾İ
+			// ç½‘ç»œä¸å¯ç”¨å¹¶ä¸”æœ¬åœ°æ²¡æœ‰ä¿å­˜æ•°æ®
+			if (result == null || result.size() == 0) {// æ²¡æœ‰æ–°æ•°æ®
 				((PullToRefreshListView) listView).onRefreshComplete();
 				if (!NetHelper.networkIsAvailable(getApplicationContext())
-						&& curPageIndex > 1) {// ÏÂÀ­²¢ÇÒÃ»ÓĞÍøÂç
+						&& curPageIndex > 1) {// ä¸‹æ‹‰å¹¶ä¸”æ²¡æœ‰ç½‘ç»œ
 					Toast.makeText(getApplicationContext(),
 							R.string.sys_network_error, Toast.LENGTH_SHORT)
 							.show();
@@ -253,14 +253,14 @@ public class BlogActivity extends BaseMainActivity {
 				listView.addFooterView(viewFooter);
 			}
 
-			// ±£´æµ½Êı¾İ¿â
+			// ä¿å­˜åˆ°æ•°æ®åº“
 			if (!isLocalData) {
 				dbHelper.SynchronyData2DB(result);
 			}
 
-			if (curPageIndex == -1) {// ÉÏÀ­Ë¢ĞÂ
+			if (curPageIndex == -1) {// ä¸Šæ‹‰åˆ·æ–°
 				adapter.InsertData(result);
-			} else if (curPageIndex == 0) {// Ê×´Î¼ÓÔØ
+			} else if (curPageIndex == 0) {// é¦–æ¬¡åŠ è½½
 				listBlog = result;// dbHelper.GetTopBlogList();
 
 				blogBody_progressBar.setVisibility(View.GONE);
@@ -268,11 +268,11 @@ public class BlogActivity extends BaseMainActivity {
 						listBlog, listView);
 				listView.setAdapter(adapter);
 
-				// ´«µİ²ÎÊı
+				// ä¼ é€’å‚æ•°
 				((PullToRefreshListView) listView).SetDataRow(listBlog.size());
 				((PullToRefreshListView) listView).SetPageSize(Config.BLOG_PAGE_SIZE);
-			} else if (curPageIndex == 1) {// Ë¢ĞÂ
-				try {// ±ÜÃâÊ×Ò³ÎŞÍøÂç¼ÓÔØ£¬°´Ë¢ĞÂ°´Å¥
+			} else if (curPageIndex == 1) {// åˆ·æ–°
+				try {// é¿å…é¦–é¡µæ— ç½‘ç»œåŠ è½½ï¼ŒæŒ‰åˆ·æ–°æŒ‰é’®
 					listBlog = result;
 					if (adapter != null && adapter.GetData() != null) {
 						adapter.GetData().clear();
@@ -281,31 +281,31 @@ public class BlogActivity extends BaseMainActivity {
 						adapter = new BlogListAdapter(getApplicationContext(),listBlog, listView);
 						listView.setAdapter(adapter);
 					}
-					// ´«µİ²ÎÊı
+					// ä¼ é€’å‚æ•°
 					((PullToRefreshListView) listView).SetDataRow(listBlog.size());
 					((PullToRefreshListView) listView).SetPageSize(Config.BLOG_PAGE_SIZE);
 				} catch (Exception ex) {
 					// Log.e("BlogActivity", ex.getMessage());
 				}
-			} else {// ÏÂÀ­
+			} else {// ä¸‹æ‹‰
 				adapter.AddMoreData(result);
 			}
 
-			if (isRefresh) {// Ë¢ĞÂÊ±´¦Àí
+			if (isRefresh) {// åˆ·æ–°æ—¶å¤„ç†
 				((PullToRefreshListView) listView).onRefreshComplete();
 			}
 		}
 		@Override
 		protected void onPreExecute() {
-			// Ö÷Ìå½ø¶ÈÌõ
+			// ä¸»ä½“è¿›åº¦æ¡
 			if (listView.getCount() == 0) {
 				blogBody_progressBar.setVisibility(View.VISIBLE);
 			}
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.VISIBLE);
 			blog_refresh_btn.setVisibility(View.GONE);
 
-			if (!isRefresh) {// µ×²¿¿Ø¼ş£¬Ë¢ĞÂÊ±²»×ö´¦Àí
+			if (!isRefresh) {// åº•éƒ¨æ§ä»¶ï¼Œåˆ·æ–°æ—¶ä¸åšå¤„ç†
 				TextView tvFooterMore = (TextView) findViewById(R.id.tvFooterMore);
 				tvFooterMore.setText(R.string.pull_to_refresh_refreshing_label);
 				tvFooterMore.setVisibility(View.VISIBLE);
@@ -318,9 +318,9 @@ public class BlogActivity extends BaseMainActivity {
 		protected void onProgressUpdate(Integer... values) {
 		}
 	}
-	// ****************************************ÒÔÏÂÎª²Ëµ¥²Ù×÷
+	// ****************************************ä»¥ä¸‹ä¸ºèœå•æ“ä½œ
 	/**
-	 * Ìø×ªµ½ÆÀÂÛ
+	 * è·³è½¬åˆ°è¯„è®º
 	 * 
 	 * @param v
 	 */
@@ -337,7 +337,7 @@ public class BlogActivity extends BaseMainActivity {
 				.toString());
 		String blogTitle = tvBlogTitle.getText().toString();
 		String blogUrl = tvBlogUrl.getText().toString();
-		// »¹Ã»ÓĞÆÀÂÛ
+		// è¿˜æ²¡æœ‰è¯„è®º
 		if (commentCount == 0) {
 			Toast.makeText(getApplicationContext(), R.string.sys_empty_comment,
 					Toast.LENGTH_SHORT).show();
@@ -356,7 +356,7 @@ public class BlogActivity extends BaseMainActivity {
 		startActivity(intent);
 	}
 	/**
-	 * Ìø×ªµ½ÏêÇé
+	 * è·³è½¬åˆ°è¯¦æƒ…
 	 * 
 	 * @param v
 	 */
@@ -364,7 +364,7 @@ public class BlogActivity extends BaseMainActivity {
 
 		Intent intent = new Intent();
 		try {
-			// ´«µİ²ÎÊı
+			// ä¼ é€’å‚æ•°
 			intent.setClass(BlogActivity.this, BlogDetailActivity.class);
 			Bundle bundle = new Bundle();
 			TextView tvBlogId = (TextView) (v
@@ -414,7 +414,7 @@ public class BlogActivity extends BaseMainActivity {
 		}
 	}
 	/**
-	 * ÔÚä¯ÀÀÆ÷ÖĞ²é¿´
+	 * åœ¨æµè§ˆå™¨ä¸­æŸ¥çœ‹
 	 * 
 	 * @param v
 	 */
@@ -427,12 +427,12 @@ public class BlogActivity extends BaseMainActivity {
 		startActivity(it);
 	}
 	/**
-	 * Ìø×ªµ½²©Ö÷ËùÓĞËæ±Ê
+	 * è·³è½¬åˆ°åšä¸»æ‰€æœ‰éšç¬”
 	 * 
 	 * @param v
 	 */
 	private void RedirectAuthorActivity(View v) {
-		TextView tvUserName=(TextView)v.findViewById(R.id.recommend_user_name);//ÓÃ»§Ãû
+		TextView tvUserName=(TextView)v.findViewById(R.id.recommend_user_name);//ç”¨æˆ·å
 		String userName=tvUserName.getText().toString();
 		if (userName.equals("")) {
 			Toast.makeText(getApplicationContext(), R.string.sys_no_author,
@@ -446,15 +446,15 @@ public class BlogActivity extends BaseMainActivity {
 		Intent intent = new Intent();
 		intent.setClass(BlogActivity.this, AuthorBlogActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("author", userName);// ÓÃ»§Ãû
-		bundle.putString("blogName", blogAuthor);// ²©¿Í±êÌâ
+		bundle.putString("author", userName);// ç”¨æˆ·å
+		bundle.putString("blogName", blogAuthor);// åšå®¢æ ‡é¢˜
 
 		intent.putExtras(bundle);
 
 		startActivity(intent);
 	}
 	/**
-	 * ·ÖÏíµ½
+	 * åˆ†äº«åˆ°
 	 * 
 	 * @param v
 	 */
@@ -467,15 +467,15 @@ public class BlogActivity extends BaseMainActivity {
 		String blogUrl = tvBlogUrl.getText().toString();
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, "ÇëÑ¡Ôñ·ÖÏíµ½¡­");
-		String shareContent = "¡¶" + blogTitle + "¡·,×÷Õß£º" + blogAuthor + "£¬Ô­ÎÄÁ´½Ó£º"
-				+ blogUrl + " ·ÖÏí×Ô£º" + res.getString(R.string.app_name)
-				+ "Android¿Í»§¶Ë(" + res.getString(R.string.app_homepage) + ")";
+		intent.putExtra(Intent.EXTRA_SUBJECT, "è¯·é€‰æ‹©åˆ†äº«åˆ°â€¦");
+		String shareContent = "ã€Š" + blogTitle + "ã€‹,ä½œè€…ï¼š" + blogAuthor + "ï¼ŒåŸæ–‡é“¾æ¥ï¼š"
+				+ blogUrl + " åˆ†äº«è‡ªï¼š" + res.getString(R.string.app_name)
+				+ "Androidå®¢æˆ·ç«¯(" + res.getString(R.string.app_homepage) + ")";
 		intent.putExtra(Intent.EXTRA_TEXT, shareContent);
 		startActivity(Intent.createChooser(intent, blogTitle));
 	}
 
-	// ³¤°´²Ëµ¥ÏìÓ¦º¯Êı
+	// é•¿æŒ‰èœå•å“åº”å‡½æ•°
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		int itemIndex = item.getItemId();
@@ -483,19 +483,19 @@ public class BlogActivity extends BaseMainActivity {
 				.getMenuInfo();
 		View v = menuInfo.targetView;
 		switch (itemIndex) {
-			case R.id.menu_blog_view :// ÏêÏ¸
+			case R.id.menu_blog_view :// è¯¦ç»†
 				RedirectDetailActivity(v);
 				break;
-			case R.id.menu_blog_comment :// ÆÀÂÛ
+			case R.id.menu_blog_comment :// è¯„è®º
 				RedirectCommentActivity(v);
 				break;
-			case R.id.menu_blog_author :// ²©Ö÷ËùÓĞËæ±Ê
+			case R.id.menu_blog_author :// åšä¸»æ‰€æœ‰éšç¬”
 				RedirectAuthorActivity(v);
 				break;
-			case R.id.menu_blog_browser :// ÔÚä¯ÀÀÆ÷ÖĞ²é¿´
+			case R.id.menu_blog_browser :// åœ¨æµè§ˆå™¨ä¸­æŸ¥çœ‹
 				ViewInBrowser(v);
 				break;
-			case R.id.menu_blog_share :// ·ÖÏíµ½
+			case R.id.menu_blog_share :// åˆ†äº«åˆ°
 				ShareTo(v);
 				break;
 		}
@@ -503,7 +503,7 @@ public class BlogActivity extends BaseMainActivity {
 		return super.onContextItemSelected(item);
 	}
 	/**
-	 * ¸üĞÂListViewÎªÒÑ¶Á×´Ì¬ ´Ë¹ã²¥Í¬Ê±´ÓBlogDeatailºÍDownloadServices
+	 * æ›´æ–°ListViewä¸ºå·²è¯»çŠ¶æ€ æ­¤å¹¿æ’­åŒæ—¶ä»BlogDeatailå’ŒDownloadServices
 	 * @author walkingp
 	 *
 	 */
@@ -524,8 +524,8 @@ public class BlogActivity extends BaseMainActivity {
 					
 					for(int j=0,size=blogIdArr.length;j<size;j++){
 						if(blogId==blogIdArr[j]){
-							icoDown.setVisibility(View.VISIBLE);//ÒÑ¾­ÀëÏß
-							tvTitle.setTextColor(R.color.gray);//ÒÑ¶Á
+							icoDown.setVisibility(View.VISIBLE);//å·²ç»ç¦»çº¿
+							tvTitle.setTextColor(R.color.gray);//å·²è¯»
 						}
 					}*/
 				}

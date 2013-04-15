@@ -1,4 +1,4 @@
-package com.cnblogs.android.utility;
+ï»¿package com.cnblogs.android.utility;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +31,7 @@ import android.util.Log;
 
 public class AppUtil {
 	/**
-	 * String×ª»»ÎªÊ±¼ä
+	 * Stringè½¬æ¢ä¸ºæ—¶é—´
 	 * @param str
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public class AppUtil {
 		return addTime;
 	}
 	/**
-	 * ½«ÈÕÆÚ×ª»»Îª×Ö·û´®
+	 * å°†æ—¥æœŸè½¬æ¢ä¸ºå­—ç¬¦ä¸²
 	 * @param date
 	 * @return
 	 */
@@ -54,9 +54,9 @@ public class AppUtil {
 		return ParseDateToString(date,"yyyy-MM-dd HH:mm:ss");
 	}
 	/**
-	 * ½«ÈÕÆÚ×ª»»Îª×Ö·û´®£¨ÖØÔØ£©
+	 * å°†æ—¥æœŸè½¬æ¢ä¸ºå­—ç¬¦ä¸²ï¼ˆé‡è½½ï¼‰
 	 * @param date
-	 * @param format:Ê±¼ä¸ñÊ½£¬±ØĞë·ûºÏyyyy-MM-dd hh:mm:ss
+	 * @param format:æ—¶é—´æ ¼å¼ï¼Œå¿…é¡»ç¬¦åˆyyyy-MM-dd hh:mm:ss
 	 * @return
 	 */
 	public static String ParseDateToString(Date date,String format){
@@ -65,20 +65,20 @@ public class AppUtil {
 		return dateFormat.format(date);
 	}
 	/**
-	 * ½«UMTÊ±¼ä×ª»»Îª±¾µØÊ±¼ä
+	 * å°†UMTæ—¶é—´è½¬æ¢ä¸ºæœ¬åœ°æ—¶é—´
 	 * @param str
 	 * @return
 	 * @throws ParseException 
 	 */
 	public static Date ParseUTCDate(String str){
-		//¸ñÊ½»¯2012-03-04T23:42:00+08:00
+		//æ ¼å¼åŒ–2012-03-04T23:42:00+08:00
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ",Locale.CHINA);
 		try {
 			Date date = formatter.parse(str);
 			
 			return date;
 		} catch (ParseException e) {
-			//¸ñÊ½»¯Sat, 17 Mar 2012 11:37:13 +0000
+			//æ ¼å¼åŒ–Sat, 17 Mar 2012 11:37:13 +0000
 			//Sat, 17 Mar 2012 22:13:41 +0800
 			try{
 				SimpleDateFormat formatter2=new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z",Locale.CHINA);
@@ -91,7 +91,7 @@ public class AppUtil {
 		}		
 	}
 	/**
-	 * »ñÈ¡ÍøÂçÍ¼Æ¬È¡Drawable
+	 * è·å–ç½‘ç»œå›¾ç‰‡å–Drawable
 	 * @param url
 	 * @return
 	 */
@@ -103,12 +103,12 @@ public class AppUtil {
 			Bitmap bmp=BitmapFactory.decodeStream(is);
 			return new BitmapDrawable(bmp);
 		}catch(Exception e){
-			Log.e("ERROR", "urlImage2Drawable·½·¨·¢ÉúÒì³££¬imageUrl£º" + url, e);
+			Log.e("ERROR", "urlImage2Drawableæ–¹æ³•å‘ç”Ÿå¼‚å¸¸ï¼ŒimageUrlï¼š" + url, e);
 			return null;
 		}
 	}
 	/**
-	 * ´ÓÍøÂçµØÖ··µ»ØBitmap
+	 * ä»ç½‘ç»œåœ°å€è¿”å›Bitmap
 	 * @param imageUrl
 	 * @return
 	 */
@@ -127,7 +127,7 @@ public class AppUtil {
 	    return mBitmap;   
 	}
 	/**
-	 * Drawable×ª»»ÎªBitmap
+	 * Drawableè½¬æ¢ä¸ºBitmap
 	 * @param drawable
 	 * @return
 	 */
@@ -152,7 +152,7 @@ public class AppUtil {
 	    }  
 	} 
 	/**
-	 * ÍË³ö³ÌĞò
+	 * é€€å‡ºç¨‹åº
 	 * @param context
 	 */
     public static void QuitHintDialog(final Context context){
@@ -167,7 +167,7 @@ public class AppUtil {
 				try{
 					((Activity)context).finish();
 				}catch(Exception e){
-					Log.e("close","+++++++++++++³ö´í+++++++++");
+					Log.e("close","+++++++++++++å‡ºé”™+++++++++");
 				}
 			}
 		})
@@ -178,7 +178,7 @@ public class AppUtil {
 		}).show();
     }
 	/** 
-	* »ñµÃÈí¼ş°æ±¾ºÅ
+	* è·å¾—è½¯ä»¶ç‰ˆæœ¬å·
 	*/
 	public static int GetVersionCode(final Context con) {
 		int version = 1;
@@ -192,7 +192,7 @@ public class AppUtil {
 		return version;
 	}
 	/**
-	 * »ñµÃÈí¼şÃû³Æ
+	 * è·å¾—è½¯ä»¶åç§°
 	 * @param context
 	 * @return
 	 */
@@ -208,7 +208,7 @@ public class AppUtil {
 		return versionName;
 	}
 	/**
-	 * ¹ıÂËhtmlÌØÊâ×Ö·û
+	 * è¿‡æ»¤htmlç‰¹æ®Šå­—ç¬¦
 	 * @param str
 	 * @return
 	 */
@@ -226,7 +226,7 @@ public class AppUtil {
 		return str;
 	}
 	/**
-	 * ½«Ê±¼ä×ª»»ÎªÖĞÎÄ
+	 * å°†æ—¶é—´è½¬æ¢ä¸ºä¸­æ–‡
 	 * @param datetime
 	 * @return
 	 */
@@ -234,36 +234,36 @@ public class AppUtil {
 		Date today=new Date();
 		long   seconds   =   (today.getTime()-   datetime.getTime())/1000; 
 
-		long year=	seconds/(24*60*60*30*12);// Ïà²îÄêÊı
-		long   month  =   seconds/(24*60*60*30);//Ïà²îÔÂÊı
-		long   date   =   seconds/(24*60*60);     //Ïà²îµÄÌìÊı 
-		long   hour   =   (seconds-date*24*60*60)/(60*60);//Ïà²îµÄĞ¡Ê±Êı 
-		long   minute   =   (seconds-date*24*60*60-hour*60*60)/(60);//Ïà²îµÄ·ÖÖÓÊı 
-		long   second   =   (seconds-date*24*60*60-hour*60*60-minute*60);//Ïà²îµÄÃëÊı 
+		long year=	seconds/(24*60*60*30*12);// ç›¸å·®å¹´æ•°
+		long   month  =   seconds/(24*60*60*30);//ç›¸å·®æœˆæ•°
+		long   date   =   seconds/(24*60*60);     //ç›¸å·®çš„å¤©æ•° 
+		long   hour   =   (seconds-date*24*60*60)/(60*60);//ç›¸å·®çš„å°æ—¶æ•° 
+		long   minute   =   (seconds-date*24*60*60-hour*60*60)/(60);//ç›¸å·®çš„åˆ†é’Ÿæ•° 
+		long   second   =   (seconds-date*24*60*60-hour*60*60-minute*60);//ç›¸å·®çš„ç§’æ•° 
 		
 		if(year>0){
-			return year + "ÄêÇ°";
+			return year + "å¹´å‰";
 		}
 		if(month>0){
-			return month + "ÔÂÇ°";
+			return month + "æœˆå‰";
 		}
 		if(date>0){
-			return date + "ÌìÇ°";
+			return date + "å¤©å‰";
 		}
 		if(hour>0){
-			return hour + "Ğ¡Ê±Ç°";
+			return hour + "å°æ—¶å‰";
 		}
 		if(minute>0){
-			return minute + "·ÖÖÓÇ°";
+			return minute + "åˆ†é’Ÿå‰";
 		}
 		if(second>0){
-			return second + "ÃëÇ°";
+			return second + "ç§’å‰";
 		}
-		return "Î´ÖªÊ±¼ä";
+		return "æœªçŸ¥æ—¶é—´";
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñcnblogsÄÚ²¿Á´½Ó£¬·µ»Ø0Ôò´ú±í²»ÊÇ
-	 * 	¸ñÊ½£ºhttp://www.cnblogs.com/walkingp/archive/2011/05/27/2059420.html
+	 * åˆ¤æ–­æ˜¯å¦cnblogså†…éƒ¨é“¾æ¥ï¼Œè¿”å›0åˆ™ä»£è¡¨ä¸æ˜¯
+	 * 	æ ¼å¼ï¼šhttp://www.cnblogs.com/walkingp/archive/2011/05/27/2059420.html
 	 * @param url
 	 * @return
 	 */
@@ -277,10 +277,10 @@ public class AppUtil {
 		return id;
 	}
 	/**
-	 * ¸ñÊ½»¯ÄÚÈİ£¨ÓÃÓÚ²©¿ÍÄÚÈİ¼°ĞÂÎÅÄÚÈİ£©
+	 * æ ¼å¼åŒ–å†…å®¹ï¼ˆç”¨äºåšå®¢å†…å®¹åŠæ–°é—»å†…å®¹ï¼‰
 	 */	
 	public static String FormatContent(Context context, String html){
-		//ÊÇ·ñÍ¼Æ¬Ä£Ê½
+		//æ˜¯å¦å›¾ç‰‡æ¨¡å¼
 		boolean isImgMode=SettingActivity.IsPicReadMode(context);
 		
 		if(!isImgMode){
@@ -292,7 +292,7 @@ public class AppUtil {
 	}
 	static final Pattern patternHtml=Pattern.compile("<.+?>");
 	/**
-	 * ÒÆ³ıhtml±ê¼Ç
+	 * ç§»é™¤htmlæ ‡è®°
 	 * @param html
 	 * @return
 	 */
@@ -304,7 +304,7 @@ public class AppUtil {
 		return html;
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñº¬ÓĞÍ¼Æ¬ÄÚÈİ
+	 * åˆ¤æ–­æ˜¯å¦å«æœ‰å›¾ç‰‡å†…å®¹
 	 * @param html
 	 * @return
 	 */
@@ -317,7 +317,7 @@ public class AppUtil {
 		return false;
 	}
 	/**
-	 * ÒÆ³ıÍ¼Æ¬±ê¼Ç
+	 * ç§»é™¤å›¾ç‰‡æ ‡è®°
 	 * @param html
 	 * @return
 	 */
@@ -329,7 +329,7 @@ public class AppUtil {
 		return html;
 	}
 	/**
-	 * Ìæ»»Í¼Æ¬±ê¼Ç
+	 * æ›¿æ¢å›¾ç‰‡æ ‡è®°
 	 * @param html
 	 * @return
 	 */
@@ -337,12 +337,12 @@ public class AppUtil {
 	public static String ReplaceImgTag(String html){
 		Matcher m=patternImgSrc.matcher(html);
 		while(m.find()){
-			html= m.replaceAll("¡¾<a href=\"$2\">µã»÷²é¿´Í¼Æ¬</a>¡¿");
+			html= m.replaceAll("ã€<a href=\"$2\">ç‚¹å‡»æŸ¥çœ‹å›¾ç‰‡</a>ã€‘");
 		}
 		return html;
 	}
 	/**
-	 * ÒÆ³ıÊÓÆµ±ê¼Ç
+	 * ç§»é™¤è§†é¢‘æ ‡è®°
 	 */
 	static final Pattern patternVideo=Pattern.compile("<object(.+?)>(.*?)<param name=\"src\" value=\"(.+?)\"(.+?)>(.+?)</object>");
 	public static String RemoveVideoTag(String html){
@@ -353,13 +353,13 @@ public class AppUtil {
 		return html;
 	}
 	/**
-	 * Ìæ»»ÊÓÆµ±ê¼Ç
+	 * æ›¿æ¢è§†é¢‘æ ‡è®°
 	 */
 	static final Pattern patternVideoSrc=Pattern.compile("<object(.+?)>(.*?)<param name=\"src\" value=\"(.+?)\"(.+?)>(.+?)</object>");
 	public static String ReplaceVideoTag(String html){
 		Matcher m=patternVideoSrc.matcher(html);
 		while(m.find()){
-			html= m.replaceAll("¡¾<a href=\"$3\">µã»÷²é¿´ÊÓÆµ</a>¡¿");
+			html= m.replaceAll("ã€<a href=\"$3\">ç‚¹å‡»æŸ¥çœ‹è§†é¢‘</a>ã€‘");
 		}
 		return html;
 	}

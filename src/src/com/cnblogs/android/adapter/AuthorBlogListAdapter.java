@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+锘縫ackage com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class AuthorBlogListAdapter extends BaseAdapter {
 		}
 
 		viewHolder.recommend_text_title.setText(entity.GetBlogTitle());
-		// 是否已读
+		// 鏄惁宸茶
 		boolean isReaded = entity.GetIsReaded();
 		if (isReaded) {
 			viewHolder.recommend_text_title.setTextColor(R.color.gray);
@@ -84,7 +84,7 @@ public class AuthorBlogListAdapter extends BaseAdapter {
 		return convertView;
 	}
 	/**
-	 * 得到数据
+	 * 寰楀埌鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -92,7 +92,7 @@ public class AuthorBlogListAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * 
 	 * @param list
 	 */
@@ -101,7 +101,7 @@ public class AuthorBlogListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * 增加数据
+	 * 澧炲姞鏁版嵁
 	 * 
 	 * @param list
 	 */

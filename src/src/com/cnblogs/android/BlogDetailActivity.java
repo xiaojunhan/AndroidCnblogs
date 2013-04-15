@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.io.InputStream;
 
@@ -41,7 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * ²©¿ÍÏêÏ¸ÄÚÈİ
+ * åšå®¢è¯¦ç»†å†…å®¹
  * @author walkingp
  * @date:2011-12
  *
@@ -49,37 +49,37 @@ import android.widget.Toast;
 public class BlogDetailActivity extends BaseActivity
 		implements
 			OnGestureListener {
-	private int blogId;// ²©¿Í±àºÅ
-	private String blogTitle;// ±êÌâ
-	private String blogAuthor;// ×÷Õß
-	private String blogDate;// ·¢±íÊ±¼ä
-	private String blogUrl;// ÎÄÕÂÁ´½Ó
-	private int blogViewCount;// ä¯ÀÀ´ÎÊı
-	private int blogCommentCount;// ÆÀÂÛ´ÎÊı
+	private int blogId;// åšå®¢ç¼–å·
+	private String blogTitle;// æ ‡é¢˜
+	private String blogAuthor;// ä½œè€…
+	private String blogDate;// å‘è¡¨æ—¶é—´
+	private String blogUrl;// æ–‡ç« é“¾æ¥
+	private int blogViewCount;// æµè§ˆæ¬¡æ•°
+	private int blogCommentCount;// è¯„è®ºæ¬¡æ•°
 
-	static final int MENU_FORMAT_HTML = Menu.FIRST;// ¸ñÊ½»¯ÔÄ¶Á
-	static final int MENU_READ_MODE = Menu.FIRST + 1;// ÇĞ»»ÔÄ¶ÁÄ£Ê½
+	static final int MENU_FORMAT_HTML = Menu.FIRST;// æ ¼å¼åŒ–é˜…è¯»
+	static final int MENU_READ_MODE = Menu.FIRST + 1;// åˆ‡æ¢é˜…è¯»æ¨¡å¼
 
 	final String mimeType = "text/html";
 	final String encoding = "utf-8";
 
-	private Button comment_btn;// ÆÀÂÛ°´Å¥
-	private Button blog_button_back;// ·µ»Ø
+	private Button comment_btn;// è¯„è®ºæŒ‰é’®
+	private Button blog_button_back;// è¿”å›
 	WebView webView;
 	ProgressBar blogBody_progressBar;
-	RelativeLayout rl_blog_detail;// Í·²¿µ¼º½
+	RelativeLayout rl_blog_detail;// å¤´éƒ¨å¯¼èˆª
 
-	boolean isFullScreen = false;// ÊÇ·ñÈ«ÆÁ
+	boolean isFullScreen = false;// æ˜¯å¦å…¨å±
 
-	private GestureDetector gestureScanner;// ÊÖÊÆ
+	private GestureDetector gestureScanner;// æ‰‹åŠ¿
 
-	Resources res;// ×ÊÔ´
-	SharedPreferences sharePreferencesSettings;// ÉèÖÃ
-	TextView tvSeekBar;// SeekBarÏÔÊ¾ÎÄ±¾¿ò
+	Resources res;// èµ„æº
+	SharedPreferences sharePreferencesSettings;// è®¾ç½®
+	TextView tvSeekBar;// SeekBaræ˜¾ç¤ºæ–‡æœ¬æ¡†
 	SeekBar seekBar;// SeekBar
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ·ÀÖ¹ĞİÃß
+		// é˜²æ­¢ä¼‘çœ 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		this.setContentView(R.layout.blog_detail);
@@ -91,13 +91,13 @@ public class BlogDetailActivity extends BaseActivity
 		InitialData();
 	}
 	/**
-	 * ²Ù×÷Êı¾İ¿â
+	 * æ“ä½œæ•°æ®åº“
 	 */
 	private void MarkAsReaded() {
-		// ¸üĞÂÎªÒÑ¶Á
+		// æ›´æ–°ä¸ºå·²è¯»
 		BlogDalHelper helper = new BlogDalHelper(getApplicationContext());
 		helper.MarkAsReaded(blogId);
-		// ¹ã²¥
+		// å¹¿æ’­
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putIntArray("blogIdArray", new int[]{blogId});
@@ -106,10 +106,10 @@ public class BlogDetailActivity extends BaseActivity
 		this.sendBroadcast(intent);
 	}
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 */
 	private void InitialData() {
-		// ´«µİ¹ıÀ´µÄÖµ
+		// ä¼ é€’è¿‡æ¥çš„å€¼
 		blogId = getIntent().getIntExtra("blogId", 0);
 		blogTitle = getIntent().getStringExtra("blogTitle");
 		blogAuthor = getIntent().getStringExtra("author");
@@ -117,27 +117,27 @@ public class BlogDetailActivity extends BaseActivity
 		blogUrl = getIntent().getStringExtra("blogUrl");
 		blogViewCount = getIntent().getIntExtra("view", 0);
 		blogCommentCount = getIntent().getIntExtra("comment", 0);
-		// Í·²¿
+		// å¤´éƒ¨
 		rl_blog_detail = (RelativeLayout) findViewById(R.id.rl_blog_detail);
-		// Ë«»÷È«ÆÁ
+		// åŒå‡»å…¨å±
 		rl_blog_detail.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				return gestureScanner.onTouchEvent(event);
 			}
 		});
-		// ´ò¿ªÆÀÂÛ
+		// æ‰“å¼€è¯„è®º
 		comment_btn = (Button) findViewById(R.id.blog_comment_btn);
 		String commentsCountString = (blogCommentCount == 0)
-				? "ÔİÎŞÆÀÂÛ"
-				: blogCommentCount + "ÌõÆÀÂÛ";
+				? "æš‚æ— è¯„è®º"
+				: blogCommentCount + "æ¡è¯„è®º";
 		comment_btn.setText(commentsCountString);
 		comment_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				RedirectCommentActivity();
 			}
 		});
-		// ·µ»Ø
+		// è¿”å›
 		blog_button_back = (Button) findViewById(R.id.blog_button_back);
 		blog_button_back.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -146,7 +146,7 @@ public class BlogDetailActivity extends BaseActivity
 		});
 		try {
 			webView = (WebView) findViewById(R.id.blog_body_webview_content);
-			webView.getSettings().setDefaultTextEncodingName("utf-8");// ±ÜÃâÖĞÎÄÂÒÂë
+			webView.getSettings().setDefaultTextEncodingName("utf-8");// é¿å…ä¸­æ–‡ä¹±ç 
 			webView.addJavascriptInterface(this, "javatojs");
 			webView.setSelected(true);
 			webView.setScrollBarStyle(0);
@@ -159,7 +159,7 @@ public class BlogDetailActivity extends BaseActivity
 			webSetting.setDefaultFontSize(14);
 			webSetting.setCacheMode(WebSettings.LOAD_DEFAULT
 					| WebSettings.LOAD_CACHE_ELSE_NETWORK);
-			// Ë«»÷È«ÆÁ
+			// åŒå‡»å…¨å±
 			webView.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -167,7 +167,7 @@ public class BlogDetailActivity extends BaseActivity
 				}
 			});
 			int scalePercent = 110;
-			// ÉÏÒ»´Î±£´æµÄËõ·Å±ÈÀı
+			// ä¸Šä¸€æ¬¡ä¿å­˜çš„ç¼©æ”¾æ¯”ä¾‹
 			float webviewScale = sharePreferencesSettings.getFloat(
 					res.getString(R.string.preferences_webview_zoom_scale),
 					(float) 1.1);
@@ -176,15 +176,15 @@ public class BlogDetailActivity extends BaseActivity
 
 			blogBody_progressBar = (ProgressBar) findViewById(R.id.blogBody_progressBar);
 
-			// ÉÏÒ»´ÎÈ«ÆÁ±£´æ×´Ì¬
+			// ä¸Šä¸€æ¬¡å…¨å±ä¿å­˜çŠ¶æ€
 			isFullScreen = sharePreferencesSettings.getBoolean(
 					res.getString(R.string.preferences_is_fullscreen), false);
-			// ³õÊ¼ÊÇ·ñÈ«ÆÁ
+			// åˆå§‹æ˜¯å¦å…¨å±
 			if (isFullScreen) {
 				setFullScreen();
 			}
 			String url = Config.URL_GET_BLOG_DETAIL.replace("{0}",
-					String.valueOf(blogId));// ÍøÖ·
+					String.valueOf(blogId));// ç½‘å€
 			PageTask task = new PageTask();
 			task.execute(url);
 		} catch (Exception ex) {
@@ -192,7 +192,7 @@ public class BlogDetailActivity extends BaseActivity
 					Toast.LENGTH_SHORT).show();
 		}
 
-		// ¼àÌıÆÁÄ»¶¯×÷ÊÂ¼ş È«ÆÁ
+		// ç›‘å¬å±å¹•åŠ¨ä½œäº‹ä»¶ å…¨å±
 		gestureScanner = new GestureDetector(this);
 		gestureScanner.setIsLongpressEnabled(true);
 		gestureScanner
@@ -204,7 +204,7 @@ public class BlogDetailActivity extends BaseActivity
 							quitFullScreen();
 						}
 						isFullScreen = !isFullScreen;
-						// ±£´æÅäÖÃ
+						// ä¿å­˜é…ç½®
 						sharePreferencesSettings
 								.edit()
 								.putBoolean(
@@ -220,17 +220,17 @@ public class BlogDetailActivity extends BaseActivity
 					}
 				});
 	}
-	// ³¤°´²Ëµ¥
+	// é•¿æŒ‰èœå•
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		if (v.getId() == R.id.blog_body_webview_content) {
-			menu.setHeaderTitle("ÇëÑ¡Ôñ²Ù×÷");
-			menu.add(0, MENU_FORMAT_HTML, 0, "²é¿´ÄÚÈİ");
-			menu.add(0, MENU_READ_MODE, 1, "ÇĞ»»µ½Ä£Ê½");
+			menu.setHeaderTitle("è¯·é€‰æ‹©æ“ä½œ");
+			menu.add(0, MENU_FORMAT_HTML, 0, "æŸ¥çœ‹å†…å®¹");
+			menu.add(0, MENU_READ_MODE, 1, "åˆ‡æ¢åˆ°æ¨¡å¼");
 		}
 	}
 	/**
-	 * ±£´æËõ·Å±ÈÀı
+	 * ä¿å­˜ç¼©æ”¾æ¯”ä¾‹
 	 */
 	public void onDestroy() {
 		float webviewScale = webView.getScale();
@@ -242,11 +242,11 @@ public class BlogDetailActivity extends BaseActivity
 		super.onDestroy();
 	}
 	/**
-	 * ´ò¿ªÆÀÂÛ
+	 * æ‰“å¼€è¯„è®º
 	 * 
 	 */
 	private void RedirectCommentActivity() {
-		// »¹Ã»ÓĞÆÀÂÛ
+		// è¿˜æ²¡æœ‰è¯„è®º
 		if (blogCommentCount == 0) {
 			Toast.makeText(getApplicationContext(), R.string.sys_empty_comment,
 					Toast.LENGTH_SHORT).show();
@@ -265,10 +265,10 @@ public class BlogDetailActivity extends BaseActivity
 		startActivityForResult(intent, 0);
 	}
 	/**
-	 * Ìø×ªµ½²©Ö÷
+	 * è·³è½¬åˆ°åšä¸»
 	 */
 	private void RedirectAuthorActivity() {
-		String userName = UserHelper.GetBlogUrlName(blogUrl);// Ö÷Ò³ÓÃ»§Ãû
+		String userName = UserHelper.GetBlogUrlName(blogUrl);// ä¸»é¡µç”¨æˆ·å
 		if (userName.equals("")) {
 			Toast.makeText(getApplicationContext(), R.string.sys_no_author,
 					Toast.LENGTH_SHORT).show();
@@ -277,27 +277,27 @@ public class BlogDetailActivity extends BaseActivity
 		Intent intent = new Intent();
 		intent.setClass(BlogDetailActivity.this, AuthorBlogActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("author", userName);// ÓÃ»§Ãû
-		bundle.putString("blogName", blogAuthor);// ²©¿Í±êÌâ
+		bundle.putString("author", userName);// ç”¨æˆ·å
+		bundle.putString("blogName", blogAuthor);// åšå®¢æ ‡é¢˜
 
 		intent.putExtras(bundle);
 
 		startActivityForResult(intent, 0);
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯
+	 * å¤šçº¿ç¨‹å¯åŠ¨
 	 * 
 	 * @author walkingp
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, String> {
-		// ¿É±ä³¤µÄÊäÈë²ÎÊı£¬ÓëAsyncTask.exucute()¶ÔÓ¦
+		// å¯å˜é•¿çš„è¾“å…¥å‚æ•°ï¼Œä¸AsyncTask.exucute()å¯¹åº”
 		@Override
 		protected String doInBackground(String... params) {
 
 			try {
 				String _blogContent = BlogHelper.GetBlogById(blogId,getApplicationContext());
-				//ÏÂÔØÍ¼Æ¬£¨Ö»ÓĞ±¾µØÍêÕû±£´æÍ¼Æ¬Ê±²ÅÏÂÔØ£©
+				//ä¸‹è½½å›¾ç‰‡ï¼ˆåªæœ‰æœ¬åœ°å®Œæ•´ä¿å­˜å›¾ç‰‡æ—¶æ‰ä¸‹è½½ï¼‰
 				/*Context context=getApplicationContext();
 				BlogDalHelper helper = new BlogDalHelper(context);				
 				Blog entity = helper.GetBlogEntity(blogId);				
@@ -321,7 +321,7 @@ public class BlogDetailActivity extends BaseActivity
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(String _blogContent) {
@@ -334,9 +334,9 @@ public class BlogDetailActivity extends BaseActivity
 				Log.e("error", e.toString());
 			}
 
-			String blogInfo = "×÷Õß: " + blogAuthor + "   ·¢±íÊ±¼ä:" + blogDate
-					+ "  ²é¿´:" + blogViewCount;
-			// ¸ñÊ½»¯html
+			String blogInfo = "ä½œè€…: " + blogAuthor + "   å‘è¡¨æ—¶é—´:" + blogDate
+					+ "  æŸ¥çœ‹:" + blogViewCount;
+			// æ ¼å¼åŒ–html
 			_blogContent = AppUtil.FormatContent(getApplicationContext(),
 					_blogContent);
 
@@ -346,7 +346,7 @@ public class BlogDetailActivity extends BaseActivity
 			LoadWebViewContent(webView, htmlContent);
 			blogBody_progressBar.setVisibility(View.GONE);
 			if(!_blogContent.equals("")){
-				//¸üĞÂÎªÒÑ¶Á
+				//æ›´æ–°ä¸ºå·²è¯»
 				MarkAsReaded();
 			}
 		}
@@ -361,7 +361,7 @@ public class BlogDetailActivity extends BaseActivity
 		}
 	}
 	/**
-	 * ¼ÓÔØÄÚÈİ
+	 * åŠ è½½å†…å®¹
 	 * 
 	 * @param webView
 	 * @param content
@@ -371,7 +371,7 @@ public class BlogDetailActivity extends BaseActivity
 				Config.ENCODE_TYPE, null);
 	}
 	/**
-	 * ²Ëµ¥
+	 * èœå•
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -380,16 +380,16 @@ public class BlogDetailActivity extends BaseActivity
 		return super.onCreateOptionsMenu(menu);
 	}
 	/**
-	 * È«ÆÁ
+	 * å…¨å±
 	 */
 	private void setFullScreen() {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// Òş²Øµ¼º½
+		// éšè—å¯¼èˆª
 		rl_blog_detail.setVisibility(View.GONE);
 	}
 	/**
-	 * ÍË³öÈ«ÆÁ
+	 * é€€å‡ºå…¨å±
 	 */
 	private void quitFullScreen() {
 		final WindowManager.LayoutParams attrs = getWindow().getAttributes();
@@ -397,37 +397,37 @@ public class BlogDetailActivity extends BaseActivity
 		getWindow().setAttributes(attrs);
 		getWindow()
 				.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-		// ÏÔÊ¾µ¼º½
+		// æ˜¾ç¤ºå¯¼èˆª
 		rl_blog_detail.setVisibility(View.VISIBLE);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.menu_blog_back :// ·µ»ØÁĞ±í
+			case R.id.menu_blog_back :// è¿”å›åˆ—è¡¨
 				BlogDetailActivity.this.setResult(0, getIntent());
 				BlogDetailActivity.this.finish();
 				break;
-			case R.id.menu_blog_comment :// ²é¿´ÆÀÂÛ
+			case R.id.menu_blog_comment :// æŸ¥çœ‹è¯„è®º
 				RedirectCommentActivity();
 				break;
-			case R.id.menu_blog_share :// ·ÖÏí
+			case R.id.menu_blog_share :// åˆ†äº«
 				Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_SUBJECT, blogTitle);
-				String shareContent = "¡¶" + blogTitle + "¡·,×÷Õß£º" + blogAuthor
-						+ "£¬Ô­ÎÄÁ´½Ó£º" + blogUrl + " ·ÖÏí×Ô£º"
-						+ res.getString(R.string.app_name) + "Android¿Í»§¶Ë("
+				String shareContent = "ã€Š" + blogTitle + "ã€‹,ä½œè€…ï¼š" + blogAuthor
+						+ "ï¼ŒåŸæ–‡é“¾æ¥ï¼š" + blogUrl + " åˆ†äº«è‡ªï¼š"
+						+ res.getString(R.string.app_name) + "Androidå®¢æˆ·ç«¯("
 						+ res.getString(R.string.app_homepage) + ")";
 				intent.putExtra(Intent.EXTRA_TEXT, shareContent);
 				startActivity(Intent.createChooser(intent, blogTitle));
 				break;
-			case R.id.menu_blog_add_fav:// Ìí¼ÓÊÕ²Ø
+			case R.id.menu_blog_add_fav:// æ·»åŠ æ”¶è—
 				new AddFavTask().execute(blogId);
 				break;
-			case R.id.menu_blog_author :// ²©Ö÷
+			case R.id.menu_blog_author :// åšä¸»
 				RedirectAuthorActivity();
 				break;
-			case R.id.menu_blog_browser :// ²é¿´ÍøÒ³
+			case R.id.menu_blog_browser :// æŸ¥çœ‹ç½‘é¡µ
 				Uri blogUri = Uri.parse(blogUrl);
 				Intent it = new Intent(Intent.ACTION_VIEW, blogUri);
 				startActivity(it);
@@ -436,7 +436,7 @@ public class BlogDetailActivity extends BaseActivity
 		return super.onOptionsItemSelected(item);
 	}
 	/**
-	 * Ìí¼ÓÊÕ²Ø
+	 * æ·»åŠ æ”¶è—
 	 *
 	 */
 	public class AddFavTask extends AsyncTask<Integer,String,EnumResultType.EnumActionResultType>{
@@ -449,8 +449,8 @@ public class BlogDetailActivity extends BaseActivity
 		}
 		@Override
 		protected void onPostExecute(EnumResultType.EnumActionResultType result) {
-			if(result.equals(EnumResultType.EnumActionResultType.Succ)){//³É¹¦
-				// ¹ã²¥
+			if(result.equals(EnumResultType.EnumActionResultType.Succ)){//æˆåŠŸ
+				// å¹¿æ’­
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
 				bundle.putInt("contentId",contentId);

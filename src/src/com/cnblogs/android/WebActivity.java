@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import com.cnblogs.android.utility.NetHelper;
 
@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 /**
- * ÄÚÖÃä¯ÀÀÆ÷£¨¹²ÓÃ£©
+ * å†…ç½®æµè§ˆå™¨ï¼ˆå…±ç”¨ï¼‰
  * @author walkingp
  * @date:2011-12
  *
@@ -26,16 +26,16 @@ public class WebActivity extends BaseActivity {
 	WebView wv;
 	ProgressBar web_progressBar;
 	ImageButton btnRefresh;
-	private Button button_back;//·µ»Ø
+	private Button button_back;//è¿”å›
 	
 	String url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.web_layout);
-		//·ÀÖ¹ĞİÃß
+		//é˜²æ­¢ä¼‘çœ 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		//ÍøÂç²»¿ÉÓÃ
+		//ç½‘ç»œä¸å¯ç”¨
 		if(!NetHelper.networkIsAvailable(getApplicationContext())){
 			Toast.makeText(getApplicationContext(), R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 			return;
@@ -54,7 +54,7 @@ public class WebActivity extends BaseActivity {
          return false;
     }
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls(){
 		url=getIntent().getStringExtra("url");
@@ -65,8 +65,8 @@ public class WebActivity extends BaseActivity {
 		
 		web_progressBar=(ProgressBar)findViewById(R.id.web_progressBar);
     	wv=(WebView)findViewById(R.id.bookWebview);
-        wv.getSettings().setJavaScriptEnabled(true);//¿ÉÓÃJS
-        wv.setScrollBarStyle(0);//¹ö¶¯Ìõ·ç¸ñ£¬Îª0¾ÍÊÇ²»¸ø¹ö¶¯ÌõÁô¿Õ¼ä£¬¹ö¶¯Ìõ¸²¸ÇÔÚÍøÒ³ÉÏ
+        wv.getSettings().setJavaScriptEnabled(true);//å¯ç”¨JS
+        wv.setScrollBarStyle(0);//æ»šåŠ¨æ¡é£æ ¼ï¼Œä¸º0å°±æ˜¯ä¸ç»™æ»šåŠ¨æ¡ç•™ç©ºé—´ï¼Œæ»šåŠ¨æ¡è¦†ç›–åœ¨ç½‘é¡µä¸Š
         wv.setWebViewClient(new WebViewClient(){   
         	public boolean shouldOverrideUrlLoading(WebView view, String url) {   
                 view.loadUrl(url);   
@@ -84,14 +84,14 @@ public class WebActivity extends BaseActivity {
             }
         }); 
         
-        //Ë¢ĞÂ
+        //åˆ·æ–°
         btnRefresh=(ImageButton)findViewById(R.id.web_refresh_btn);
         btnRefresh.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				loadurl(wv,url);
 			}
 		});
-       //·µ»Ø
+       //è¿”å›
         button_back=(Button)findViewById(R.id.web_button_back);
         button_back.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
@@ -102,7 +102,7 @@ public class WebActivity extends BaseActivity {
 				}
 			}
 		});
-        loadurl(wv,url);//¼ÓÔØÍøÒ³
+        loadurl(wv,url);//åŠ è½½ç½‘é¡µ
     }
 	final class MyWebViewClient extends WebViewClient{  
         public boolean shouldOverrideUrlLoading(WebView view, String url) {   
@@ -110,7 +110,7 @@ public class WebActivity extends BaseActivity {
             return true;   
         }  
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        	//ÍøÂç²»¿ÉÓÃ
+        	//ç½‘ç»œä¸å¯ç”¨
 			if(!NetHelper.networkIsAvailable(getApplicationContext())){
 				Toast.makeText(getApplicationContext(), R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 				return;
@@ -126,7 +126,7 @@ public class WebActivity extends BaseActivity {
     }
 	private void loadurl(final WebView view, String url){
 		try{
-			//ÍøÂç²»¿ÉÓÃ
+			//ç½‘ç»œä¸å¯ç”¨
 			if(!NetHelper.networkIsAvailable(getApplicationContext())){
 				Toast.makeText(getApplicationContext(), R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 				return;
@@ -134,7 +134,7 @@ public class WebActivity extends BaseActivity {
 			if(wv.canGoBack()){
 				url=wv.getUrl();
 			}
-    		view.loadUrl(url);//ÔØÈëÍøÒ³
+    		view.loadUrl(url);//è½½å…¥ç½‘é¡µ
 		}catch(Exception ex){
 			Toast.makeText(getApplicationContext(), R.string.sys_network_error,Toast.LENGTH_SHORT).show();
 			return;

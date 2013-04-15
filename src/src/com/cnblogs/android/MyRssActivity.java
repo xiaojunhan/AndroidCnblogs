@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import com.cnblogs.android.adapter.RssListAdapter;
 import com.cnblogs.android.dal.RssListDalHelper;
 import com.cnblogs.android.entity.RssList;
 /**
- * ÎÒµÄ¶©ÔÄ
+ * æˆ‘çš„è®¢é˜…
  * @author walkingp
  * @date:2012-3-22
  *
@@ -37,19 +37,19 @@ import com.cnblogs.android.entity.RssList;
 public class MyRssActivity extends BaseMainActivity {
 	List<RssList> listRss = new ArrayList<RssList>();
 
-	int pageIndex = 1;// Ò³Âë
+	int pageIndex = 1;// é¡µç 
 
 	ListView listView;
-	private RssListAdapter adapter;// Êı¾İÔ´
+	private RssListAdapter adapter;// æ•°æ®æº
 
-	ProgressBar bodyProgressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ImageButton btnRefresh;// Ë¢ĞÂ°´Å¥
-	ProgressBar topProgressBar;// ¼ÓÔØ°´Å¥
+	ProgressBar bodyProgressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ImageButton btnRefresh;// åˆ·æ–°æŒ‰é’®
+	ProgressBar topProgressBar;// åŠ è½½æŒ‰é’®
 
-	TextView txtNoData;// Ã»ÓĞÊı¾İ
+	TextView txtNoData;// æ²¡æœ‰æ•°æ®
 	private ProgressDialog progressDialog;  
 	int lastItemPosition;
-	Resources res;// ×ÊÔ´
+	Resources res;// èµ„æº
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,14 +60,14 @@ public class MyRssActivity extends BaseMainActivity {
 		BindControls();
 		new PageTask().execute();
 		
-		//×¢²á¹ã²¥
+		//æ³¨å†Œå¹¿æ’­
 		UpdateListViewReceiver receiver=new UpdateListViewReceiver();
 		IntentFilter filter=new IntentFilter();
 		filter.addAction("android.cnblogs.com.update_rsslist");
 		registerReceiver(receiver, filter);
 	}
 	/**
-	 * ³õÊ¼»¯ÁĞ±í
+	 * åˆå§‹åŒ–åˆ—è¡¨
 	 */
 	private void InitialControls() {
 		listView = (ListView) findViewById(R.id.rss_list);
@@ -78,10 +78,10 @@ public class MyRssActivity extends BaseMainActivity {
 		txtNoData = (TextView) findViewById(R.id.txtNoData);
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls() {
-		// Ìø×ªµ½·ÖÀà
+		// è·³è½¬åˆ°åˆ†ç±»
 		btnRefresh.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent();
@@ -89,7 +89,7 @@ public class MyRssActivity extends BaseMainActivity {
 				startActivityForResult(intent, 0);
 			}
 		});
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -109,7 +109,7 @@ public class MyRssActivity extends BaseMainActivity {
 
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
-				if (isCnblogs) {// ²©¿ÍÔ°
+				if (isCnblogs) {// åšå®¢å›­
 					intent.setClass(MyRssActivity.this,
 							AuthorBlogActivity.class);
 					bundle.putString("blogName", title);
@@ -125,7 +125,7 @@ public class MyRssActivity extends BaseMainActivity {
 				startActivity(intent);
 			}
 		});
-		// ³¤°´ÊÂ¼ş
+		// é•¿æŒ‰äº‹ä»¶
 		listView.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v,
@@ -136,17 +136,17 @@ public class MyRssActivity extends BaseMainActivity {
 			}
 		});
 	}
-	// ³¤°´²Ëµ¥ÏìÓ¦º¯Êı
+	// é•¿æŒ‰èœå•å“åº”å‡½æ•°
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		int itemIndex = item.getItemId();
 		AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 		View v = menuInfo.targetView;
 		switch (itemIndex) {
-			case R.id.menu_unrss://È¡Ïû¶©ÔÄ
+			case R.id.menu_unrss://å–æ¶ˆè®¢é˜…
 				default:
-				//ÏÔÊ¾ProgressDialog  
-	            progressDialog = ProgressDialog.show(MyRssActivity.this, "ÍË¶©À¸Ä¿", "ÕıÔÚ´¦ÀíÍË¶©ÖĞ£¬ÇëÉÔºò", true, false);
+				//æ˜¾ç¤ºProgressDialog  
+	            progressDialog = ProgressDialog.show(MyRssActivity.this, "é€€è®¢æ ç›®", "æ­£åœ¨å¤„ç†é€€è®¢ä¸­ï¼Œè¯·ç¨å€™", true, false);
 				TextView tvLink=(TextView)v.findViewById(R.id.rss_item_url);
 				String link=tvLink.getText().toString();
 				RssListDalHelper helper=new RssListDalHelper(getApplicationContext());
@@ -157,7 +157,7 @@ public class MyRssActivity extends BaseMainActivity {
 					Toast.makeText(getApplicationContext(), R.string.unrss_fail, Toast.LENGTH_SHORT).show();
 				}
 				progressDialog.dismiss();
-				// ¹ã²¥
+				// å¹¿æ’­
 				TextView tvTitle = (TextView) v.findViewById(R.id.rss_item_title);
 				TextView tvSummary = (TextView) v.findViewById(R.id.rss_item_summary);
 				TextView tvId = (TextView) v.findViewById(R.id.rss_item_id);
@@ -179,7 +179,7 @@ public class MyRssActivity extends BaseMainActivity {
 		return super.onContextItemSelected(item);
 	}
 	/**
-	 * ¼ÓÔØÊı¾İ
+	 * åŠ è½½æ•°æ®
 	 * 
 	 * @author walkingp
 	 * @date 2012-3-13
@@ -217,7 +217,7 @@ public class MyRssActivity extends BaseMainActivity {
 		}
 	}
 	/**
-	 * Ìí¼ÓÉ¾³ıÊı¾İ£¨¹ã²¥£©
+	 * æ·»åŠ åˆ é™¤æ•°æ®ï¼ˆå¹¿æ’­ï¼‰
 	 * @author Administrator
 	 *
 	 */

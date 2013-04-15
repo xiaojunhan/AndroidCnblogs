@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import com.cnblogs.android.utility.AppUtil;
 
@@ -15,23 +15,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * ´ËÒ³°üº¬ĞÂÀËÎ¢²©¼Ó¹Ø×¢¹¦ÄÜ
+ * æ­¤é¡µåŒ…å«æ–°æµªå¾®åšåŠ å…³æ³¨åŠŸèƒ½
  * @author walkingp
  * @date:2011-12
  *
  */
 public class AboutActivity extends BaseActivity{
 	
-	Button btnWeibo;//¹Ø×¢
-	SharedPreferences sharePreferences;//ÉèÖÃ
-	String CONFIG_CURRENT_WEIBO_USER_TOKEN="config_current_weibo_user_token";//µ±Ç°Î¢²©ÓÃ»§key
+	Button btnWeibo;//å…³æ³¨
+	SharedPreferences sharePreferences;//è®¾ç½®
+	String CONFIG_CURRENT_WEIBO_USER_TOKEN="config_current_weibo_user_token";//å½“å‰å¾®åšç”¨æˆ·key
 	Resources res;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//Òş²Ø±êÌâÀ¸
+		//éšè—æ ‡é¢˜æ 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);  
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -43,7 +43,7 @@ public class AboutActivity extends BaseActivity{
 		InitialControl();
 	}
 	/**
-	 * ³õÊ¼»¯¿Ø¼ş
+	 * åˆå§‹åŒ–æ§ä»¶
 	 */
 	private void InitialControl(){
 		/*View layout = getLayoutInflater().inflate(R.layout.about_layout, null); 
@@ -60,11 +60,11 @@ public class AboutActivity extends BaseActivity{
 				GotoMarket();
 			}
 		});
-		//µ±Ç°°æ±¾
+		//å½“å‰ç‰ˆæœ¬
 		TextView txtAppVersion=(TextView)findViewById(R.id.txtAppVersion);
 		String versionName=AppUtil.GetVersionName(getApplicationContext());
 		txtAppVersion.setText(versionName);
-		//Á´½Ó
+		//é“¾æ¥
 		TextView txtAppAuthor=(TextView)findViewById(R.id.txtAppAuthor);
 		txtAppAuthor.setOnClickListener(new OnClickListener(){
 			@Override
@@ -75,11 +75,11 @@ public class AboutActivity extends BaseActivity{
 
 		String currentUserToken=sharePreferences.getString(CONFIG_CURRENT_WEIBO_USER_TOKEN, "");
 		if(!currentUserToken.equalsIgnoreCase("")){
-			//btnWeibo.setText("ÒÑ¾­¹Ø×¢×÷Õß");
+			//btnWeibo.setText("å·²ç»å…³æ³¨ä½œè€…");
 		}
 	}
 	/**
-	 * Æô¶¯µç×ÓÊĞ³¡
+	 * å¯åŠ¨ç”µå­å¸‚åœº
 	 */
 	private void GotoMarket(){
 		Uri blogUri=Uri.parse(res.getString(R.string.app_market_url));
@@ -87,10 +87,10 @@ public class AboutActivity extends BaseActivity{
     	startActivity(it);
 	}
 	/**
-	 * Ìø×ªµ½¸öÈËÖ÷Ò³ 
+	 * è·³è½¬åˆ°ä¸ªäººä¸»é¡µ 
 	 */
 	private void RedirectToAuthor(){
-		//´«µİ²ÎÊı
+		//ä¼ é€’å‚æ•°
 		Intent intent = new Intent();
 		intent.setClass(AboutActivity.this,AuthorBlogActivity.class);
 		Bundle bundle=new Bundle();

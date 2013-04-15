@@ -1,4 +1,4 @@
-package com.cnblogs.android.services;
+ï»¿package com.cnblogs.android.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,19 +31,19 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 public class DownloadServices extends Service{
-	//Í¨ÖªÀ¸
+	//é€šçŸ¥æ 
 	private NotificationManager downloadNotifMg;
 	private Notification downloadNotify;
 	
 	public static final int INIT_DOWNLOAD_NOTIFY = 10010;
 	/*
-	 * Êı¾İÀàĞÍ
+	 * æ•°æ®ç±»å‹
 	 */
 	public enum EnumDataType{
-		Blog,//²©¿Í
-		News,//ĞÂÎÅ 
-		AuthorBlog,//Ä³Ò»Î»×÷ÕßµÄ²©¿Í
-		BlogAndNews//²©¿ÍºÍĞÂÎÅ
+		Blog,//åšå®¢
+		News,//æ–°é—» 
+		AuthorBlog,//æŸä¸€ä½ä½œè€…çš„åšå®¢
+		BlogAndNews//åšå®¢å’Œæ–°é—»
 	}
 	@Override
 	public void onCreate() {
@@ -52,7 +52,7 @@ public class DownloadServices extends Service{
 		downloadNotify.contentView =new RemoteViews(getPackageName(),R.layout.offline_download_notification);
 		downloadNotify.contentView.setViewVisibility(R.id.notify_download_done, View.GONE);
 		downloadNotify.icon = android.R.drawable.stat_sys_download;
-		downloadNotify.tickerText="²©¿ÍÔ°¿ªÊ¼ÀëÏßÏÂÔØ";
+		downloadNotify.tickerText="åšå®¢å›­å¼€å§‹ç¦»çº¿ä¸‹è½½";
 	    
 	    Intent i = new Intent(this,MainActivity.class);
 	    i.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
@@ -62,27 +62,27 @@ public class DownloadServices extends Service{
 		super.onCreate();
 	}
 	/*
-	 * ·şÎñ¿ªÊ¼
+	 * æœåŠ¡å¼€å§‹
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-		int dataType=intent.getIntExtra("type",1);//Ä¬ÈÏÏÂÔØÀàĞÍ²©¿Í
-		String author=intent.getStringExtra("author");//Èç¹ûÊÇÏÂÔØÄ³Ò»¸öÈËµÄ²©¿Í
+		int dataType=intent.getIntExtra("type",1);//é»˜è®¤ä¸‹è½½ç±»å‹åšå®¢
+		String author=intent.getStringExtra("author");//å¦‚æœæ˜¯ä¸‹è½½æŸä¸€ä¸ªäººçš„åšå®¢
 		
-		int top=intent.getIntExtra("size",10);//Ä¬ÈÏÏÂÔØÌõÊı£»Èç¹ûÊÇÏÂÔØÄ³Ò»¸öÈË²©¿Í£¬ÔòÎªÆäÈ«²¿²©¿ÍÎÄÕÂÊıÁ¿
+		int top=intent.getIntExtra("size",10);//é»˜è®¤ä¸‹è½½æ¡æ•°ï¼›å¦‚æœæ˜¯ä¸‹è½½æŸä¸€ä¸ªäººåšå®¢ï¼Œåˆ™ä¸ºå…¶å…¨éƒ¨åšå®¢æ–‡ç« æ•°é‡
 		new DownloadTask(author).execute(top,dataType);
 	}
 	/**
-	 * ¿ªÊ¼ÏÂÔØ²©¿Í
+	 * å¼€å§‹ä¸‹è½½åšå®¢
 	 */
 	class DownloadTask extends AsyncTask<Integer, Integer, Integer>{
-		int doneBlogNum=0;//×ÜÌõÊı
+		int doneBlogNum=0;//æ€»æ¡æ•°
 		int doneNewsNum=0;
-		String author;//ÓÃ»§
-		String currentText="";//ÌáÊ¾ÎÄ×Ö
-		ImageCacher imageCacher=new ImageCacher(getApplicationContext());//ÏÂÔØÍ¼Æ¬
+		String author;//ç”¨æˆ·
+		String currentText="";//æç¤ºæ–‡å­—
+		ImageCacher imageCacher=new ImageCacher(getApplicationContext());//ä¸‹è½½å›¾ç‰‡
 		
 		public DownloadTask(String author){
 			this.author=author;
@@ -94,9 +94,9 @@ public class DownloadServices extends Service{
 			boolean isDownBlog=false;
 			boolean isDownNews=false;
 			boolean isDownAuthor=false;
-			if(dataType==0){//ÏÂÔØ²©¿Í
+			if(dataType==0){//ä¸‹è½½åšå®¢
 				isDownBlog=true;
-			}else if(dataType==1){//ÏÂÔØĞÂÎÅ
+			}else if(dataType==1){//ä¸‹è½½æ–°é—»
 				isDownNews=true;
 			}else if(dataType==2){
 				isDownAuthor=true;
@@ -105,16 +105,16 @@ public class DownloadServices extends Service{
 				isDownNews=true;
 			}
 			
-			//ÏÂÔØBlog(Ò»°ãÇé¿öÎªÍ¬Ê±ÏÂÔØ²©¿ÍºÍĞÂÎÅ£¬µ¥¶ÀÏÂÔØÓÃ»§²©¿Í)
+			//ä¸‹è½½Blog(ä¸€èˆ¬æƒ…å†µä¸ºåŒæ—¶ä¸‹è½½åšå®¢å’Œæ–°é—»ï¼Œå•ç‹¬ä¸‹è½½ç”¨æˆ·åšå®¢)
 			if(isDownBlog || isDownAuthor){
-				currentText="¿ªÊ¼ÏÂÔØ²©¿ÍÄÚÈİ";
-				Log.i("downloadservices","¿ªÊ¼ÏÂÔØBlog");
+				currentText="å¼€å§‹ä¸‹è½½åšå®¢å†…å®¹";
+				Log.i("downloadservices","å¼€å§‹ä¸‹è½½Blog");
 				int pageSize=top/Config.BLOG_PAGE_SIZE;
 				int lastNum=pageSize%Config.BLOG_PAGE_SIZE;
 				
-				currentText="ÕıÔÚÏÂÔØ²©¿ÍÒ³Ë÷Òı";
+				currentText="æ­£åœ¨ä¸‹è½½åšå®¢é¡µç´¢å¼•";
 				List<Blog> listBlogs=new ArrayList<Blog>();
-				//ÏÂÔØÇ°¼¸Ò³
+				//ä¸‹è½½å‰å‡ é¡µ
 				for(int i=0;i<pageSize;i++){
 					List<Blog> list=new ArrayList<Blog>();
 					if(isDownBlog){
@@ -128,15 +128,15 @@ public class DownloadServices extends Service{
 					}
 					listBlogs.addAll(list);
 					
-					//½ø¶È
+					//è¿›åº¦
 					int percent=i*100/pageSize;
 					publishProgress(percent);
 				}
 				
-				Log.i("downloadservices","ÏÂÔØË÷Òı½áÊø");
-				//ÏÂÔØÊ£ÓàÄÚÈİ
+				Log.i("downloadservices","ä¸‹è½½ç´¢å¼•ç»“æŸ");
+				//ä¸‹è½½å‰©ä½™å†…å®¹
 				if(top%Config.BLOG_PAGE_SIZE>0){
-					List<Blog> list=new ArrayList<Blog>();//ÏÂÔØ×îºóÒ»Ò³
+					List<Blog> list=new ArrayList<Blog>();//ä¸‹è½½æœ€åä¸€é¡µ
 					if(isDownBlog){
 						list=BlogHelper.GetBlogList(pageSize+1);
 					}else if(isDownAuthor){
@@ -144,7 +144,7 @@ public class DownloadServices extends Service{
 					}
 					int size=list.size();
 					for(int i=0;i<size;i++){
-						//½ø¶È
+						//è¿›åº¦
 						int percent=i*100/size;
 						publishProgress(percent);
 						
@@ -154,43 +154,43 @@ public class DownloadServices extends Service{
 						}
 					}
 				}
-				currentText="¿ªÊ¼ÏÂÔØ²©¿ÍÄÚÈİ";
-				Log.i("downloadservices","¿ªÊ¼ÏÂÔØÄÚÈİ");
-				//ÄÚÈİ
+				currentText="å¼€å§‹ä¸‹è½½åšå®¢å†…å®¹";
+				Log.i("downloadservices","å¼€å§‹ä¸‹è½½å†…å®¹");
+				//å†…å®¹
 				int size=listBlogs.size();
 				int[] blogIdArray = new int[size];
 				for(int i=0;i<size;i++){
 					blogIdArray[i]=listBlogs.get(i).GetBlogId();
-					//½ø¶È
+					//è¿›åº¦
 					int percent=i*100/size;
 					publishProgress(percent);
 					
 					String content=BlogHelper.GetBlogContentByIdWithNet(listBlogs.get(i).GetBlogId());
 
-					//ÏÂÔØ×÷ÕßÍ·Ïñ
+					//ä¸‹è½½ä½œè€…å¤´åƒ
 					imageCacher.DownloadHtmlImage(ImageCacher.EnumImageType.Avatar, content);
-					//ÏÂÔØ²©¿ÍÄÚµÄÍ¼Æ¬
+					//ä¸‹è½½åšå®¢å†…çš„å›¾ç‰‡
 					imageCacher.DownloadHtmlImage(ImageCacher.EnumImageType.Blog, content);
 					
-					//¸ñÊ½»¯ÄÚÈİ£¬Ê¹Í¼Æ¬µØÖ·Îª±¾µØÂ·¾¶
+					//æ ¼å¼åŒ–å†…å®¹ï¼Œä½¿å›¾ç‰‡åœ°å€ä¸ºæœ¬åœ°è·¯å¾„
 					content=ImageCacher.FormatLocalHtmlWithImg(ImageCacher.EnumImageType.Blog, content);
 					listBlogs.get(i).SetBlogContent(content);
 					listBlogs.get(i).SetIsFullText(true);
 					
-					//ÏÂÔØÆÀÂÛ
+					//ä¸‹è½½è¯„è®º
 					List<Comment> listComment=CommentHelper.GetCommentList(listBlogs.get(i).GetBlogId(),
 							Comment.EnumCommentType.Blog, listBlogs.get(i).GetCommentNum());
 					CommentDalHelper comentDalHelper=new CommentDalHelper(getApplicationContext());
 					comentDalHelper.SynchronyData2DB(listComment);
 					
 					doneBlogNum++;
-					currentText="ÏÂÔØ(" + (i+1) + "/" + size + ")£º" + listBlogs.get(i).GetBlogTitle();
+					currentText="ä¸‹è½½(" + (i+1) + "/" + size + ")ï¼š" + listBlogs.get(i).GetBlogTitle();
 				}
 				BlogDalHelper helper=new BlogDalHelper(getApplicationContext());
 				helper.SynchronyData2DB(listBlogs);
-				Log.i("downloadservices","ÏÂÔØÄÚÈİ½áÊø");
-				currentText="²©¿ÍÄÚÈİÏÂÔØÍê³É";
-				// ¹ã²¥
+				Log.i("downloadservices","ä¸‹è½½å†…å®¹ç»“æŸ");
+				currentText="åšå®¢å†…å®¹ä¸‹è½½å®Œæˆ";
+				// å¹¿æ’­
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
 				bundle.putIntArray("blogIdArray", blogIdArray);
@@ -198,16 +198,16 @@ public class DownloadServices extends Service{
 				intent.setAction("android.cnblogs.com.update_bloglist");
 				sendBroadcast(intent);
 			}
-			//ÏÂÔØĞÂÎÅ
+			//ä¸‹è½½æ–°é—»
 			if(isDownNews){
-				currentText="¿ªÊ¼ÏÂÔØĞÂÎÅÄÚÈİ";
-				Log.i("downloadservices","¿ªÊ¼ÏÂÔØNews");
+				currentText="å¼€å§‹ä¸‹è½½æ–°é—»å†…å®¹";
+				Log.i("downloadservices","å¼€å§‹ä¸‹è½½News");
 				int pageSize=top/Config.NEWS_PAGE_SIZE;
 				int lastNum=pageSize%Config.NEWS_PAGE_SIZE;
 				
-				currentText="ÕıÔÚÏÂÔØĞÂÎÅÒ³Ë÷Òı";
+				currentText="æ­£åœ¨ä¸‹è½½æ–°é—»é¡µç´¢å¼•";
 				List<News> listNews=new ArrayList<News>();
-				//ÏÂÔØÇ°¼¸Ò³
+				//ä¸‹è½½å‰å‡ é¡µ
 				for(int i=0;i<pageSize;i++){
 					List<News> list=NewsHelper.GetNewsList(i+1);
 					
@@ -216,17 +216,17 @@ public class DownloadServices extends Service{
 					}
 					listNews.addAll(list);
 					
-					//½ø¶È
+					//è¿›åº¦
 					int percent=i*100/pageSize;
 					publishProgress(percent);
 				}
-				Log.i("downloadservices","ÏÂÔØË÷Òı½áÊø");
-				//ÏÂÔØÊ£ÓàÄÚÈİ
+				Log.i("downloadservices","ä¸‹è½½ç´¢å¼•ç»“æŸ");
+				//ä¸‹è½½å‰©ä½™å†…å®¹
 				if(top%Config.NEWS_PAGE_SIZE>0){
-					List<News> list=NewsHelper.GetNewsList(pageSize+1);//ÏÂÔØ×îºóÒ»Ò³
+					List<News> list=NewsHelper.GetNewsList(pageSize+1);//ä¸‹è½½æœ€åä¸€é¡µ
 					int size=list.size();
 					for(int i=0;i<size;i++){
-						//½ø¶È
+						//è¿›åº¦
 						int percent=i*100/size;
 						publishProgress(percent);
 						
@@ -236,41 +236,41 @@ public class DownloadServices extends Service{
 						}
 					}
 				}
-				currentText="¿ªÊ¼ÏÂÔØĞÂÎÅÄÚÈİ";
-				Log.i("downloadservices","¿ªÊ¼ÏÂÔØÄÚÈİ");
-				//ÄÚÈİ
+				currentText="å¼€å§‹ä¸‹è½½æ–°é—»å†…å®¹";
+				Log.i("downloadservices","å¼€å§‹ä¸‹è½½å†…å®¹");
+				//å†…å®¹
 				int size=listNews.size();
 				int[] newsIdArray = new int[size];
 				for(int i=0;i<size;i++){
 					newsIdArray[i]=listNews.get(i).GetNewsId();
-					//½ø¶È
+					//è¿›åº¦
 					int percent=i*100/size;
 					publishProgress(percent);
 					
 					String content=NewsHelper.GetNewsContentByIdWithNet(listNews.get(i).GetNewsId());
 
-					//ÏÂÔØÍ¼Æ¬
+					//ä¸‹è½½å›¾ç‰‡
 					imageCacher.DownloadHtmlImage(ImageCacher.EnumImageType.News, content);
 					
-					//¸ñÊ½»¯ÄÚÈİ£¬Ê¹Í¼Æ¬µØÖ·Îª±¾µØÂ·¾¶
+					//æ ¼å¼åŒ–å†…å®¹ï¼Œä½¿å›¾ç‰‡åœ°å€ä¸ºæœ¬åœ°è·¯å¾„
 					content=ImageCacher.FormatLocalHtmlWithImg(ImageCacher.EnumImageType.News, content);					
 					listNews.get(i).SetNewsContent(content);
 					listNews.get(i).SetIsFullText(true);
 
-					//ÏÂÔØÆÀÂÛ
+					//ä¸‹è½½è¯„è®º
 					List<Comment> listComment=CommentHelper.GetCommentList(listNews.get(i).GetNewsId(),
 							Comment.EnumCommentType.News, listNews.get(i).GetCommentNum());
 					CommentDalHelper comentDalHelper=new CommentDalHelper(getApplicationContext());
 					comentDalHelper.SynchronyData2DB(listComment);
 					
-					currentText="ÏÂÔØ(" + (i+1) + "/" + size + ")£º" + listNews.get(i).GetNewsTitle();
+					currentText="ä¸‹è½½(" + (i+1) + "/" + size + ")ï¼š" + listNews.get(i).GetNewsTitle();
 					doneNewsNum++;
 				}
 				NewsDalHelper helper=new NewsDalHelper(getApplicationContext());
 				helper.SynchronyData2DB(listNews);
-				Log.i("downloadservices","ÏÂÔØÄÚÈİ½áÊø");
-				currentText="ĞÂÎÅÄÚÈİÏÂÔØÍê³É";
-				// ¹ã²¥
+				Log.i("downloadservices","ä¸‹è½½å†…å®¹ç»“æŸ");
+				currentText="æ–°é—»å†…å®¹ä¸‹è½½å®Œæˆ";
+				// å¹¿æ’­
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
 				bundle.putIntArray("newsIdArray", newsIdArray);
@@ -288,7 +288,7 @@ public class DownloadServices extends Service{
 			downloadNotifMg.notify(INIT_DOWNLOAD_NOTIFY, downloadNotify);
 			downloadNotifMg.cancelAll();
 			String tips=getResources().getString(R.string.offline_notification_end_toast);
-			tips=tips.replace("{0}", "²©¿Í" + doneBlogNum + "Ìõ£¬ĞÂÎÅ" + doneNewsNum + "Ìõ");
+			tips=tips.replace("{0}", "åšå®¢" + doneBlogNum + "æ¡ï¼Œæ–°é—»" + doneNewsNum + "æ¡");
 			Toast.makeText(getApplicationContext(), tips, Toast.LENGTH_SHORT).show();
 			DownloadServices.this.stopSelf();
 		}
@@ -299,7 +299,7 @@ public class DownloadServices extends Service{
 			downloadNotifMg.notify(INIT_DOWNLOAD_NOTIFY, downloadNotify);
 		}
 		/*
-		 * ±¨¸æ½ø¶È
+		 * æŠ¥å‘Šè¿›åº¦
 		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 		 */
 		@Override

@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+ï»¿package com.cnblogs.android.dal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class NewsDalHelper {
 		dbHelper.close();
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»å­˜åœ¨
 	 * @param blogId
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class NewsDalHelper {
 		return isExist;
 	}
 	/**
-	 * µÃµ½Í·Ìõ
+	 * å¾—åˆ°å¤´æ¡
 	 * @return
 	 */
 	public List<News> GetTopNewsList(){
@@ -50,7 +50,7 @@ public class NewsDalHelper {
 		return GetNewsListByWhere(limit, where, args);
 	}
 	/*
-	 * ·ÖÒ³
+	 * åˆ†é¡µ
 	 */
 	public List<News> GetNewsListByPage(int pageIndex,int pageSize){
 		String limit= String.valueOf((pageIndex-1)*pageSize) + "," + String.valueOf(pageSize);
@@ -59,7 +59,7 @@ public class NewsDalHelper {
 		return list;
 	}
 	/*
-	 * µÃµ½¶ÔÏó
+	 * å¾—åˆ°å¯¹è±¡
 	 */
 	public News GetNewsEntity(int newsId){
 		String limit="1";
@@ -73,7 +73,7 @@ public class NewsDalHelper {
 		return null;
 	}
 	/**
-	 * ¸ù¾İÌõ¼şµÃµ½
+	 * æ ¹æ®æ¡ä»¶å¾—åˆ°
 	 * @param top
 	 * @param where
 	 */
@@ -110,7 +110,7 @@ public class NewsDalHelper {
 		return listNews;
 	}
 	/**
-	 * ÊÇ·ñÒÑ¶Á
+	 * æ˜¯å¦å·²è¯»
 	 * @param blogId
 	 * @return
 	 */
@@ -122,7 +122,7 @@ public class NewsDalHelper {
 		return false;
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­Ğ´ÈëÄÚÈİ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»å†™å…¥å†…å®¹
 	 * @param blogId
 	 * @return
 	 */
@@ -141,7 +141,7 @@ public class NewsDalHelper {
 		return isFull;
 	}
 	/**
-	 * ½«ĞÂÎÅÄÚÈİÍ¬²½µ½Êı¾İ¿â
+	 * å°†æ–°é—»å†…å®¹åŒæ­¥åˆ°æ•°æ®åº“
 	 * @param newsId
 	 * @param newsContent
 	 */
@@ -154,7 +154,7 @@ public class NewsDalHelper {
 		db.execSQL(sql,args);
 	}
 	/**
-	 * ±êÖ¾ÎªÒÑ¶Á
+	 * æ ‡å¿—ä¸ºå·²è¯»
 	 * @param blogId
 	 */
 	public void MarkAsReaded(int newsId){
@@ -163,7 +163,7 @@ public class NewsDalHelper {
 		db.execSQL(sql,args);
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * @param list
 	 */
 	public void SynchronyData2DB(List<News> newsList){
@@ -191,7 +191,7 @@ public class NewsDalHelper {
 		synchronized(_writeLock){
 			db.beginTransaction();
 			try{
-				//Çå³ıÒÑÓĞ
+				//æ¸…é™¤å·²æœ‰
 				//String where="IsFull=?";
 				//String[] args={"0"};
 				//db.delete(DB_NEWS_TABLE, where, args);

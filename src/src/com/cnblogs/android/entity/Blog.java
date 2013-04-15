@@ -1,9 +1,9 @@
-package com.cnblogs.android.entity;
+ï»¿package com.cnblogs.android.entity;
 
 import java.util.Date;
 
 /**
- * ²©¿ÍÊµÌåÀà
+ * åšå®¢å®ä½“ç±»
  * @author walkingp
  * @since 2011-11-18 
  *
@@ -11,8 +11,8 @@ import java.util.Date;
 public class Blog {
 	private int _blogId;
 	private String _blogTitle;
-	private String _author;//×÷Õß²©¿ÍÃû
-	private String _userName;//ÓÃ»§Ãû
+	private String _author;//ä½œè€…åšå®¢å
+	private String _userName;//ç”¨æˆ·å
 	private String _authorUrl;
 	private String _blogContent;
 	private Date _addTime;
@@ -107,7 +107,7 @@ public class Blog {
 		return _blogUrl;
 	}
 	/**
-	 * ÖØĞ´
+	 * é‡å†™
 	 */
 	@Override
 	public boolean equals(Object obj){

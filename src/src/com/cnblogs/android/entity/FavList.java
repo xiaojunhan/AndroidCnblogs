@@ -1,4 +1,4 @@
-package com.cnblogs.android.entity;
+ï»¿package com.cnblogs.android.entity;
 
 import java.util.Date;
 
@@ -8,18 +8,18 @@ public class FavList {
 	private int _contentId;
 	private Date _addTime;
 	/**
-	 * ÊÕ²ØÀàĞÍ
+	 * æ”¶è—ç±»å‹
 	 *
 	 */
 	public enum EnumContentType{
-		Blog,//²©¿Í
-		News,//ĞÂÎÅ
-		Author,//×÷Õß
-		RssItem//¶©ÔÄÎÄÕÂ
+		Blog,//åšå®¢
+		News,//æ–°é—»
+		Author,//ä½œè€…
+		RssItem//è®¢é˜…æ–‡ç« 
 	}
 
 	/**
-	 * ÖØĞ´
+	 * é‡å†™
 	 */
 	@Override
 	public boolean equals(Object obj){

@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+ï»¿package com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -55,18 +55,18 @@ public class RssListAdapter extends BaseAdapter {
 			viewHolder.rss_item_is_cnblogs = (TextView) convertView.findViewById(R.id.rss_item_is_cnblogs);
 			viewHolder.rss_item_author = (TextView) convertView.findViewById(R.id.rss_item_author);
 		}
-		// ÊÇ·ñÒÑ¾­¶©ÔÄ
+		// æ˜¯å¦å·²ç»è®¢é˜…
 		RssListDalHelper helper = new RssListDalHelper(context);
 		final boolean isRssed = helper.Exist(entity.GetLink());
 		viewHolder.list_btn_rss.setTag(isRssed);
-		// ÉÏÒ»¼¶Activity
-		if (source.equals(EnumSource.MyRss)) {// Èç¹ûÊÇÎÒµÄ¶©ÔÄ
+		// ä¸Šä¸€çº§Activity
+		if (source.equals(EnumSource.MyRss)) {// å¦‚æœæ˜¯æˆ‘çš„è®¢é˜…
 			viewHolder.list_btn_rss.setVisibility(View.GONE);
-		} else {// Èç¹ûÊÇ´Ó¶©ÔÄ·ÖÀà
+		} else {// å¦‚æœæ˜¯ä»è®¢é˜…åˆ†ç±»
 			OnClickListener listener = new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// ¶©ÔÄ È¡Ïû¶©ÔÄ
+					// è®¢é˜… å–æ¶ˆè®¢é˜…
 					if (v == viewHolder.list_btn_rss) {
 						String url = viewHolder.rss_item_url.getText()
 								.toString();
@@ -91,7 +91,7 @@ public class RssListAdapter extends BaseAdapter {
 
 						RssListDalHelper helper = new RssListDalHelper(context);
 
-						// ¹ã²¥
+						// å¹¿æ’­
 						Intent intent = new Intent();
 						Bundle bundle = new Bundle();
 						bundle.putStringArray("rsslist", 
@@ -101,7 +101,7 @@ public class RssListAdapter extends BaseAdapter {
 								});
 						
 						boolean _isRssed = Boolean.parseBoolean(viewHolder.list_btn_rss.getTag().toString());
-						if (_isRssed) {// ÍË¶©
+						if (_isRssed) {// é€€è®¢
 							helper.Delete(entity.GetLink());
 
 							viewHolder.list_btn_rss
@@ -114,7 +114,7 @@ public class RssListAdapter extends BaseAdapter {
 
 							Toast.makeText(context, R.string.unrss_succ, Toast.LENGTH_SHORT)
 									.show();
-						} else {// ¶©ÔÄ
+						} else {// è®¢é˜…
 							helper.Insert(entity);
 
 							viewHolder.list_btn_rss
@@ -129,7 +129,7 @@ public class RssListAdapter extends BaseAdapter {
 							Toast.makeText(context, R.string.rss_succ, Toast.LENGTH_SHORT)
 									.show();
 						}
-						// ·¢ËÍ¹ã²¥
+						// å‘é€å¹¿æ’­
 						intent.putExtras(bundle);
 						intent.setAction("android.cnblogs.com.update_rsslist");
 						context.sendBroadcast(intent);
@@ -148,7 +148,7 @@ public class RssListAdapter extends BaseAdapter {
 		viewHolder.rss_item_summary.setText(entity.GetDescription().trim());
 		viewHolder.rss_item_id.setText(String.valueOf(entity.GetRssId()));
 		viewHolder.rss_item_url.setText(entity.GetLink());
-		// ÊÇ·ñ²©¿ÍÔ°£¬Èç¹ûÊÇ£¬ÔòÌø×ªµ½¸ÃÓÃ»§²©¿ÍÔ°ÎÄÕÂÁĞ±í
+		// æ˜¯å¦åšå®¢å›­ï¼Œå¦‚æœæ˜¯ï¼Œåˆ™è·³è½¬åˆ°è¯¥ç”¨æˆ·åšå®¢å›­æ–‡ç« åˆ—è¡¨
 		viewHolder.rss_item_is_cnblogs.setText(entity.GetIsCnblogs()
 				? "1"
 				: "0");
@@ -159,7 +159,7 @@ public class RssListAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * µÃµ½Êı¾İ
+	 * å¾—åˆ°æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -167,7 +167,7 @@ public class RssListAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * 
 	 * @param list
 	 */
@@ -176,7 +176,7 @@ public class RssListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * Ôö¼ÓÊı¾İ
+	 * å¢åŠ æ•°æ®
 	 * 
 	 * @param list
 	 */
@@ -185,7 +185,7 @@ public class RssListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * ÒÆ³ıÊı¾İ
+	 * ç§»é™¤æ•°æ®
 	 * @param entity
 	 */
 	public void RemoveData(RssList entity){

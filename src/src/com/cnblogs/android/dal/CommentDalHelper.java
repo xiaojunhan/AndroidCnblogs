@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+锘縫ackage com.cnblogs.android.dal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class CommentDalHelper {
 		db=dbHelper.getWritableDatabase();
 	}
 	/**
-	 * 判断是否已经存在
+	 * 鍒ゆ柇鏄惁宸茬粡瀛樺湪
 	 * @param commentId
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class CommentDalHelper {
 		return isExist;
 	}
 	/*
-	 * 分页
+	 * 鍒嗛〉
 	 */
 	public List<Comment> GetCommentListByPage(int pageIndex,int pageSize,int contentId,Comment.EnumCommentType commentType){
 		String where="ContentId=? and CommentType=?";
@@ -48,7 +48,7 @@ public class CommentDalHelper {
 		return list;
 	}
 	/*
-	 * 得到对象
+	 * 寰楀埌瀵硅薄
 	 */
 	public Comment GetCommentEntity(int contentId){
 		String limit="1";
@@ -62,7 +62,7 @@ public class CommentDalHelper {
 		return null;
 	}
 	/**
-	 * 得到
+	 * 寰楀埌
 	 * @param top
 	 * @param where
 	 */
@@ -88,7 +88,7 @@ public class CommentDalHelper {
 		return listComment;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * @param list
 	 */
 	public void SynchronyData2DB(List<Comment> commentList){

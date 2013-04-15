@@ -1,4 +1,4 @@
-package com.cnblogs.android.parser;
+ï»¿package com.cnblogs.android.parser;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -7,31 +7,31 @@ import org.xml.sax.Attributes;
 
 import com.cnblogs.android.entity.*;
 /**
- * Users·µ»Øxml½âÎöÆ÷
+ * Usersè¿”å›xmlè§£æå™¨
  * 
  * @author walkingp
  * 
  */
 public class UserDetailXmlParser extends DefaultHandler {
-	final String ENTRY_TAG = "feed";// Ö÷±ê¼Ç
-	final String ENTRY_ID_TAG = "id";// ±àºÅ±ê¼Ç
-	final String ENTRY_AUTHOR_NAME_TAG = "name";// ÓÃ»§Ãû±ê¼Ç
-	final String ENTRY_AVATOR_TAG = "logo";// Í·ÏñµØÖ·
-	final String ENTRY_URL_TAG = "uri";// Êµ¼ÊÍøÖ·±êÇ©
-	final String ENTRY_POST_COUNT_TAG = "postcount";// ²©ÎÄÊı
-	final String ENTRY_END_TAG = "entry";// ½ØÖ¹±ê¼Ç
+	final String ENTRY_TAG = "feed";// ä¸»æ ‡è®°
+	final String ENTRY_ID_TAG = "id";// ç¼–å·æ ‡è®°
+	final String ENTRY_AUTHOR_NAME_TAG = "name";// ç”¨æˆ·åæ ‡è®°
+	final String ENTRY_AVATOR_TAG = "logo";// å¤´åƒåœ°å€
+	final String ENTRY_URL_TAG = "uri";// å®é™…ç½‘å€æ ‡ç­¾
+	final String ENTRY_POST_COUNT_TAG = "postcount";// åšæ–‡æ•°
+	final String ENTRY_END_TAG = "entry";// æˆªæ­¢æ ‡è®°
 
-	private Users entity;// µ¥¸ö¶ÔÏó
-	private boolean isStartParse;// ¿ªÊ¼½âÎö
-	private StringBuilder currentDataBuilder;// µ±Ç°È¡µ½µÄÖµ
+	private Users entity;// å•ä¸ªå¯¹è±¡
+	private boolean isStartParse;// å¼€å§‹è§£æ
+	private StringBuilder currentDataBuilder;// å½“å‰å–åˆ°çš„å€¼
 	/**
-	 * Ä¬ÈÏ¹¹Ôìº¯Êı
+	 * é»˜è®¤æ„é€ å‡½æ•°
 	 */
 	public UserDetailXmlParser() {
 		super();
 	}
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * 
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class UserDetailXmlParser extends DefaultHandler {
 		this.entity = list;
 	}
 	/**
-	 * ½«½á¹û·µ»Ø
+	 * å°†ç»“æœè¿”å›
 	 * 
 	 * @return
 	 */
@@ -47,15 +47,15 @@ public class UserDetailXmlParser extends DefaultHandler {
 		return entity;
 	}
 	/**
-	 * ÎÄµµ¿ªÊ¼Ê±´¥·¢
+	 * æ–‡æ¡£å¼€å§‹æ—¶è§¦å‘
 	 */
 	public void startDocument() throws SAXException {
-		Log.i("Users", "ÎÄµµ½âÎö¿ªÊ¼");
+		Log.i("Users", "æ–‡æ¡£è§£æå¼€å§‹");
 		super.startDocument();
 		currentDataBuilder = new StringBuilder();
 	}
 	/**
-	 * ¶ÁÈ¡²¢½âÎöXMLÊı¾İ
+	 * è¯»å–å¹¶è§£æXMLæ•°æ®
 	 */
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
@@ -66,7 +66,7 @@ public class UserDetailXmlParser extends DefaultHandler {
 		}
 	}
 	/**
-	 * ¶ÁÈ¡ÔªËØÄÚÈİ
+	 * è¯»å–å…ƒç´ å†…å®¹
 	 * 
 	 * @param ch
 	 * @param start
@@ -80,26 +80,26 @@ public class UserDetailXmlParser extends DefaultHandler {
 		currentDataBuilder.append(ch, start, length);
 	}
 	/**
-	 * ÔªËØ½áÊøÊ±´¥·¢
+	 * å…ƒç´ ç»“æŸæ—¶è§¦å‘
 	 */
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		super.endElement(uri, localName, qName);
-		if (isStartParse) {// ·¢ÏÖÄ¿±ê
+		if (isStartParse) {// å‘ç°ç›®æ ‡
 			String chars = currentDataBuilder.toString();
-			Log.i("Users", "ÕıÔÚ½âÎö" + localName);
-			// ´¦Àí
-			if (localName.equalsIgnoreCase(ENTRY_AUTHOR_NAME_TAG)) {// ÓÃ»§Ãû
+			Log.i("Users", "æ­£åœ¨è§£æ" + localName);
+			// å¤„ç†
+			if (localName.equalsIgnoreCase(ENTRY_AUTHOR_NAME_TAG)) {// ç”¨æˆ·å
 				entity.SetUserName(chars);
-			} else if (localName.equalsIgnoreCase(ENTRY_AVATOR_TAG)) {// ÓÃ»§Í·Ïñ
+			} else if (localName.equalsIgnoreCase(ENTRY_AVATOR_TAG)) {// ç”¨æˆ·å¤´åƒ
 				entity.SetAvator(chars);
-			} else if (localName.equalsIgnoreCase(ENTRY_URL_TAG)) {// ²©¿ÍµØÖ·
+			} else if (localName.equalsIgnoreCase(ENTRY_URL_TAG)) {// åšå®¢åœ°å€
 				entity.SetBlogUrl(chars);
-			} else if (localName.equalsIgnoreCase(ENTRY_POST_COUNT_TAG)) {// ²©ÎÄÊıÁ¿
+			} else if (localName.equalsIgnoreCase(ENTRY_POST_COUNT_TAG)) {// åšæ–‡æ•°é‡
 				int postCount = Integer.parseInt(chars);
 				entity.SetBlogCount(postCount);
-			} else if (localName.equalsIgnoreCase(ENTRY_END_TAG)) {// ½ØÖ¹
+			} else if (localName.equalsIgnoreCase(ENTRY_END_TAG)) {// æˆªæ­¢
 				isStartParse = false;
 			}
 		}
@@ -107,10 +107,10 @@ public class UserDetailXmlParser extends DefaultHandler {
 		currentDataBuilder.setLength(0);
 	}
 	/**
-	 * ÎÄµµ½áÊøÊ±´¥·¢
+	 * æ–‡æ¡£ç»“æŸæ—¶è§¦å‘
 	 */
 	public void endDocument() throws SAXException {
-		Log.i("Users", "ÎÄµµ½âÎö½áÊø");
+		Log.i("Users", "æ–‡æ¡£è§£æç»“æŸ");
 		super.endDocument();
 	}
 }

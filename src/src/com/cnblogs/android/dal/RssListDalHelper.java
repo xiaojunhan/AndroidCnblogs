@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+ï»¿package com.cnblogs.android.dal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class RssListDalHelper {
 		db = dbHelper.getWritableDatabase();
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»å­˜åœ¨
 	 * 
 	 * @param blogId
 	 * @return
@@ -39,7 +39,7 @@ public class RssListDalHelper {
 		return isExist;
 	}
 	/**
-	 * ¸ù¾İÓÃ»§Ãû£¨²©¿ÍÔ°ÅĞ¶Ï£©
+	 * æ ¹æ®ç”¨æˆ·åï¼ˆåšå®¢å›­åˆ¤æ–­ï¼‰
 	 * @param author
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class RssListDalHelper {
 		return isExist;
 	}
 	/**
-	 * µÃµ½Í·Ìõ
+	 * å¾—åˆ°å¤´æ¡
 	 * 
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class RssListDalHelper {
 		return GetRssListByWhere(null, where, args);
 	}
 	/*
-	 * ·ÖÒ³
+	 * åˆ†é¡µ
 	 */
 	public List<RssList> GetRssListByPage(int pageIndex, int pageSize) {
 		String limit = String.valueOf((pageIndex - 1) * pageSize) + ","
@@ -75,7 +75,7 @@ public class RssListDalHelper {
 		return list;
 	}
 	/*
-	 * µÃµ½¶ÔÏó
+	 * å¾—åˆ°å¯¹è±¡
 	 */
 	public RssList GetRssListEntity(String link) {
 		String limit = "1";
@@ -89,7 +89,7 @@ public class RssListDalHelper {
 		return null;
 	}
 	/**
-	 * ¸ù¾İÌõ¼şµÃµ½
+	 * æ ¹æ®æ¡ä»¶å¾—åˆ°
 	 * 
 	 * @param top
 	 * @param where
@@ -139,7 +139,7 @@ public class RssListDalHelper {
 		return listRss;
 	}
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param link
 	 */
@@ -149,7 +149,7 @@ public class RssListDalHelper {
 		db.delete(Config.DB_RSSLIST_TABLE, where, args);
 	}
 	/**
-	 * ²åÈëÊı¾İ¿â
+	 * æ’å…¥æ•°æ®åº“
 	 * 
 	 * @param entity
 	 */
@@ -186,7 +186,7 @@ public class RssListDalHelper {
 		}
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * 
 	 * @param list
 	 */
@@ -219,7 +219,7 @@ public class RssListDalHelper {
 		synchronized (_writeLock) {
 			db.beginTransaction();
 			try {
-				// Çå³ıÒÑÓĞ
+				// æ¸…é™¤å·²æœ‰
 				// String where="IsFull=?";
 				// String[] args={"0"};
 				// db.delete(DB_NEWS_TABLE, where, args);

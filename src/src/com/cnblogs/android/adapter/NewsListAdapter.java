@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+锘縫ackage com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class NewsListAdapter extends BaseAdapter {
 		}
 
 		viewHolder.news_text_title.setText(entity.GetNewsTitle());
-		// 是否已读
+		// 鏄惁宸茶
 		boolean isReaded = entity.GetIsReaded();
 		if (isReaded) {
 			viewHolder.news_text_title.setTextColor(R.color.gray);
@@ -73,7 +73,7 @@ public class NewsListAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * 得到数据
+	 * 寰楀埌鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -81,7 +81,7 @@ public class NewsListAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * 
 	 * @param list
 	 */
@@ -90,7 +90,7 @@ public class NewsListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * 增加数据
+	 * 澧炲姞鏁版嵁
 	 * 
 	 * @param list
 	 */

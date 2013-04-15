@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+ï»¿package com.cnblogs.android.dal;
 import java.util.List;
 
 import com.cnblogs.android.core.Config;
@@ -14,12 +14,12 @@ public class DBHelper {
 	private SQLiteDatabase db;
 	private DatabaseHelper dbHelper;
 	public final static byte[] _writeLock = new byte[0];
-	// ´ò¿ªÊı¾İ¿â
+	// æ‰“å¼€æ•°æ®åº“
 	public void OpenDB(Context context) {
 		dbHelper = new DatabaseHelper(context);
 		db = dbHelper.getWritableDatabase();
 	}
-	// ¹Ø±ÕÊı¾İ¿â
+	// å…³é—­æ•°æ®åº“
 	public void Close() {
 		dbHelper.close();
 		if(db!=null){
@@ -27,11 +27,11 @@ public class DBHelper {
 		}
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * 
 	 * @param list
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 */
 	public void Insert(List<ContentValues> list, String tableName) {
 		synchronized (_writeLock) {
@@ -50,15 +50,15 @@ public class DBHelper {
 		this.dbHelper = new DatabaseHelper(context);
 	}
 	/**
-	 * ÓÃÓÚ³õÊ¼»¯Êı¾İ¿â
+	 * ç”¨äºåˆå§‹åŒ–æ•°æ®åº“
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public static class DatabaseHelper extends SQLiteOpenHelper {
-		// ¶¨ÒåÊı¾İ¿âÎÄ¼ş
+		// å®šä¹‰æ•°æ®åº“æ–‡ä»¶
 		private static final String DB_NAME = Config.DB_FILE_NAME;
-		// ¶¨ÒåÊı¾İ¿â°æ±¾
+		// å®šä¹‰æ•°æ®åº“ç‰ˆæœ¬
 		private static final int DB_VERSION = 1;
 		public DatabaseHelper(Context context) {
 			super(context, DB_NAME, null, DB_VERSION);
@@ -72,20 +72,20 @@ public class DBHelper {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			CreateBlogDb(db);
-			Log.i("DBHelper", "´´½¨BlogList±í³É¹¦");
+			Log.i("DBHelper", "åˆ›å»ºBlogListè¡¨æˆåŠŸ");
 			CreateNewsDb(db);
-			Log.i("DBHelper", "´´½¨NewsList±í³É¹¦");
+			Log.i("DBHelper", "åˆ›å»ºNewsListè¡¨æˆåŠŸ");
 			CreateCommentDb(db);
-			Log.i("DBHelper", "´´½¨CommentList±í³É¹¦");
+			Log.i("DBHelper", "åˆ›å»ºCommentListè¡¨æˆåŠŸ");
 			CreateRssListDb(db);
-			Log.i("DBHelper", "´´½¨RssList±í³É¹¦");
+			Log.i("DBHelper", "åˆ›å»ºRssListè¡¨æˆåŠŸ");
 			CreateRssItemDb(db);
-			Log.i("DBHelper", "´´½¨RssItem±í³É¹¦");
+			Log.i("DBHelper", "åˆ›å»ºRssItemè¡¨æˆåŠŸ");
 			CreateFavListDb(db);
-			Log.i("DBHelper", "´´½¨FavList±í³É¹¦");			
+			Log.i("DBHelper", "åˆ›å»ºFavListè¡¨æˆåŠŸ");			
 		}
 		/**
-		 * ´´½¨BlogList±í
+		 * åˆ›å»ºBlogListè¡¨
 		 * 
 		 * @param db
 		 */
@@ -105,16 +105,16 @@ public class DBHelper {
 			sb.append("[Comments] INTEGER(16) DEFAULT (0), ");
 			sb.append("[Digg] INTEGER(16) DEFAULT (0), ");
 			sb.append("[IsReaded] BOOLEAN DEFAULT (0), ");
-			sb.append("[IsFull] BOOLEAN DEFAULT (0), ");// ÊÇ·ñÈ«ÎÄ
-			sb.append("[BlogUrl] NVARCHAR(200), ");// ÍøÒ³µØÖ·
-			sb.append("[UserName] NVARCHAR(50), ");// ÓÃ»§Ãû
+			sb.append("[IsFull] BOOLEAN DEFAULT (0), ");// æ˜¯å¦å…¨æ–‡
+			sb.append("[BlogUrl] NVARCHAR(200), ");// ç½‘é¡µåœ°å€
+			sb.append("[UserName] NVARCHAR(50), ");// ç”¨æˆ·å
 			sb.append("[CateId] INTEGER(16), ");
 			sb.append("[CateName] NVARCHAR(16))");
 
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ´´½¨NewsList±í
+		 * åˆ›å»ºNewsListè¡¨
 		 * 
 		 * @param db
 		 */
@@ -133,13 +133,13 @@ public class DBHelper {
 			sb.append("[IsReaded] BOOLEAN DEFAULT (0), ");
 			sb.append("[IsFull] BOOLEAN DEFAULT (0), ");
 			sb.append("[CateId] INTEGER(16), ");
-			sb.append("[NewsUrl] NVARCHAR(200), ");// ÍøÒ³µØÖ·
+			sb.append("[NewsUrl] NVARCHAR(200), ");// ç½‘é¡µåœ°å€
 			sb.append("[CateName] NVARCHAR(16))");
 
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ´´½¨ÆÀÂÛCommentList±í
+		 * åˆ›å»ºè¯„è®ºCommentListè¡¨
 		 * 
 		 * @param db
 		 */
@@ -156,7 +156,7 @@ public class DBHelper {
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ´´½¨¶©ÔÄ²©¿ÍRssList±í
+		 * åˆ›å»ºè®¢é˜…åšå®¢RssListè¡¨
 		 * 
 		 * @param db
 		 */
@@ -182,7 +182,7 @@ public class DBHelper {
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ´´½¨¶©ÔÄÎÄÕÂRssItem±í
+		 * åˆ›å»ºè®¢é˜…æ–‡ç« RssItemè¡¨
 		 * 
 		 * @param db
 		 */
@@ -201,7 +201,7 @@ public class DBHelper {
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ´´½¨ÊÕ²Ø±íFavList
+		 * åˆ›å»ºæ”¶è—è¡¨FavList
 		 * @param db
 		 */
 		private void CreateFavListDb(SQLiteDatabase db) {
@@ -214,7 +214,7 @@ public class DBHelper {
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * ¸üĞÂ°æ±¾Ê±¸üĞÂ±í
+		 * æ›´æ–°ç‰ˆæœ¬æ—¶æ›´æ–°è¡¨
 		 */
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -223,7 +223,7 @@ public class DBHelper {
 			Log.e("User", "onUpgrade");
 		}
 		/**
-		 * É¾³ı±í
+		 * åˆ é™¤è¡¨
 		 * 
 		 * @param db
 		 */
@@ -238,17 +238,17 @@ public class DBHelper {
 			db.execSQL(sb.toString());
 		}
 		/**
-		 * Çå¿ÕÊı¾İ±í£¨½öÇå¿ÕÎŞÓÃÊı¾İ£©
+		 * æ¸…ç©ºæ•°æ®è¡¨ï¼ˆä»…æ¸…ç©ºæ— ç”¨æ•°æ®ï¼‰
 		 * @param db
 		 */
 		public static void ClearData(Context context){
 			DatabaseHelper dbHelper = new DBHelper.DatabaseHelper(context);
 			SQLiteDatabase db=dbHelper.getWritableDatabase();
 			StringBuilder sb=new StringBuilder();
-			sb.append("DELETE FROM BlogList WHERE IsFull=0 AND BlogId NOT IN(SELECT ContentId FROM FavList WHERE ContentType=0);");//Çå¿Õ²©¿Í±í
-			sb.append("DELETE FROM NewsList WHERE IsFull=0;");//Çå¿ÕĞÂÎÅ±í
-			sb.append("DELETE FROM CommentList;");//Çå¿ÕÆÀÂÛ±í
-			sb.append("DELETE FROM RssItem;");//Çå¿Õ¶©ÔÄÎÄÕÂ±í
+			sb.append("DELETE FROM BlogList WHERE IsFull=0 AND BlogId NOT IN(SELECT ContentId FROM FavList WHERE ContentType=0);");//æ¸…ç©ºåšå®¢è¡¨
+			sb.append("DELETE FROM NewsList WHERE IsFull=0;");//æ¸…ç©ºæ–°é—»è¡¨
+			sb.append("DELETE FROM CommentList;");//æ¸…ç©ºè¯„è®ºè¡¨
+			sb.append("DELETE FROM RssItem;");//æ¸…ç©ºè®¢é˜…æ–‡ç« è¡¨
 			db.execSQL(sb.toString());
 		}
 	}

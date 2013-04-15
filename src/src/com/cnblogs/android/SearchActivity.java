@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 /**
- * ËÑË÷
+ * æœç´¢
  * @author walkingp
  * @date:2011-12
  *
@@ -36,16 +36,16 @@ public class SearchActivity extends BaseMainActivity {
 
 	UserListAdapter adapter;
 
-	private String q;// ËÑË÷´Ê
+	private String q;// æœç´¢è¯
 
 	ListView listView;
-	ImageButton search_btn;// ËÑË÷°´Å¥
+	ImageButton search_btn;// æœç´¢æŒ‰é’®
 
-	ProgressBar progressBar;// ¼ÓÔØ
-	Resources res;// ×ÊÔ´
-	SharedPreferences sharePreferencesSettings;// ÉèÖÃ
+	ProgressBar progressBar;// åŠ è½½
+	Resources res;// èµ„æº
+	SharedPreferences sharePreferencesSettings;// è®¾ç½®
 	
-	ImageButton btnItem;//°´Å¥
+	ImageButton btnItem;//æŒ‰é’®
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ public class SearchActivity extends BaseMainActivity {
 		BindEvent();
 	}
 	/**
-	 * ÕÒµ½¿Ø¼ş
+	 * æ‰¾åˆ°æ§ä»¶
 	 */
 	private void BindControls() {
 		txtSearch = (EditText) findViewById(R.id.txtSearch);
@@ -67,13 +67,13 @@ public class SearchActivity extends BaseMainActivity {
 		progressBar = (ProgressBar) findViewById(R.id.searchList_progressBar);
 		search_btn = (ImageButton) findViewById(R.id.search_btn);
 		btnItem=(ImageButton)findViewById(R.id.btnItem);
-		// ÉÏÒ»´Î²éÑ¯
+		// ä¸Šä¸€æ¬¡æŸ¥è¯¢
 		sharePreferencesSettings = getSharedPreferences(
 				res.getString(R.string.preferences_key), MODE_PRIVATE);
 		String lastSearch = sharePreferencesSettings.getString(
 				res.getString(R.string.preference_last_search_keyword), "");
 		txtSearch.setText(lastSearch);
-		// »Ø³µËÑË÷
+		// å›è½¦æœç´¢
 		txtSearch.setOnKeyListener(new OnKeyListener() {
 
 			@Override
@@ -85,7 +85,7 @@ public class SearchActivity extends BaseMainActivity {
 				return false;
 			}
 		});
-		//Ìø×ªµ½ÅÅĞĞ
+		//è·³è½¬åˆ°æ’è¡Œ
 		btnItem.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -96,16 +96,16 @@ public class SearchActivity extends BaseMainActivity {
 		});
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindEvent() {
-		// ²éÑ¯
+		// æŸ¥è¯¢
 		search_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				StartSearch();
 			}
 		});
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -113,7 +113,7 @@ public class SearchActivity extends BaseMainActivity {
 
 				Intent intent = new Intent();
 				try {
-					// ´«µİ²ÎÊı
+					// ä¼ é€’å‚æ•°
 					intent.setClass(SearchActivity.this,
 							AuthorBlogActivity.class);
 					Bundle bundle = new Bundle();
@@ -138,7 +138,7 @@ public class SearchActivity extends BaseMainActivity {
 		});
 	}
 	/**
-	 * Ö´ĞĞËÑË÷
+	 * æ‰§è¡Œæœç´¢
 	 */
 	private void StartSearch() {
 		q = txtSearch.getText().toString();
@@ -148,7 +148,7 @@ public class SearchActivity extends BaseMainActivity {
 			txtSearch.setFocusable(true);
 			return;
 		}
-		// ±£´æÅäÖÃ
+		// ä¿å­˜é…ç½®
 		sharePreferencesSettings
 				.edit()
 				.putString(
@@ -157,7 +157,7 @@ public class SearchActivity extends BaseMainActivity {
 		new PageTask().execute();
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯£¨ÓÃÓÚÉÏÀ­¼ÓÔØ¡¢³õÊ¼»¯¡¢ÏÂÔØ¼ÓÔØ¡¢Ë¢ĞÂ£©
+	 * å¤šçº¿ç¨‹å¯åŠ¨ï¼ˆç”¨äºä¸Šæ‹‰åŠ è½½ã€åˆå§‹åŒ–ã€ä¸‹è½½åŠ è½½ã€åˆ·æ–°ï¼‰
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, List<Users>> {
@@ -171,7 +171,7 @@ public class SearchActivity extends BaseMainActivity {
 				List<Users> listUserNew = UserHelper.GetUserList(q);
 				int size = listUserNew.size();
 				for (int i = 0; i < size; i++) {
-					if (!listUser.contains(listUserNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+					if (!listUser.contains(listUserNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 						listTmp.add(listUserNew.get(i));
 					}
 				}
@@ -188,18 +188,18 @@ public class SearchActivity extends BaseMainActivity {
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(List<Users> result) {
-			// ÍøÂç²»¿ÉÓÃ
+			// ç½‘ç»œä¸å¯ç”¨
 			if (!NetHelper.networkIsAvailable(getApplicationContext())) {
 				Toast.makeText(getApplicationContext(),
 						R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if (result == null || result.size() == 0) {// Ã»ÓĞĞÂÊı¾İ
+			if (result == null || result.size() == 0) {// æ²¡æœ‰æ–°æ•°æ®
 				return;
 			}
 
@@ -212,7 +212,7 @@ public class SearchActivity extends BaseMainActivity {
 		}
 		@Override
 		protected void onPreExecute() {
-			// Ö÷Ìå½ø¶ÈÌõ
+			// ä¸»ä½“è¿›åº¦æ¡
 			if (listView.getCount() == 0) {
 				progressBar.setVisibility(View.VISIBLE);
 			}

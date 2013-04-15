@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import com.cnblogs.android.core.UserHelper;
 import com.cnblogs.android.entity.Users;
 import com.cnblogs.android.utility.NetHelper;
 /**
- * ²©¿ÍÅÅĞĞ
+ * åšå®¢æ’è¡Œ
  * @author walkingp
  * @date:2012-3
  *
@@ -42,24 +42,24 @@ import com.cnblogs.android.utility.NetHelper;
 public class AuthorOrderActivity extends BaseActivity{
 	List<Users> listUsers = new ArrayList<Users>();
 
-	int pageIndex = 1;// Ò³Âë
+	int pageIndex = 1;// é¡µç 
 
 	TextView txtAppTitle;
 	
 	ListView listView;
-	private UserListAdapter adapter;// Êı¾İÔ´
+	private UserListAdapter adapter;// æ•°æ®æº
 
-	ProgressBar blogBody_progressBar;// Ö÷ÌâListView¼ÓÔØ¿ò
-	ImageButton blog_refresh_btn;// Ë¢ĞÂ°´Å¥
-	ProgressBar blog_progress_bar;// ¼ÓÔØ°´Å¥
+	ProgressBar blogBody_progressBar;// ä¸»é¢˜ListViewåŠ è½½æ¡†
+	ImageButton blog_refresh_btn;// åˆ·æ–°æŒ‰é’®
+	ProgressBar blog_progress_bar;// åŠ è½½æŒ‰é’®
 	
-	Button btnBack;//·µ»Ø°´Å¥
+	Button btnBack;//è¿”å›æŒ‰é’®
 
 	private LinearLayout viewFooter;// footer view
-	TextView tvFooterMore;// µ×²¿¸ü¶àÏÔÊ¾
-	ProgressBar list_footer_progress;// µ×²¿½ø¶ÈÌõ
+	TextView tvFooterMore;// åº•éƒ¨æ›´å¤šæ˜¾ç¤º
+	ProgressBar list_footer_progress;// åº•éƒ¨è¿›åº¦æ¡
 
-	Resources res;// ×ÊÔ´
+	Resources res;// èµ„æº
 
 	private int lastItem;
 	@Override
@@ -73,11 +73,11 @@ public class AuthorOrderActivity extends BaseActivity{
 		new PageTask(0, true).execute();
 	}
 	/**
-	 * ³õÊ¼»¯ÁĞ±í
+	 * åˆå§‹åŒ–åˆ—è¡¨
 	 */
 	private void InitialControls() {
 		txtAppTitle=(TextView)findViewById(R.id.txtAppTitle);
-		txtAppTitle.setText("ÍÆ¼ö²©¿ÍÅÅÃû");
+		txtAppTitle.setText("æ¨èåšå®¢æ’å");
 		btnBack=(Button)findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener(){
 			@Override
@@ -92,22 +92,22 @@ public class AuthorOrderActivity extends BaseActivity{
 
 		blog_refresh_btn = (ImageButton) findViewById(R.id.blog_refresh_btn);
 		blog_progress_bar = (ProgressBar) findViewById(R.id.blog_progressBar);
-		// µ×²¿view
+		// åº•éƒ¨view
 		LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		viewFooter = (LinearLayout) mInflater.inflate(R.layout.listview_footer,
 				null, false);
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindControls() {
-		// Ë¢ĞÂ
+		// åˆ·æ–°
 		blog_refresh_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				new PageTask(1, true).execute();
 			}
 		});
-		// ÉÏÀ­Ë¢ĞÂ
+		// ä¸Šæ‹‰åˆ·æ–°
 		((PullToRefreshListView) listView)
 				.setOnRefreshListener(new OnRefreshListener() {
 					@Override
@@ -115,10 +115,10 @@ public class AuthorOrderActivity extends BaseActivity{
 						new PageTask(-1, true).execute();
 					}
 				});
-		// ÏÂÀ­Ë¢ĞÂ
+		// ä¸‹æ‹‰åˆ·æ–°
 		listView.setOnScrollListener(new OnScrollListener() {
 			/**
-			 * ÏÂÀ­µ½×îºóÒ»ĞĞ
+			 * ä¸‹æ‹‰åˆ°æœ€åä¸€è¡Œ
 			 */
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -134,7 +134,7 @@ public class AuthorOrderActivity extends BaseActivity{
 					int visibleItemCount, int totalItemCount) {
 				lastItem = firstVisibleItem - 2 + visibleItemCount;
 			}
-		});// µã»÷Ìø×ª
+		});// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -142,7 +142,7 @@ public class AuthorOrderActivity extends BaseActivity{
 
 				Intent intent = new Intent();
 				try {
-					// ´«µİ²ÎÊı
+					// ä¼ é€’å‚æ•°
 					intent.setClass(AuthorOrderActivity.this,
 							AuthorBlogActivity.class);
 					Bundle bundle = new Bundle();
@@ -165,7 +165,7 @@ public class AuthorOrderActivity extends BaseActivity{
 				}
 			}
 		});
-		// ³¤°´ÊÂ¼ş
+		// é•¿æŒ‰äº‹ä»¶
 		listView.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v,
@@ -178,7 +178,7 @@ public class AuthorOrderActivity extends BaseActivity{
 	}
 
 	/**
-	 * ¶àÏß³ÌÆô¶¯£¨ÓÃÓÚÉÏÀ­¼ÓÔØ¡¢³õÊ¼»¯¡¢ÏÂÔØ¼ÓÔØ¡¢Ë¢ĞÂ£©
+	 * å¤šçº¿ç¨‹å¯åŠ¨ï¼ˆç”¨äºä¸Šæ‹‰åŠ è½½ã€åˆå§‹åŒ–ã€ä¸‹è½½åŠ è½½ã€åˆ·æ–°ï¼‰
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, List<Users>> {
@@ -197,35 +197,35 @@ public class AuthorOrderActivity extends BaseActivity{
 				_pageIndex = 1;
 			}
 
-			if (isNetworkAvailable) {// ÓĞÍøÂçÇé¿ö
+			if (isNetworkAvailable) {// æœ‰ç½‘ç»œæƒ…å†µ
 				List<Users> listUserNew = UserHelper.GetTopUserList(_pageIndex);
 				switch (curPageIndex) {
-					case -1 :// ÉÏÀ­\
+					case -1 :// ä¸Šæ‹‰\
 						List<Users> listTmp = new ArrayList<Users>();
-						if (listUsers != null && listUsers.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listUsers != null && listUsers.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listUserNew != null && listUserNew.size() > 0) {
 								int size = listUserNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listUsers.contains(listUserNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listUsers.contains(listUserNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listTmp.add(listUserNew.get(i));
 									}
 								}
 							}
 						}
 						return listTmp;
-					case 0 :// Ê×´Î¼ÓÔØ
-					case 1 :// Ë¢ĞÂ
+					case 0 :// é¦–æ¬¡åŠ è½½
+					case 1 :// åˆ·æ–°
 						if (listUserNew != null && listUserNew.size() > 0) {
 							return listUserNew;
 						}
 						break;
-					default :// ÏÂÀ­
+					default :// ä¸‹æ‹‰
 						List<Users> listT = new ArrayList<Users>();
-						if (listUsers != null && listUsers.size() > 0) {// ±ÜÃâÊ×Ò³ÎŞÊı¾İÊ±
+						if (listUsers != null && listUsers.size() > 0) {// é¿å…é¦–é¡µæ— æ•°æ®æ—¶
 							if (listUserNew != null && listUserNew.size() > 0) {
 								int size = listUserNew.size();
 								for (int i = 0; i < size; i++) {
-									if (!listUsers.contains(listUserNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+									if (!listUsers.contains(listUserNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 										listT.add(listUserNew.get(i));
 									}
 								}
@@ -243,19 +243,19 @@ public class AuthorOrderActivity extends BaseActivity{
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(List<Users> result) {
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.GONE);
 			blog_refresh_btn.setVisibility(View.VISIBLE);
 
-			// ÍøÂç²»¿ÉÓÃ²¢ÇÒ±¾µØÃ»ÓĞ±£´æÊı¾İ
-			if (result == null || result.size() == 0) {// Ã»ÓĞĞÂÊı¾İ
+			// ç½‘ç»œä¸å¯ç”¨å¹¶ä¸”æœ¬åœ°æ²¡æœ‰ä¿å­˜æ•°æ®
+			if (result == null || result.size() == 0) {// æ²¡æœ‰æ–°æ•°æ®
 				((PullToRefreshListView) listView).onRefreshComplete();
 				if (!NetHelper.networkIsAvailable(getApplicationContext())
-						&& curPageIndex > 1) {// ÏÂÀ­²¢ÇÒÃ»ÓĞÍøÂç
+						&& curPageIndex > 1) {// ä¸‹æ‹‰å¹¶ä¸”æ²¡æœ‰ç½‘ç»œ
 					Toast.makeText(getApplicationContext(),
 							R.string.sys_network_error, Toast.LENGTH_SHORT)
 							.show();
@@ -269,9 +269,9 @@ public class AuthorOrderActivity extends BaseActivity{
 				listView.addFooterView(viewFooter);
 			}
 
-			if (curPageIndex == -1) {// ÉÏÀ­Ë¢ĞÂ
+			if (curPageIndex == -1) {// ä¸Šæ‹‰åˆ·æ–°
 				adapter.InsertData(result);
-			} else if (curPageIndex == 0) {// Ê×´Î¼ÓÔØ
+			} else if (curPageIndex == 0) {// é¦–æ¬¡åŠ è½½
 				listUsers = result;// dbHelper.GetTopBlogList();
 
 				blogBody_progressBar.setVisibility(View.GONE);
@@ -279,11 +279,11 @@ public class AuthorOrderActivity extends BaseActivity{
 						listUsers, listView);
 				listView.setAdapter(adapter);
 
-				// ´«µİ²ÎÊı
+				// ä¼ é€’å‚æ•°
 				((PullToRefreshListView) listView).SetDataRow(listUsers.size());
 				((PullToRefreshListView) listView).SetPageSize(Config.BLOG_PAGE_SIZE);
-			} else if (curPageIndex == 1) {// Ë¢ĞÂ
-				try {// ±ÜÃâÊ×Ò³ÎŞÍøÂç¼ÓÔØ£¬°´Ë¢ĞÂ°´Å¥
+			} else if (curPageIndex == 1) {// åˆ·æ–°
+				try {// é¿å…é¦–é¡µæ— ç½‘ç»œåŠ è½½ï¼ŒæŒ‰åˆ·æ–°æŒ‰é’®
 					if (adapter != null && adapter.GetData() != null) {
 						adapter.GetData().clear();
 						adapter.AddMoreData(result);
@@ -295,25 +295,25 @@ public class AuthorOrderActivity extends BaseActivity{
 				} catch (Exception ex) {
 					// Log.e("BlogActivity", ex.getMessage());
 				}
-			} else {// ÏÂÀ­
+			} else {// ä¸‹æ‹‰
 				adapter.AddMoreData(result);
 			}
 
-			if (isRefresh) {// Ë¢ĞÂÊ±´¦Àí
+			if (isRefresh) {// åˆ·æ–°æ—¶å¤„ç†
 				((PullToRefreshListView) listView).onRefreshComplete();
 			}
 		}
 		@Override
 		protected void onPreExecute() {
-			// Ö÷Ìå½ø¶ÈÌõ
+			// ä¸»ä½“è¿›åº¦æ¡
 			if (listView.getCount() == 0) {
 				blogBody_progressBar.setVisibility(View.VISIBLE);
 			}
-			// ÓÒÉÏ½Ç
+			// å³ä¸Šè§’
 			blog_progress_bar.setVisibility(View.VISIBLE);
 			blog_refresh_btn.setVisibility(View.GONE);
 
-			if (!isRefresh) {// µ×²¿¿Ø¼ş£¬Ë¢ĞÂÊ±²»×ö´¦Àí
+			if (!isRefresh) {// åº•éƒ¨æ§ä»¶ï¼Œåˆ·æ–°æ—¶ä¸åšå¤„ç†
 				TextView tvFooterMore = (TextView) findViewById(R.id.tvFooterMore);
 				tvFooterMore.setText(R.string.pull_to_refresh_refreshing_label);
 				tvFooterMore.setVisibility(View.VISIBLE);

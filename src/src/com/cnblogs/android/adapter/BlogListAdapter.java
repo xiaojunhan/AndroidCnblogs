@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+锘縫ackage com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class BlogListAdapter extends BaseAdapter {
 		}
 		if(entity.GetAvator()!=null){
 			String tag = entity.GetAvator();
-			if (tag.contains("?")) {// 截断?后的字符串，避免无效图片
+			if (tag.contains("?")) {// 鎴柇?鍚庣殑瀛楃涓诧紝閬垮厤鏃犳晥鍥剧墖
 				tag = tag.substring(0, tag.indexOf("?"));
 			}
 	
@@ -98,7 +98,7 @@ public class BlogListAdapter extends BaseAdapter {
 							}
 						}
 					});
-			// 阅读模式
+			// 闃呰妯″紡
 			boolean isPicReadMode = SettingActivity.IsPicReadMode(currentContext);
 			if (isPicReadMode) {
 				viewHolder.imageIcon.setImageResource(R.drawable.sample_face);
@@ -111,7 +111,7 @@ public class BlogListAdapter extends BaseAdapter {
 		}
 
 		viewHolder.text_title.setText(entity.GetBlogTitle());
-		// 是否已读
+		// 鏄惁宸茶
 		boolean isReaded = entity.GetIsReaded();
 		Log.i("title", entity.GetBlogTitle());
 		if (isReaded) {
@@ -141,7 +141,7 @@ public class BlogListAdapter extends BaseAdapter {
 		return convertView;
 	}
 	/**
-	 * 得到数据
+	 * 寰楀埌鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -149,7 +149,7 @@ public class BlogListAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * 
 	 * @param list
 	 */
@@ -158,7 +158,7 @@ public class BlogListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * 增加数据
+	 * 澧炲姞鏁版嵁
 	 * 
 	 * @param list
 	 */
@@ -167,7 +167,7 @@ public class BlogListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * 移除数据
+	 * 绉婚櫎鏁版嵁
 	 * @param entity
 	 */
 	public void RemoveData(Blog entity){

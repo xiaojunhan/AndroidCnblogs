@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.io.InputStream;
 import com.cnblogs.android.core.NewsHelper;
@@ -31,43 +31,43 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * ĞÂÎÅÏêÇé
+ * æ–°é—»è¯¦æƒ…
  * @author walkingp
  * @date 2011-12
  */
 public class NewsDetailActivity extends BaseActivity implements OnGestureListener{
-	private int newsId;//²©¿Í±àºÅ
-	private String newsTitle;//±êÌâ
-	private String newsDate;//·¢±íÊ±¼ä
-	private String newsUrl;//ÎÄÕÂÁ´½Ó
-	private int newsViews;//ä¯ÀÀ´ÎÊı
-	private int newsComemnt;//ÆÀÂÛ´ÎÊı
+	private int newsId;//åšå®¢ç¼–å·
+	private String newsTitle;//æ ‡é¢˜
+	private String newsDate;//å‘è¡¨æ—¶é—´
+	private String newsUrl;//æ–‡ç« é“¾æ¥
+	private int newsViews;//æµè§ˆæ¬¡æ•°
+	private int newsComemnt;//è¯„è®ºæ¬¡æ•°
 	
-	static final int I_MENU_BACK=Menu.FIRST;//·µ»Ø
-	static final int I_MENU_REFRESH=Menu.FIRST+1;//Ë¢ĞÂ
-	static final int I_MENU_COMMENT=Menu.FIRST+2;//²é¿´ÆÀÂÛ	
-	static final int I_MENU_VIEW_BROWSER=Menu.FIRST+3;//²é¿´ÍøÒ³
-	static final int I_MENU_SHARE=Menu.FIRST+4;//·ÖÏíµ½	
+	static final int I_MENU_BACK=Menu.FIRST;//è¿”å›
+	static final int I_MENU_REFRESH=Menu.FIRST+1;//åˆ·æ–°
+	static final int I_MENU_COMMENT=Menu.FIRST+2;//æŸ¥çœ‹è¯„è®º	
+	static final int I_MENU_VIEW_BROWSER=Menu.FIRST+3;//æŸ¥çœ‹ç½‘é¡µ
+	static final int I_MENU_SHARE=Menu.FIRST+4;//åˆ†äº«åˆ°	
 	
 	final String mimeType = "text/html";  
     final String encoding = "utf-8";  
     
-    private Button comment_btn;//ÆÀÂÛ°´Å¥
-    private Button new_button_back;//·µ»Ø
+    private Button comment_btn;//è¯„è®ºæŒ‰é’®
+    private Button new_button_back;//è¿”å›
     
-    boolean isFullScreen=false;//ÊÇ·ñÈ«ÆÁ
+    boolean isFullScreen=false;//æ˜¯å¦å…¨å±
     
     WebView webView;
     ProgressBar newsBody_progressBar;
-    RelativeLayout rl_news_detail;//Í·²¿µ¼º½
+    RelativeLayout rl_news_detail;//å¤´éƒ¨å¯¼èˆª
     
-    private GestureDetector gestureScanner;//ÊÖÊÆ
+    private GestureDetector gestureScanner;//æ‰‹åŠ¿
     
-    Resources res;//×ÊÔ´
-    SharedPreferences sharePreferencesSettings;//ÉèÖÃ
+    Resources res;//èµ„æº
+    SharedPreferences sharePreferencesSettings;//è®¾ç½®
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
-		//·ÀÖ¹ĞİÃß
+		//é˜²æ­¢ä¼‘çœ 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		this.setContentView(R.layout.news_detail);
 		
@@ -76,14 +76,14 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		InitialData();
 	}
 	/**
-	 * ²Ù×÷Êı¾İ¿â
+	 * æ“ä½œæ•°æ®åº“
 	 */
 	private void OperateDatabase(){
-		//¸üĞÂÎªÒÑ¶Á
+		//æ›´æ–°ä¸ºå·²è¯»
 		NewsDalHelper helper=new NewsDalHelper(getApplicationContext());
 		helper.MarkAsReaded(newsId);
 		helper.Close();
-		// ¹ã²¥
+		// å¹¿æ’­
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putIntArray("newsIdArray",new int[]{newsId});
@@ -92,7 +92,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		this.sendBroadcast(intent);
 	}
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 */
 	private void InitialData(){
 		newsId=Integer.parseInt(getIntent().getStringExtra("newsId"));
@@ -102,24 +102,24 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		newsViews=getIntent().getIntExtra("view", 0);
 		newsComemnt=getIntent().getIntExtra("comment", 0);
 		
-		//´ò¿ªÆÀÂÛ
+		//æ‰“å¼€è¯„è®º
 		comment_btn = (Button)findViewById(R.id.news_comment_btn);
-		String commentsCountString= (newsComemnt==0) ? "ÔİÎŞ" : newsComemnt +"Ìõ"; 
-		comment_btn.setText(commentsCountString + "ÆÀÂÛ");
+		String commentsCountString= (newsComemnt==0) ? "æš‚æ— " : newsComemnt +"æ¡"; 
+		comment_btn.setText(commentsCountString + "è¯„è®º");
 		comment_btn.setOnClickListener(new OnClickListener(){
 		public void onClick(View v) {
 			RedirectCommentActivity();
 		}});
-		//Í·²¿
+		//å¤´éƒ¨
 		rl_news_detail=(RelativeLayout)findViewById(R.id.rl_news_detail);
-		//Ë«»÷È«ÆÁ
+		//åŒå‡»å…¨å±
 		rl_news_detail.setOnTouchListener(new OnTouchListener(){
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				return gestureScanner.onTouchEvent(event);
 			}	    		
     	});
-		//·µ»Ø
+		//è¿”å›
 		new_button_back=(Button)findViewById(R.id.new_button_back);
 		new_button_back.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
@@ -128,7 +128,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		});		
 		try{			
 			webView=(WebView)findViewById(R.id.news_body_webview_content);
-			webView.getSettings().setDefaultTextEncodingName("utf-8");//±ÜÃâÖĞÎÄÂÒÂë
+			webView.getSettings().setDefaultTextEncodingName("utf-8");//é¿å…ä¸­æ–‡ä¹±ç 
 			webView.addJavascriptInterface(this, "javatojs");
 			webView.setScrollBarStyle(0);
 			WebSettings webSetting = webView.getSettings();
@@ -137,14 +137,14 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 	    	webSetting.setNeedInitialFocus(false);
 	    	webSetting.setSupportZoom(true);
 	    	webSetting.setCacheMode(WebSettings.LOAD_DEFAULT|WebSettings.LOAD_CACHE_ELSE_NETWORK);
-	    	//Ë«»÷È«ÆÁ
+	    	//åŒå‡»å…¨å±
 	    	webView.setOnTouchListener(new OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					return gestureScanner.onTouchEvent(event);
 				}	    		
 	    	});
-	    	//ÉÏÒ»´Î±£´æµÄËõ·Å±ÈÀı
+	    	//ä¸Šä¸€æ¬¡ä¿å­˜çš„ç¼©æ”¾æ¯”ä¾‹
 	    	int scalePercent=110;
 	    	float webviewScale=sharePreferencesSettings.getFloat(res.getString(R.string.preferences_webview_zoom_scale), (float) 1.1);
 	    	scalePercent=(int)(webviewScale*100);
@@ -152,15 +152,15 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 	    	
 			newsBody_progressBar=(ProgressBar)findViewById(R.id.newsBody_progressBar);
 			
-			String url=Config.URL_GET_BLOG_DETAIL.replace("{0}",String.valueOf(newsId));//ÍøÖ·
+			String url=Config.URL_GET_BLOG_DETAIL.replace("{0}",String.valueOf(newsId));//ç½‘å€
 			PageTask task = new PageTask();
 	        task.execute(url);
 		}catch(Exception ex){
-			Log.e("NewsDetail","+++++++++++++++++¼ÓÔØÊı¾İÊ±³ö´í++++++++++++++");
+			Log.e("NewsDetail","+++++++++++++++++åŠ è½½æ•°æ®æ—¶å‡ºé”™++++++++++++++");
 			Toast.makeText(getApplicationContext(), R.string.sys_error,Toast.LENGTH_SHORT).show();
 		}
 		
-		// ¼àÌıÆÁÄ»¶¯×÷ÊÂ¼ş  
+		// ç›‘å¬å±å¹•åŠ¨ä½œäº‹ä»¶  
 		gestureScanner = new GestureDetector(this);   
 	    gestureScanner.setOnDoubleTapListener(new GestureDetector.OnDoubleTapListener(){  
 			public boolean onDoubleTap(MotionEvent e) {  
@@ -170,7 +170,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 				quitFullScreen();
 			}
 			isFullScreen=!isFullScreen; 
-			//±£´æÅäÖÃ
+			//ä¿å­˜é…ç½®
 			sharePreferencesSettings.edit().putBoolean(res.getString(R.string.preferences_is_fullscreen), isFullScreen)
 				.commit();
 	        return false;  
@@ -182,15 +182,15 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 	        return false;  
 	      }  
 	    }); 
-	    //ÉÏÒ»´ÎÈ«ÆÁ±£´æ×´Ì¬		
+	    //ä¸Šä¸€æ¬¡å…¨å±ä¿å­˜çŠ¶æ€		
 		isFullScreen=sharePreferencesSettings.getBoolean(res.getString(R.string.preferences_is_fullscreen), false);
-		//³õÊ¼ÊÇ·ñÈ«ÆÁ
+		//åˆå§‹æ˜¯å¦å…¨å±
 		if(isFullScreen){
 			setFullScreen();
 		}
 	}
 	/**
-	 * ±£´æËõ·Å±ÈÀı
+	 * ä¿å­˜ç¼©æ”¾æ¯”ä¾‹
 	 */
 	public void onDestroy(){
 		float webviewScale=webView.getScale();
@@ -199,10 +199,10 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		super.onDestroy(); 
 	}
 	/**
-	 * ´ò¿ªÆÀÂÛ
+	 * æ‰“å¼€è¯„è®º
 	 */
 	private void RedirectCommentActivity(){
-		//»¹Ã»ÓĞÆÀÂÛ
+		//è¿˜æ²¡æœ‰è¯„è®º
 		if(newsComemnt==0){
 			Toast.makeText(getApplicationContext(), R.string.sys_empty_comment, Toast.LENGTH_SHORT).show();
 			return;
@@ -221,18 +221,18 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		startActivityForResult(intent, 0);
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯
+	 * å¤šçº¿ç¨‹å¯åŠ¨
 	 * @author walkingp
 	 *
 	 */
     public class PageTask extends AsyncTask<String, Integer, String> {
-        // ¿É±ä³¤µÄÊäÈë²ÎÊı£¬ÓëAsyncTask.exucute()¶ÔÓ¦
+        // å¯å˜é•¿çš„è¾“å…¥å‚æ•°ï¼Œä¸AsyncTask.exucute()å¯¹åº”
         @Override
         protected String doInBackground(String... params) {
 
             try{
             	String _newsContent=NewsHelper.GetNewsContentById(newsId, getApplicationContext());
-				//ÏÂÔØÍ¼Æ¬£¨Ö»ÓĞ±¾µØÍêÕû±£´æÍ¼Æ¬Ê±²ÅÏÂÔØ£©
+				//ä¸‹è½½å›¾ç‰‡ï¼ˆåªæœ‰æœ¬åœ°å®Œæ•´ä¿å­˜å›¾ç‰‡æ—¶æ‰ä¸‹è½½ï¼‰
             	//NewsDalHelper helper = new NewsDalHelper(context);
             	//Context context=getApplicationContext();
             	//News entity = helper.GetNewsEntity(newsId);
@@ -255,7 +255,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
             super.onCancelled();
         }
     	/**
-    	 * ¼ÓÔØÄÚÈİ
+    	 * åŠ è½½å†…å®¹
     	 */
         @Override
         protected void onPostExecute(String _newsContent) {
@@ -270,17 +270,17 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 				Log.e("error", e.toString());
 			}
 			
-			//ÔÄ¶ÁÄ£Ê½
+			//é˜…è¯»æ¨¡å¼
 			_newsContent=AppUtil.FormatContent(getApplicationContext(), _newsContent);
 			
-			String newsInfo= "·¢±íÊ±¼ä:" + newsDate + " ²é¿´:" + newsViews;
+			String newsInfo= "å‘è¡¨æ—¶é—´:" + newsDate + " æŸ¥çœ‹:" + newsViews;
 			
         	webView.loadDataWithBaseURL(Config.LOCAL_PATH, htmlContent.replace("#title#",newsTitle).replace("#time#", newsInfo)
 					.replace("#content#", _newsContent), "text/html", "utf-8", null);
         	newsBody_progressBar.setVisibility(View.GONE);
 
         	if(!_newsContent.equals("")){
-	        	//¸üĞÂÎªÒÑ¶Á
+	        	//æ›´æ–°ä¸ºå·²è¯»
 	    		OperateDatabase();
         	}
         }
@@ -296,7 +296,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
      }
 
 	/**
-	 * ²Ëµ¥
+	 * èœå•
 	 */
 	@Override  
     public boolean onCreateOptionsMenu(Menu menu) { 
@@ -307,29 +307,29 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
    @Override  
     public boolean onOptionsItemSelected(MenuItem item) { 
         switch(item.getItemId()){  
-            case R.id.menu_news_back://·µ»ØÁĞ±í
+            case R.id.menu_news_back://è¿”å›åˆ—è¡¨
             	NewsDetailActivity.this.setResult(0,getIntent());
             	NewsDetailActivity.this.finish();
 				break;
-            case R.id.menu_news_comment://´ò¿ªÆÀÂÛ
+            case R.id.menu_news_comment://æ‰“å¼€è¯„è®º
             	RedirectCommentActivity();
             	break;
-            case R.id.menu_news_share://·ÖÏí
+            case R.id.menu_news_share://åˆ†äº«
             	Intent intent=new Intent(Intent.ACTION_SEND);    
             	intent.setType("text/plain");
             	intent.putExtra(Intent.EXTRA_SUBJECT, newsTitle);
-            	String shareContent="¡¶" + newsTitle + "¡·,Ô­ÎÄÁ´½Ó£º" + newsUrl + " ·ÖÏí×Ô£º" + res.getString(R.string.app_name)
-            			+ "Android¿Í»§¶Ë(" + res.getString(R.string.app_homepage) + ")";
+            	String shareContent="ã€Š" + newsTitle + "ã€‹,åŸæ–‡é“¾æ¥ï¼š" + newsUrl + " åˆ†äº«è‡ªï¼š" + res.getString(R.string.app_name)
+            			+ "Androidå®¢æˆ·ç«¯(" + res.getString(R.string.app_homepage) + ")";
             	intent.putExtra(Intent.EXTRA_TEXT, shareContent);
             	startActivity(Intent.createChooser(intent, newsTitle)); 
             	break;
-            case R.id.menu_news_refresh://Ë¢ĞÂ
+            case R.id.menu_news_refresh://åˆ·æ–°
             	InitialData();
             	break;
-            case R.id.menu_news_fontsize://×ÖÌå´óĞ¡
+            case R.id.menu_news_fontsize://å­—ä½“å¤§å°
             	InitialData();
             	break;
-            case R.id.menu_news_browser://²é¿´ÍøÒ³
+            case R.id.menu_news_browser://æŸ¥çœ‹ç½‘é¡µ
     	    	Uri newsUri=Uri.parse(newsUrl);
     	    	Intent it = new Intent(Intent.ACTION_VIEW, newsUri);
     	    	startActivity(it);
@@ -338,7 +338,7 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
         return super.onOptionsItemSelected(item);  
     } 
 	/**
-	 * Ë«»÷È«ÆÁ
+	 * åŒå‡»å…¨å±
 	 */
 	public void OnDoubleTapListener(){		
 		if(!isFullScreen){
@@ -349,23 +349,23 @@ public class NewsDetailActivity extends BaseActivity implements OnGestureListene
 		isFullScreen=!isFullScreen;		
 	}
 	/**
-	 * È«ÆÁ
+	 * å…¨å±
 	 */
 	private void setFullScreen(){
        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
        		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-       //Òş²Øµ¼º½
+       //éšè—å¯¼èˆª
        rl_news_detail.setVisibility(View.GONE);
    }
 	/**
-	 * ÍË³öÈ«ÆÁ
+	 * é€€å‡ºå…¨å±
 	 */
    private void quitFullScreen(){
        final WindowManager.LayoutParams attrs = getWindow().getAttributes();
        attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
        getWindow().setAttributes(attrs);
        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-       //ÏÔÊ¾µ¼º½
+       //æ˜¾ç¤ºå¯¼èˆª
        rl_news_detail.setVisibility(View.VISIBLE);
    }
 	@Override

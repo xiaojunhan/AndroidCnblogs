@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SimpleAdapter.ViewBinder;
 /**
- * ¸ü¶à
+ * æ›´å¤š
  * @author walkingp
  * @date:2011-12
  *
@@ -36,13 +36,13 @@ public class MoreActivity extends BaseMainActivity{
         initControl();
 	}
 	/**
-     * ³õÊ¼¼ÓÔØ¿Ø¼ş
+     * åˆå§‹åŠ è½½æ§ä»¶
      */
     private void initControl(){
         SimpleAdapter adapter = new SimpleAdapter(this, getData(), R.layout.more_list_item, 
         		new String[]{"PIC", "TITLE","DESC","URL"},
         		new int[]{R.id.more_tools_icon, R.id.more_tools_title,R.id.more_tools_desc,R.id.more_tools_url});
-        	//Ê¹Ö®¿ÉÒÔ¼ÓÔØÍ¼Æ¬
+        	//ä½¿ä¹‹å¯ä»¥åŠ è½½å›¾ç‰‡
 			adapter.setViewBinder(new ViewBinder(){
 				public boolean setViewValue(View view,Object data,String textRepresentation){
 					if(view instanceof ImageView && data instanceof Bitmap){
@@ -55,11 +55,11 @@ public class MoreActivity extends BaseMainActivity{
 			});
         listview = (ListView)findViewById(R.id.more_tools_list);
         listview.setAdapter(adapter);
-        // µã»÷Ìø×ª
+        // ç‚¹å‡»è·³è½¬
         listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-				//ÍøÂç²»¿ÉÓÃ
+				//ç½‘ç»œä¸å¯ç”¨
 				if(!NetHelper.networkIsAvailable(getApplicationContext())){
 					Toast.makeText(getApplicationContext(), R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 					return;
@@ -81,10 +81,10 @@ public class MoreActivity extends BaseMainActivity{
     }
     private List<Map<String, Object>> getData() {
     	Integer[] images = { R.drawable.jquery, R.drawable.stylesheet,R.drawable.regular};
-		String[] texts = { "jQueryÊÖ²á","CSSËÙ²éÊÖ²á","ÕıÔò±í´ïÊ½ËÙ²é"};
-		String[] descs={"jQuery¹Ù·½ÎÄµµ£¨jQuery1.4°æ±¾£©ºº»¯°æ£¬ÊÕÂ¼»ù±¾ÍêÕû¡£",
-				"CSS2.0ËÙ²éÊÖ²á£¬Ö§³Ö·ÖÀàä¯ÀÀ¼°²éÑ¯£¬º¬ÓÃ·¨¡¢Ïê½â¼°Ê¾Àı¡£",
-				"°üº¬ÕıÔò±í´ïÊ½»ù±¾Óï·¨£¬±ãÓÚ¿ìËÙ²éÑ¯Ê¹ÓÃ¡£"};
+		String[] texts = { "jQueryæ‰‹å†Œ","CSSé€ŸæŸ¥æ‰‹å†Œ","æ­£åˆ™è¡¨è¾¾å¼é€ŸæŸ¥"};
+		String[] descs={"jQueryå®˜æ–¹æ–‡æ¡£ï¼ˆjQuery1.4ç‰ˆæœ¬ï¼‰æ±‰åŒ–ç‰ˆï¼Œæ”¶å½•åŸºæœ¬å®Œæ•´ã€‚",
+				"CSS2.0é€ŸæŸ¥æ‰‹å†Œï¼Œæ”¯æŒåˆ†ç±»æµè§ˆåŠæŸ¥è¯¢ï¼Œå«ç”¨æ³•ã€è¯¦è§£åŠç¤ºä¾‹ã€‚",
+				"åŒ…å«æ­£åˆ™è¡¨è¾¾å¼åŸºæœ¬è¯­æ³•ï¼Œä¾¿äºå¿«é€ŸæŸ¥è¯¢ä½¿ç”¨ã€‚"};
 		String[] urls={"http://m.walkingp.com/handbook/jquery/",
 				"http://m.walkingp.com/handbook/css/",
 				"http://m.walkingp.com/handbook/regular/"};
@@ -101,7 +101,7 @@ public class MoreActivity extends BaseMainActivity{
 			map.put("DESC", descs[i]);
 			map.put("URL",urls[i]);
 			
-			if(isShowArray[i]){//Ñ¡Ïî
+			if(isShowArray[i]){//é€‰é¡¹
 				items.add(map);
 			}
 		}

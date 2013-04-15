@@ -1,4 +1,4 @@
-package com.cnblogs.android.cache;
+ï»¿package com.cnblogs.android.cache;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -24,7 +24,7 @@ public class AsyncImageLoader {
 		imageCache = new HashMap<String, SoftReference<Drawable>>();
 	}
 	/*
-	 * Ö±½ÓÏÂÔØÍ¼Æ¬
+	 * ç›´æ¥ä¸‹è½½å›¾ç‰‡
 	 */
 	public void loadDrawable(final ImageCacher.EnumImageType imgType,
 			final String imageUrl) {
@@ -37,7 +37,7 @@ public class AsyncImageLoader {
 		}.start();
 	}
 	/**
-	 * ½«ÏÂÔØµ½±¾µØ²¢±£´æ
+	 * å°†ä¸‹è½½åˆ°æœ¬åœ°å¹¶ä¿å­˜
 	 * 
 	 * @param imgType
 	 * @param tag
@@ -56,8 +56,8 @@ public class AsyncImageLoader {
 		final String folder = ImageCacher.GetImageFolder(imgType);
 		String outFilename = folder
 				+ imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
-		Log.i("ÏÂÔØ", tag);
-		Log.i("±¾µØ", outFilename);
+		Log.i("ä¸‹è½½", tag);
+		Log.i("æœ¬åœ°", outFilename);
 		File file = new File(outFilename);
 		if (imageCache.containsKey(imageUrl)) {
 			SoftReference<Drawable> softReference = imageCache.get(imageUrl);

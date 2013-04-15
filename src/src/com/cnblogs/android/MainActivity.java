@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TabHost;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 /**
- * Ö÷Activity£¬·ÅÖÃ5¸öTab
+ * ä¸»Activityï¼Œæ”¾ç½®5ä¸ªTab
  * @author walkingp
  * @date:2011-12
  *
@@ -31,9 +31,9 @@ public class MainActivity extends TabActivity
 	private RadioButton rbSearch;
 	private RadioButton rbMore;
 
-    public String whichTab = "";// µ±Ç°Ñ¡ÖĞTab
+    public String whichTab = "";// å½“å‰é€‰ä¸­Tab
 
-	Resources res;// ×ÊÔ´
+	Resources res;// èµ„æº
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class MainActivity extends TabActivity
 		InitialSelectedTab();
 	}
 	/**
-	 * ³õÊ¼»¯µ¥Ñ¡°´Å¥
+	 * åˆå§‹åŒ–å•é€‰æŒ‰é’®
 	 */
 	private void InitialRadios() {
 		rbBlog = (RadioButton) findViewById(R.id.TabBlog);
@@ -67,7 +67,7 @@ public class MainActivity extends TabActivity
 		rbMore.setOnCheckedChangeListener(this);
 	}
 	/**
-	 * ³õÊ¼»¯Tab
+	 * åˆå§‹åŒ–Tab
 	 */
 	private void InitialTab() {
 		tabHost = this.getTabHost();
@@ -87,7 +87,7 @@ public class MainActivity extends TabActivity
 				R.drawable.icon, intentMore));
 	}
 	/**
-	 * ÉèÖÃÄ¬ÈÏÑ¡ÖĞTab
+	 * è®¾ç½®é»˜è®¤é€‰ä¸­Tab
 	 */
 	private void InitialSelectedTab() {
 		SharedPreferences settings = getSharedPreferences(res.getString(R.string.preferences_key), MODE_PRIVATE);
@@ -104,7 +104,7 @@ public class MainActivity extends TabActivity
 			rbMore.setChecked(true);
 	}
 	/**
-	 * ¹«ÓÃ³õÊ¼»¯Tab
+	 * å…¬ç”¨åˆå§‹åŒ–Tab
 	 */
 	private TabHost.TabSpec buildTabSpec(String tag, int resLabel, int resIcon,
 			final Intent content) {
@@ -115,7 +115,7 @@ public class MainActivity extends TabActivity
 				.setContent(content);
 	}
 	/**
-	 * ÉèÖÃµ±Ç°Tab±»Ñ¡ÖĞºóµÄActivity
+	 * è®¾ç½®å½“å‰Tabè¢«é€‰ä¸­åçš„Activity
 	 * 
 	 * @param buttonView
 	 * @param isChecked
@@ -147,7 +147,7 @@ public class MainActivity extends TabActivity
 				break;
 		}
 	}
-	// ´æ´¢¹Ø±ÕÊ±µÄtab
+	// å­˜å‚¨å…³é—­æ—¶çš„tab
 	protected void onDestroy() {
 		SharedPreferences settings = getSharedPreferences(
 				res.getString(R.string.preferences_key), MODE_PRIVATE);

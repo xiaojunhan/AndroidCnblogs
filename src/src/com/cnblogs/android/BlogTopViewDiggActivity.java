@@ -1,4 +1,4 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 /**
- * 48Ğ¡Ê±ÄÚÔÄ¶ÁÅÅĞĞ+10ÌìÄÚÍÆ¼öÅÅĞĞ
+ * 48å°æ—¶å†…é˜…è¯»æ’è¡Œ+10å¤©å†…æ¨èæ’è¡Œ
  * @author walkingp
  * @date 2012-3
  */
@@ -36,15 +36,15 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 	BlogListAdapter adapter;
 	ListView listView;
 
-	ProgressBar progressBar;// ¼ÓÔØ
-	ProgressBar topProgressBar;//Í·²¿½ø¶ÈÌõ
-	Resources res;// ×ÊÔ´
-	SharedPreferences sharePreferencesSettings;// ÉèÖÃ
+	ProgressBar progressBar;// åŠ è½½
+	ProgressBar topProgressBar;//å¤´éƒ¨è¿›åº¦æ¡
+	Resources res;// èµ„æº
+	SharedPreferences sharePreferencesSettings;// è®¾ç½®
 	
 	EnumActivityType.EnumOrderActivityType activityType;
 	
-	Button btnBack;//°´Å¥
-	ImageButton btnRefresh;//Ë¢ĞÂ°´Å¥
+	Button btnBack;//æŒ‰é’®
+	ImageButton btnRefresh;//åˆ·æ–°æŒ‰é’®
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		new PageTask().execute();
 	}
 	/**
-	 * ÕÒµ½¿Ø¼ş
+	 * æ‰¾åˆ°æ§ä»¶
 	 */
 	private void BindControls() {
 		activityType=EnumActivityType.EnumOrderActivityType.values()[getIntent().getIntExtra("type", 0)];
@@ -64,15 +64,15 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		TextView txtAppTitle=(TextView)findViewById(R.id.txtAppTitle);
 		switch(activityType){
 			case TopDiggBlogIn10Days:
-				txtAppTitle.setText("10ÌìÄÚÍÆ¼öÅÅĞĞ");
+				txtAppTitle.setText("10å¤©å†…æ¨èæ’è¡Œ");
 				break;
 			case TopViewBlogIn48Hours:
-				txtAppTitle.setText("48Ğ¡Ê±ÄÚÔÄ¶ÁÅÅĞĞ");
+				txtAppTitle.setText("48å°æ—¶å†…é˜…è¯»æ’è¡Œ");
 				break;
 		}
 		
 		listView = (ListView) findViewById(R.id.blog_list);
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -84,7 +84,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		topProgressBar=(ProgressBar)findViewById(R.id.blog_progressBar);	
 		btnRefresh=(ImageButton)findViewById(R.id.blog_refresh_btn);
 		btnBack=(Button)findViewById(R.id.btn_back);
-		//·µ»Ø
+		//è¿”å›
 		btnBack.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -93,10 +93,10 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		});
 	}
 	/**
-	 * °ó¶¨ÊÂ¼ş
+	 * ç»‘å®šäº‹ä»¶
 	 */
 	private void BindEvent() {
-		// µã»÷Ìø×ª
+		// ç‚¹å‡»è·³è½¬
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -104,7 +104,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 
 				Intent intent = new Intent();
 				try {
-					// ´«µİ²ÎÊı
+					// ä¼ é€’å‚æ•°
 					intent.setClass(BlogTopViewDiggActivity.this,
 							AuthorBlogActivity.class);
 					Bundle bundle = new Bundle();
@@ -129,7 +129,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		});
 	}
 	/**
-	 * ¶àÏß³ÌÆô¶¯£¨ÓÃÓÚÉÏÀ­¼ÓÔØ¡¢³õÊ¼»¯¡¢ÏÂÔØ¼ÓÔØ¡¢Ë¢ĞÂ£©
+	 * å¤šçº¿ç¨‹å¯åŠ¨ï¼ˆç”¨äºä¸Šæ‹‰åŠ è½½ã€åˆå§‹åŒ–ã€ä¸‹è½½åŠ è½½ã€åˆ·æ–°ï¼‰
 	 * 
 	 */
 	public class PageTask extends AsyncTask<String, Integer, List<Blog>> {
@@ -153,7 +153,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 				}
 				int size = listBlogNew.size();
 				for (int i = 0; i < size; i++) {
-					if (!listBlog.contains(listBlogNew.get(i))) {// ±ÜÃâ³öÏÖÖØ¸´
+					if (!listBlog.contains(listBlogNew.get(i))) {// é¿å…å‡ºç°é‡å¤
 						listTmp.add(listBlogNew.get(i));
 					}
 				}
@@ -170,20 +170,20 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 			super.onCancelled();
 		}
 		/**
-		 * ¼ÓÔØÄÚÈİ
+		 * åŠ è½½å†…å®¹
 		 */
 		@Override
 		protected void onPostExecute(List<Blog> result) {
 			btnRefresh.setVisibility(View.VISIBLE);
 			topProgressBar.setVisibility(View.GONE);
-			// ÍøÂç²»¿ÉÓÃ
+			// ç½‘ç»œä¸å¯ç”¨
 			if (!NetHelper.networkIsAvailable(getApplicationContext())) {
 				Toast.makeText(getApplicationContext(),
 						R.string.sys_network_error, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if (result == null || result.size() == 0) {// Ã»ÓĞĞÂÊı¾İ
+			if (result == null || result.size() == 0) {// æ²¡æœ‰æ–°æ•°æ®
 				return;
 			}
 
@@ -196,7 +196,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		}
 		@Override
 		protected void onPreExecute() {
-			// Ö÷Ìå½ø¶ÈÌõ
+			// ä¸»ä½“è¿›åº¦æ¡
 			if (listView.getCount() == 0) {
 				progressBar.setVisibility(View.VISIBLE);
 			}
@@ -209,7 +209,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 		}
 	}
 	/**
-	 * Ìø×ªµ½ÏêÇé
+	 * è·³è½¬åˆ°è¯¦æƒ…
 	 * 
 	 * @param v
 	 */
@@ -217,7 +217,7 @@ public class BlogTopViewDiggActivity extends BaseActivity {
 
 		Intent intent = new Intent();
 		try {
-			// ´«µİ²ÎÊı
+			// ä¼ é€’å‚æ•°
 			intent.setClass(BlogTopViewDiggActivity.this, BlogDetailActivity.class);
 			Bundle bundle = new Bundle();
 			TextView tvBlogId = (TextView) (v

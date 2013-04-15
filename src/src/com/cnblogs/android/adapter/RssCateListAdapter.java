@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+锘縫ackage com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class RssCateListAdapter extends BaseAdapter {
 					.findViewById(R.id.rss_cate_id);
 		}
 		String tag = entity.GetIcon();
-		if (tag.contains("?")) {// 截断?后的字符串，避免无效图片
+		if (tag.contains("?")) {// 鎴柇?鍚庣殑瀛楃涓诧紝閬垮厤鏃犳晥鍥剧墖
 			tag = tag.substring(0, tag.indexOf("?"));
 		}
 
@@ -86,7 +86,7 @@ public class RssCateListAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * 得到数据
+	 * 寰楀埌鏁版嵁
 	 * 
 	 * @return
 	 */
@@ -94,7 +94,7 @@ public class RssCateListAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * 插入
+	 * 鎻掑叆
 	 * 
 	 * @param list
 	 */
@@ -103,7 +103,7 @@ public class RssCateListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * 增加数据
+	 * 澧炲姞鏁版嵁
 	 * 
 	 * @param list
 	 */

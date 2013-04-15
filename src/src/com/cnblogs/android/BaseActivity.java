@@ -1,18 +1,18 @@
-package com.cnblogs.android;
+ï»¿package com.cnblogs.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 /**
- * »ùÀà£¬´ó²¿·ÖActivity¼Ì³Ğ×Ô´ËÀà
+ * åŸºç±»ï¼Œå¤§éƒ¨åˆ†Activityç»§æ‰¿è‡ªæ­¤ç±»
  * @author walkingp
  * @date:2011-11
  *
  */
 public class BaseActivity extends Activity {
 	/**
-	 * ºáÊúÆÁ
+	 * æ¨ªç«–å±
 	 */
 	@Override
 	protected void onResume() {
@@ -30,10 +30,10 @@ public class BaseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 	}
 	/**
-	 * °´ÏÂ¼üÅÌÉÏ·µ»Ø°´Å¥
+	 * æŒ‰ä¸‹é”®ç›˜ä¸Šè¿”å›æŒ‰é’®
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if(keyCode==KeyEvent.KEYCODE_SEARCH){//ËÑË÷
+		if(keyCode==KeyEvent.KEYCODE_SEARCH){//æœç´¢
 			Intent intent = new Intent(BaseActivity.this,SearchActivity.class);
 			intent.putExtra("isShowQuitHints", false);
 			startActivity(intent);

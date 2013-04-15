@@ -1,4 +1,4 @@
-package com.cnblogs.android.adapter;
+ï»¿package com.cnblogs.android.adapter;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class RssItemsAdapter extends BaseAdapter {
 		}
 
 		viewHolder.text_title.setText(entity.GetTitle());
-		// ÊÇ·ñÒÑ¶Á
+		// æ˜¯å¦å·²è¯»
 		boolean isReaded = entity.GetIsReaded();
 		if (isReaded) {
 			viewHolder.text_title.setTextColor(R.color.gray);
@@ -68,15 +68,15 @@ public class RssItemsAdapter extends BaseAdapter {
 					.GetAddDate());
 			viewHolder.text_formatdate.setText(simpleDateString);
 		}else{
-			viewHolder.text_date.setText("Î´ÖªÊ±¼ä");
-			viewHolder.text_formatdate.setText("Î´ÖªÊ±¼ä");
+			viewHolder.text_date.setText("æœªçŸ¥æ—¶é—´");
+			viewHolder.text_formatdate.setText("æœªçŸ¥æ—¶é—´");
 		}
 		if (entity.GetLink() != null) {
 			viewHolder.text_url.setText(entity.GetLink());
 		}
 		viewHolder.text_blog_id.setText(String.valueOf(entity.GetId()));
 		
-		String cate="ÎŞ";
+		String cate="æ— ";
 		if(entity.GetCategory()!=null && !entity.GetCategory().equals("")){
 			cate=entity.GetCategory();
 		}
@@ -87,7 +87,7 @@ public class RssItemsAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * µÃµ½Êı¾İ
+	 * å¾—åˆ°æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public class RssItemsAdapter extends BaseAdapter {
 		return list;
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * 
 	 * @param list
 	 */
@@ -104,7 +104,7 @@ public class RssItemsAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 	/**
-	 * Ôö¼ÓÊı¾İ
+	 * å¢åŠ æ•°æ®
 	 * 
 	 * @param list
 	 */

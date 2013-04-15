@@ -1,4 +1,4 @@
-package com.cnblogs.android.cache;
+ï»¿package com.cnblogs.android.cache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +17,21 @@ public class ImageCacher {
 
 	}
 	/**
-	 * Í¼Æ¬ÀàĞÍ
+	 * å›¾ç‰‡ç±»å‹
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public enum EnumImageType {
-		Avatar, // Í·Ïñ
-		Blog, // ²©¿Í
-		News, // ĞÂÎÅ
-		RssIcon, // RSS¶©ÔÄ·ÖÀà
+		Avatar, // å¤´åƒ
+		Blog, // åšå®¢
+		News, // æ–°é—»
+		RssIcon, // RSSè®¢é˜…åˆ†ç±»
 		Temp
-		// ÁÙÊ±ÎÄ¼ş¼Ğ
+		// ä¸´æ—¶æ–‡ä»¶å¤¹
 	}
 	/**
-	 * µÃµ½Í¼Æ¬µØÖ·ÎÄ¼ş¼Ğ
+	 * å¾—åˆ°å›¾ç‰‡åœ°å€æ–‡ä»¶å¤¹
 	 * 
 	 * @param imageType
 	 * @return
@@ -61,7 +61,7 @@ public class ImageCacher {
 	static final Pattern patternImgSrc = Pattern
 			.compile("<img(.+?)src=\"(.+?)\"(.+?)>");
 	/**
-	 * µÃµ½htmlÖĞµÄÍ¼Æ¬µØÖ·
+	 * å¾—åˆ°htmlä¸­çš„å›¾ç‰‡åœ°å€
 	 * 
 	 * @param html
 	 * @return
@@ -76,14 +76,14 @@ public class ImageCacher {
 		return listSrc;
 	}
 	/**
-	 * µÃµ½ĞÂÍ¼Æ¬µØÖ·£¨±¾µØÂ·¾¶£©
+	 * å¾—åˆ°æ–°å›¾ç‰‡åœ°å€ï¼ˆæœ¬åœ°è·¯å¾„ï¼‰
 	 * 
 	 * @param imgType
 	 * @param imageUrl
 	 * @return
 	 */
 	private static String GetNewImgSrc(EnumImageType imgType, String imageUrl) {
-		if (imageUrl.contains("?")) {// ½Ø¶Ï?ºóµÄ×Ö·û´®£¬±ÜÃâÎŞĞ§Í¼Æ¬
+		if (imageUrl.contains("?")) {// æˆªæ–­?åçš„å­—ç¬¦ä¸²ï¼Œé¿å…æ— æ•ˆå›¾ç‰‡
 			imageUrl = imageUrl.substring(0, imageUrl.indexOf("?"));
 		}
 		imageUrl = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
@@ -93,7 +93,7 @@ public class ImageCacher {
 		return "file:///mnt" + folder + imageUrl;
 	}
 	/**
-	 * ÏÂÔØhtmlÖĞµÄÍ¼Æ¬
+	 * ä¸‹è½½htmlä¸­çš„å›¾ç‰‡
 	 * 
 	 * @param imgType
 	 * @param html
@@ -110,13 +110,13 @@ public class ImageCacher {
 					imageLoader.loadDrawable(imgType, src);
 				}
 				break;
-			case Avatar :// ÏÂÔØÍ·Ïñ
+			case Avatar :// ä¸‹è½½å¤´åƒ
 				imageLoader.loadDrawable(imgType, html);
 				break;
 		}
 	}
 	/**
-	 * µÃµ½¸ñÊ½»¯ºóµÄhtml
+	 * å¾—åˆ°æ ¼å¼åŒ–åçš„html
 	 * 
 	 * @param imgType
 	 * @param html

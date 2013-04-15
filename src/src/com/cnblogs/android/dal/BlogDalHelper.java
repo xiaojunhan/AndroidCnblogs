@@ -1,4 +1,4 @@
-package com.cnblogs.android.dal;
+ï»¿package com.cnblogs.android.dal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class BlogDalHelper {
 		dbHelper.close();
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»å­˜åœ¨
 	 * 
 	 * @param blogId
 	 * @return
@@ -41,7 +41,7 @@ public class BlogDalHelper {
 		return isExist;
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­Ğ´ÈëÄÚÈİ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»å†™å…¥å†…å®¹
 	 * @param blogId
 	 * @return
 	 */
@@ -61,7 +61,7 @@ public class BlogDalHelper {
 		return isFull;
 	}
 	/**
-	 * µÃµ½Í·Ìõ
+	 * å¾—åˆ°å¤´æ¡
 	 * 
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class BlogDalHelper {
 		return GetBlogListByWhere(limit, where, null);
 	}
 	/**
-	 * ·ÖÒ³
+	 * åˆ†é¡µ
 	 */
 	public List<Blog> GetBlogListByPage(int pageIndex, int pageSize) {
 		String limit = String.valueOf((pageIndex - 1) * pageSize) + ","
@@ -82,7 +82,7 @@ public class BlogDalHelper {
 		return list;
 	}
 	/**
-	 * µÃµ½Ä³¸ö×÷ÕßµÄÀëÏßÊı¾İ
+	 * å¾—åˆ°æŸä¸ªä½œè€…çš„ç¦»çº¿æ•°æ®
 	 * @param author
 	 * @param pageIndex
 	 * @param pageSize
@@ -97,7 +97,7 @@ public class BlogDalHelper {
 		return list;
 	}
 	/**
-	 * µÃµ½¶ÔÏó
+	 * å¾—åˆ°å¯¹è±¡
 	 */
 	public Blog GetBlogEntity(int blogId) {
 		String limit = "1";
@@ -111,7 +111,7 @@ public class BlogDalHelper {
 		return null;
 	}
 	/**
-	 * µÃµ½
+	 * å¾—åˆ°
 	 * 
 	 * @param top
 	 * @param where
@@ -174,7 +174,7 @@ public class BlogDalHelper {
 		return listBlog;
 	}
 	/**
-	 * ÊÇ·ñÒÑ¶Á
+	 * æ˜¯å¦å·²è¯»
 	 * 
 	 * @param blogId
 	 * @return
@@ -187,7 +187,7 @@ public class BlogDalHelper {
 		return false;
 	}
 	/**
-	 * ±êÖ¾ÎªÒÑ¶Á
+	 * æ ‡å¿—ä¸ºå·²è¯»
 	 * 
 	 * @param blogId
 	 */
@@ -197,7 +197,7 @@ public class BlogDalHelper {
 		db.execSQL(sql, args);
 	}
 	/**
-	 * ½«²©¿ÍÄÚÈİÍ¬²½µ½Êı¾İ¿â
+	 * å°†åšå®¢å†…å®¹åŒæ­¥åˆ°æ•°æ®åº“
 	 * 
 	 * @param blogId
 	 * @param blogContent
@@ -211,7 +211,7 @@ public class BlogDalHelper {
 		db.execSQL(sql, args);
 	}
 	/**
-	 * ²åÈë
+	 * æ’å…¥
 	 * 
 	 * @param list
 	 */
@@ -264,7 +264,7 @@ public class BlogDalHelper {
 		synchronized (_writeLock) {
 			db.beginTransaction();
 			try {
-				// Çå³ıÒÑÓĞ
+				// æ¸…é™¤å·²æœ‰
 				// String where="IsFull=?";
 				// String[] args={"0"};
 				// db.delete(DB_BLOG_TABLE, where, args);
@@ -274,7 +274,7 @@ public class BlogDalHelper {
 					boolean isFull = IsFull(blogId);
 					if (!isExist) {
 						db.insert(Config.DB_BLOG_TABLE, null, list.get(i));
-					} else if (!isFull) {// Èç¹ûÃ»ÓĞĞ´ÄÚÈİ
+					} else if (!isFull) {// å¦‚æœæ²¡æœ‰å†™å†…å®¹
 						SynchronyContent2DB(list.get(i).getAsInteger("BlogId"),
 								list.get(i).getAsString("Content"));
 					}

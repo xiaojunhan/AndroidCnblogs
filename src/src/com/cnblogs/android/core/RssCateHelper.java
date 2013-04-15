@@ -1,4 +1,4 @@
-package com.cnblogs.android.core;
+ï»¿package com.cnblogs.android.core;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -14,18 +14,18 @@ import com.cnblogs.android.parser.RssCateXmlParser;
 import com.cnblogs.android.utility.NetHelper;
 
 /**
- * News²Ù×÷Àà
+ * Newsæ“ä½œç±»
  * @author walkingp
  *
  */
 public class RssCateHelper extends DefaultHandler {
 	/**
-	 * ¸ù¾İÒ³Âë·µ»ØNews¶ÔÏó¼¯ºÏ
+	 * æ ¹æ®é¡µç è¿”å›Newså¯¹è±¡é›†åˆ
 	 * @return
-	 * pageIndex:Ò³Âë£¬´Ó1¿ªÊ¼
+	 * pageIndex:é¡µç ï¼Œä»1å¼€å§‹
 	 */
 	public static ArrayList<RssCate> GetRssCates(){
-		String url=Config.URL_RSS_CATE_URL;//Ê×Ñ¡µØÖ·
+		String url=Config.URL_RSS_CATE_URL;//é¦–é€‰åœ°å€
 		String dataString=NetHelper.GetXmlContentFromUrl(url,"UTF-8");
 		if(dataString.equals("")){
 			return null;
@@ -35,7 +35,7 @@ public class RssCateHelper extends DefaultHandler {
 		return list;
 	}
 	/**
-	 * ½«×Ö·û´®×ª»»ÎªRssCate¼¯ºÏ
+	 * å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºRssCateé›†åˆ
 	 * @return
 	 */
 	private static ArrayList<RssCate> ParseString(String dataString) {
